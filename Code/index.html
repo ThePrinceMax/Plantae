@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Plantae</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Maxime Princelle">
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
+
+    <link rel="stylesheet" href="./css/layout.css">
+
+
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Plantae</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg shadow-lg">
+        <a class="navbar-left" href="#">
+            <img alt="Brand" style="max-height: 50%; max-width: 50%; object-fit: contain;" src="./img/logo.png">
+        </a>
+
+        <a class="navbar-brand" href="#">Plantae</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -19,6 +37,10 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="#">Herbier</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -35,14 +57,64 @@
             </div>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">Herbier</a>
-          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
+          <button class="btn btn-secondary my-2 my-sm-0 disabled" type="submit">Login</button>
         </form>
       </div>
     </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <br>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#1">Bouton 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#2">Bouton 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#3">Bouton 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#4">Bouton 4</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#5">Bouton 5</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#6">Bouton 6</a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bouton 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bouton 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bouton 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bouton 4</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex">
+              <h1>Bienvenue sur Plantae !</h1>
+          </div>
+          <p>Ceci est un test</p>
+        </main>
+
+
 </body>
 </html>
