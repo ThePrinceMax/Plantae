@@ -10,8 +10,8 @@
 
     <!-- Scripts -->
     <script src="./js/jquery-3.3.1.slim.min.js"></script>
-    <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/popper.min.js"></script>
     <script src="./js/content.js"></script>
 
     <!-- CSS Styles -->
@@ -78,20 +78,21 @@
             </ul>
         </div>
 
-      <div class="nav-item navbar-right">
+        <div class="nav-item navbar-right" id="login-interface">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
             </button>
             <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-              <form class="px-4 py-3">
+              <form class="px-4 py-3" role="form" data-toggle="validator">
                 <div class="form-group">
-                  <label for="login-mail">Votre email</label>
-                  <input type="email" class="form-control border rounded" id="login-mail" placeholder="email@example.com">
-                  <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
+                    <label for="login-mail">Votre email</label>
+                    <input type="email" class="form-control is-valid border rounded" id="login-mail" placeholder="email@example.com" required data-verify="email" data-error="Merci d'entrer votre adresse mail.">
+                    <div class="invalid-feedback">Merci d'insérer une adresse mail valide.</div>
+                    <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
                 </div>
 
                 <div class="form-group">
                   <label for="login-pass">Votre mot de passe</label>
-                  <input type="password" class="form-control border rounded" id="login-pass" placeholder="Mot de passe">
+                  <input type="password" class="form-control is-valid border rounded" id="login-pass" placeholder="Mot de passe" required required data-error="Merci d'insérer votre mot de passe.">
                   <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
                 </div>
 
@@ -113,7 +114,7 @@
                   <a class="dropdown-item" href="#">Nouveau ici ? Inscrivez-vous !</a>
                   <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
             </div>
-      </div>
+        </div>
     </nav>
 
     <!-- Sidebar -->
@@ -168,5 +169,8 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
         </main>
+
 </body>
+
+
 </html>
