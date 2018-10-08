@@ -1,5 +1,8 @@
 
 $(document).ready(function()
 {
-    $('#loader').fadeOut(4000);
+    setTimeout(function()
+    {
+        $('#loader').fadeOut(500);
+    }, 1500)
 })
