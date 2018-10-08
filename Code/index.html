@@ -27,142 +27,146 @@
 </head>
 <body>
     <!-- Preloader -->
-
-    <div id="loader" class="loader">
-        <div>
-            <img src="./img/loading.gif" alt="Loading">
-            <span class="caption"><p></p></span>
-            <span class="caption"><h1>Recherche des plantes...</h1></span>
-        </div>
-    </div>
-
-    <!-- Navbar -->
-
-    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg shadow-lg">
-
-        <a class="navbar-left" href="#">
-            <img alt="Brand" style="max-width: 2.5rem; max-height: 2.5rem; object-fit: contain;" src="./img/logo.png">
-        </a>
-
-        <a class="navbar-brand" href="#">Plantae</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Herbier</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</a>
-                    <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Quizz</a>
-                        <a class="dropdown-item" href="#">Jeu local</a>
-                        <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Multi-joueur</h6>
-                        <a class="dropdown-item" href="#">Local 1v1</a>
-                        <a class="dropdown-item" href="#">LAN 1v1</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="nav-item navbar-right" id="login-interface">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
-            </button>
-            <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-              <form class="px-4 py-3" role="form" data-toggle="validator">
-                <div class="form-group">
-                    <label for="login-mail">Votre email</label>
-                    <input type="email" class="form-control has-error is-valid border rounded" id="login-mail" placeholder="email@example.com" required data-verify="email" data-error="Merci d'entrer votre adresse mail." aria-describedby="emailHelp">
-                    <div class="invalid-feedback">Merci d'insérer une adresse mail valide.</div>
-                    <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="login-pass">Votre mot de passe</label>
-                  <input type="password" class="form-control is-valid border rounded" id="login-pass" placeholder="Mot de passe" required data-error="Merci d'insérer votre mot de passe.">
-                  <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
-                </div>
-
-                <p></p>
-
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                    <label class="form-check-label" for="dropdownCheck">
-                    Se souvenir de moi
-                    </label>
-                </div>
-
-                <p></p>
-
-                <button type="submit" class="btn btn-primary">Se connecter</button>
-              </form>
-
-              <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Nouveau ici ? Inscrivez-vous !</a>
-                  <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
+    <section id="preloader">
+        <div id="loader" class="loader">
+            <div>
+                <img src="./img/loading.gif" alt="Loading">
+                <span class="caption"><p></p></span>
+                <span class="caption"><h1>Recherche des plantes...</h1></span>
             </div>
         </div>
-    </nav>
+    </section>
+
+    <!-- Navbar -->
+    <section id="navbar">
+        <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg shadow-lg">
+
+            <a class="navbar-left" href="#">
+                <img alt="Brand" style="max-width: 2.5rem; max-height: 2.5rem; object-fit: contain;" src="./img/logo.png">
+            </a>
+
+            <a class="navbar-brand" href="#">Plantae</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="./herbier.html">Herbier</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
+                        <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./quizz.html">Quizz</a>
+                            <a class="dropdown-item" href="./local.html">Jeu local</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Multi-joueur</h6>
+                            <a class="dropdown-item" href="./local1v1.html">Local 1v1</a>
+                            <a class="dropdown-item" href="./lan.html">LAN 1v1</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-item navbar-right" id="login-interface">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
+                </button>
+                <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
+                  <form class="px-4 py-3" role="form" data-toggle="validator">
+                    <div class="form-group">
+                        <label for="login-mail">Votre email</label>
+                        <input type="email" class="form-control has-error is-valid border rounded" id="login-mail" placeholder="email@example.com" required data-verify="email" data-error="Merci d'entrer votre adresse mail." aria-describedby="emailHelp">
+                        <div class="invalid-feedback">Merci d'insérer une adresse mail valide.</div>
+                        <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="login-pass">Votre mot de passe</label>
+                      <input type="password" class="form-control is-valid border rounded" id="login-pass" placeholder="Mot de passe" required data-error="Merci d'insérer votre mot de passe.">
+                      <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
+                      <small id="passHelp" class="form-text text-muted">Ne mettez pas le mot de passe de votre banque, par exemple ;).</small>
+                    </div>
+
+                    <p></p>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                        <label class="form-check-label" for="dropdownCheck">
+                        Se souvenir de moi
+                        </label>
+                    </div>
+
+                    <p></p>
+
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                  </form>
+
+                  <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Nouveau ici ? Inscrivez-vous !</a>
+                      <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
+                </div>
+            </div>
+        </nav>
+    </section>
 
     <!-- Sidebar -->
+    <section id="sidebar">
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
+                    <div class="sidebar-sticky">
+                        <br>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#1">Bouton 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#2">Bouton 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#3">Bouton 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#4">Bouton 4</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#5">Bouton 5</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#6">Bouton 6</a>
+                            </li>
+                        </ul>
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
-          <div class="sidebar-sticky">
-            <br>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#1">Bouton 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#2">Bouton 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#3">Bouton 3</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#4">Bouton 4</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#5">Bouton 5</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#6">Bouton 6</a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Bouton 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Bouton 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Bouton 3</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Bouton 4</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Bouton 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Bouton 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Bouton 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Bouton 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
 
 
-        <!-- Main -->
-
+    <!-- Main -->
+    <section id="main-content">
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
+            <div id="js-content"></div>
         </main>
-
+    </section>
 </body>
-
-
 </html>
