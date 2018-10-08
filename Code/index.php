@@ -71,11 +71,38 @@
                 </ul>
             </div>
 
+            <!-- Connexion-->
+
+            <?php
+                if (isset($_POST['login-mail']) && isset($_POST['login-pass']))
+                {
+                    $mail = htmlentities($_POST['login-mail']);
+                    $password = htmlentities($_POST['login-pass']);
+                    try
+                    {
+                        $bdd = new PDO();
+                        $qmail = $bdd->query('SELECT mail FROM users');
+                        $qpass = $bdd->query('SELECT password FROM users');
+                        // Si le mail et le mot de passe correspondent, envoi de cookie
+                        if (($qmail == $mail) && ($qpass == $pass))
+                        {
+                            $id = $bdd->query('SELECT id FROM users WHERE password = '. $pass);
+                            setcookie('id', $id, time() + 365*24*3600);
+                        }
+                    }
+                    catch( PDOException $e )
+                    {
+                    echo 'Erreur : ' . $e->getMessage();
+                    exit;
+                    }
+                }
+            ?>
+
             <div class="nav-item navbar-right" id="login-interface">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
                 </button>
                 <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                  <form class="px-4 py-3" role="form" data-toggle="validator">
+                  <form class="px-4 py-3" role="form" data-toggle="validator" method="post">
                     <div class="form-group">
                         <label for="login-mail">Votre email</label>
                         <input type="email" class="form-control has-error is-valid border rounded" id="login-mail" placeholder="email@example.com" required data-verify="email" data-error="Merci d'entrer votre adresse mail." aria-describedby="emailHelp">
@@ -87,7 +114,6 @@
                       <label for="login-pass">Votre mot de passe</label>
                       <input type="password" class="form-control is-valid border rounded" id="login-pass" placeholder="Mot de passe" required data-error="Merci d'insérer votre mot de passe.">
                       <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
-                      <small id="passHelp" class="form-text text-muted">Ne mettez pas le mot de passe de votre banque, par exemple ;).</small>
                     </div>
 
                     <p></p>
@@ -102,6 +128,7 @@
                     <p></p>
 
                     <button type="submit" class="btn btn-primary">Se connecter</button>
+
                   </form>
 
                   <div class="dropdown-divider"></div>
