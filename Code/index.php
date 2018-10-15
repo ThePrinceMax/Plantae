@@ -92,8 +92,8 @@
                     }
                     catch( PDOException $e )
                     {
-                    echo 'Erreur : ' . $e->getMessage();
-                    exit;
+                        echo 'Erreur : ' . $e->getMessage();
+                        exit;
                     }
                 }
             ?>
@@ -102,37 +102,22 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
                 </button>
                 <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                  <form class="px-4 py-3" role="form" data-toggle="validator" method="post">
+                  <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
                     <div class="form-group">
-                        <label for="login-mail">Votre email</label>
-                        <input type="email" class="form-control has-error is-valid border rounded" id="login-mail" placeholder="email@example.com" required data-verify="email" data-error="Merci d'entrer votre adresse mail." aria-describedby="emailHelp">
-                        <div class="invalid-feedback">Merci d'insérer une adresse mail valide.</div>
+                        <label for="login">Votre email</label>
+                        <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
                         <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
-                    </div>
 
-                    <div class="form-group">
-                      <label for="login-pass">Votre mot de passe</label>
-                      <input type="password" class="form-control is-valid border rounded" id="login-pass" placeholder="Mot de passe" required data-error="Merci d'insérer votre mot de passe.">
+                      <label for="password">Votre mot de passe</label>
+                      <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
                       <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
-                    </div>
 
-                    <p></p>
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                        <label class="form-check-label" for="dropdownCheck">
-                        Se souvenir de moi
-                        </label>
-                    </div>
-
-                    <p></p>
-
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
-
+                </div>
+                <button type="submit" class="btn btn-success no-action">Se connecter</button>
                   </form>
 
                   <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Nouveau ici ? Inscrivez-vous !</a>
+                      <a class="dropdown-item" href="./signup.php">Nouveau ici ? Inscrivez-vous !</a>
                       <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
                 </div>
             </div>
@@ -147,40 +132,12 @@
                     <div class="sidebar-sticky">
                         <br>
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#1">Bouton 1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#2">Bouton 2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#3">Bouton 3</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#4">Bouton 4</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#5">Bouton 5</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#6">Bouton 6</a>
-                            </li>
+                            <div id="li-item"></div>
                         </ul>
 
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
                         <ul class="nav flex-column mb-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Bouton 1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Bouton 2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Bouton 3</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Bouton 4</a>
-                            </li>
+                            <div id="li-item-param"></div>
                         </ul>
                     </div>
                 </nav>
