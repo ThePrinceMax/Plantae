@@ -74,53 +74,49 @@
             <!-- Connexion-->
 
             <?php
-                if (isset($_POST['login-mail']) && isset($_POST['login-pass']))
+                if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
                 {
-                    $mail = htmlentities($_POST['login-mail']);
-                    $password = htmlentities($_POST['login-pass']);
-                    try
-                    {
-                        $bdd = new PDO();
-                        $qmail = $bdd->query('SELECT mail FROM users');
-                        $qpass = $bdd->query('SELECT password FROM users');
-                        // Si le mail et le mot de passe correspondent, envoi de cookie
-                        if (($qmail == $mail) && ($qpass == $pass))
-                        {
-                            $id = $bdd->query('SELECT id FROM users WHERE password = '. $pass);
-                            setcookie('id', $id, time() + 365*24*3600);
-                        }
-                    }
-                    catch( PDOException $e )
-                    {
-                        echo 'Erreur : ' . $e->getMessage();
-                        exit;
-                    }
+                    ?>
+                    <div class="nav-item navbar-right" id="login-interface">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
+                          <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
+                            <div class="form-group">
+                                <label for="login">Votre email</label>
+                                <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
+                                <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
+
+                              <label for="password">Votre mot de passe</label>
+                              <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
+                              <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
+
+                        </div>
+                        <button type="submit" class="btn btn-success no-action">Se connecter</button>
+                          </form>
+
+                          <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./signup.php">Nouveau ici ? Inscrivez-vous !</a>
+                              <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
+                        </div>
+                    </div>
+                    <?php
+                }
+                else {
+                    ?><div class="nav-item navbar-right" id="logged-interface">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user']; ?>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
+
+                          <button class="btn btn-danger">Se déconnecter</button>
+                          <div class="dropdown-divider"></div>
+                              <a class="dropdown-item disabled" href="#">Votre profil</a>
+                        </div>
+                    </div>
+                    <?php
                 }
             ?>
 
-            <div class="nav-item navbar-right" id="login-interface">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
-                </button>
-                <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                  <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
-                    <div class="form-group">
-                        <label for="login">Votre email</label>
-                        <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
-                        <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
-
-                      <label for="password">Votre mot de passe</label>
-                      <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
-                      <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
-
-                </div>
-                <button type="submit" class="btn btn-success no-action">Se connecter</button>
-                  </form>
-
-                  <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="./signup.php">Nouveau ici ? Inscrivez-vous !</a>
-                      <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
-                </div>
-            </div>
         </nav>
     </section>
 
