@@ -92,7 +92,7 @@
                           <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
 
                     </div>
-                    <button type="submit" class="btn btn-success no-action">Se connecter</button>
+                    <button type="submit" class="btn btn-success">Se connecter</button>
                       </form>
 
                       <div class="dropdown-divider"></div>
@@ -108,10 +108,12 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user']; ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-
-                      <button class="btn btn-danger">Se déconnecter</button>
+                        <div>
+                      <button class="btn btn-danger" href="./php/signout.php" style="margin-left:6%;">Se déconnecter</button>
+                  </div>
                       <div class="dropdown-divider"></div>
                           <a class="dropdown-item disabled" href="#">Votre profil</a>
+                          <a class="dropdown-item text-danger disabled" href="#">Supprimer votre profil</a>
                     </div>
                 </div>
             <?php
