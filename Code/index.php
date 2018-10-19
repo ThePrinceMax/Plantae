@@ -60,8 +60,8 @@
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item disabled" href="./quizz.html">Quizz (en cours de développement)</a>
                             <a class="dropdown-item" href="./local.html">Solo</a>
+                            <a class="dropdown-item disabled" href="./quizz.html">Quizz (en cours de développement)</a>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Multi-joueur</h6>
                             <a class="dropdown-item disabled" href="./local1v1.html">OnSite - 1v1 (en cours de développement)</a>
