@@ -6,7 +6,7 @@
 	if ( $_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']) )
 	{
         // on envoie une demande de redirection en GET vers signin.php
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
 	}
 

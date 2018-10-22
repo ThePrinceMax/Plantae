@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -18,7 +18,7 @@ if ( isset($_POST['login']) && isset($_POST['password']) && isset($_POST['confir
     if ( $password != $confirm )
     {
         $_SESSION['message'] = "Password and confirmed password are different.";
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
     }
 
@@ -33,7 +33,7 @@ if ( isset($_POST['login']) && isset($_POST['password']) && isset($_POST['confir
     {
         $_SESSION['message'] = $e->getMessage();
         $_SESSION['message'] .= 'Erreur de connexion à la BDD';
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
     }
 
@@ -56,9 +56,9 @@ if ( isset($_POST['login']) && isset($_POST['password']) && isset($_POST['confir
         $_SESSION['message'] = "The login '". $login ."' still exists. Try to signin.";
     }
 
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
-header('Location: index.php');
+header('Location: ../index.php');
 exit;
