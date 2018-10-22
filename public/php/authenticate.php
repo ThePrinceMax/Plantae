@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -25,7 +25,7 @@ if ( isset($_POST['login']) && isset($_POST['password']) )
     catch (PDOException $e)
     {
         $_SESSION['message'] = $e->getMessage();
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
     }
 
@@ -49,5 +49,5 @@ if ( isset($_POST['login']) && isset($_POST['password']) )
         $_SESSION['message'] = "Wrong login.";
 }
 
-header('Location: index.php');
+header('Location: ../index.php');
 exit;
