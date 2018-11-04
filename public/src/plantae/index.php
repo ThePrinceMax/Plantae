@@ -123,33 +123,7 @@
         </nav>
     </section>
 
-    <!-- Sidebar -->
-    <section id="sidebar">
-        <div class="container-fluid">
-            <div class="row">
-                <nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
-                    <div class="sidebar-sticky">
-                        <br>
-                        <ul class="nav flex-column">
-                            <div id="li-item"></div>
-                        </ul>
+    <div id="js-content"></div>
 
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
-                        <ul class="nav flex-column mb-2">
-                            <div id="li-item-param"></div>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Main -->
-    <section id="main-content">
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div id="js-content"></div>
-        </main>
-    </section>
 </body>
 </html>

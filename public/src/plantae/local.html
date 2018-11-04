@@ -130,38 +130,123 @@
     }
 </style>
 
-<div class="row align-items-center text-center border-dark rounded" style="background-color:lightgrey;">
-    <div class="col-lg-1">
-        <div class="circle">
-            <script type="text/javascript">
-                setTimeout(fonction(){
-                    var score = $(".score").text();
-                    $(".fill").css("height",score);
-                },1);
-            </script>
-            <div class="fill"></div>
-            <h3 class="score">100%</h3>
+<!-- Sidebar -->
+<section id="sidebar">
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
+				<div class="sidebar-sticky">
+					<br>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 1</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 2</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 3</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 4</a>
+						</li>
+
+					</ul>
+					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
+					<ul class="nav flex-column mb-2">
+						<<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 1</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 2</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 3</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="#">Bouton 4</a>
+						</li>
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+</section>
+
+
+<!-- Main -->
+<section id="main-content">
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="row align-items-center text-center border-dark rounded" style="background-color:lightgrey;">
+            <div class="col-lg-1">
+                <div class="circle">
+                    <script type="text/javascript">
+                        setTimeout(fonction(){
+                            var score = $(".score").text();
+                            $(".fill").css("height",score);
+                        },1);
+                    </script>
+                    <div class="fill"></div>
+                    <h3 class="score">100%</h3>
+                </div>
+            </div>
+            <div class="col-lg-7 of-1 text-left">
+                <p></p>
+                <h5>Nom de la partie </h5>
+                <p>Nom de la fleur</p>
+            </div>
+            <div class="col-lg text-right">
+                <h3>Biome sélectionné</h3>
+            </div>
+            <div class="col-lg text-right">
+                <i class="fa fa-code fa-2x"></i>
+                <h2 class="timer count-title count-number" data-from="100" data-to="300" data-speed="8000"></h2>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-7 of-1 text-left">
-        <p></p>
-        <h5>Nom de la partie </h5>
-        <p>Nom de la fleur</p>
-    </div>
-    <div class="col-lg text-right">
-        <h3>Biome sélectionné</h3>
-    </div>
-    <div class="col-lg text-right">
-        <i class="fa fa-code fa-2x"></i>
-        <h2 class="timer count-title count-number" data-from="100" data-to="300" data-speed="8000"></h2>
-    </div>
-</div>
-<div class="row"></br></div>
-<div class="row">
-    <div class="col-md-4">
+        <div class="row"></br></div>
         <div class="row">
-            <div class="col">
-                <h3>Infos Plante</h3>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col">
+                        <h3>Infos Plante</h3>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>Log</h3>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                        <p>Ceci est un test</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col border-left border-dark">
+                <h3>Image</h3>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
+                <p>Ceci est un test</p>
                 <p>Ceci est un test</p>
                 <p>Ceci est un test</p>
                 <p>Ceci est un test</p>
@@ -170,40 +255,5 @@
                 <p>Ceci est un test</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <h3>Log</h3>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-            </div>
-        </div>
-    </div>
-    <div class="col border-left border-dark">
-        <h3>Image</h3>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-        <p>Ceci est un test</p>
-    </div>
-</div>
+	</main>
+</section>
