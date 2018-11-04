@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "plantae\\": "src/plantae",
+            "Game\\": "src/plantae/php"
+        }
+    },
+    "require": {
+        "cboden/ratchet": "^0.4"
+    }
+}
