@@ -45,7 +45,7 @@
 
 <!-- Main -->
 <section id="main-content">
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+	<main role="main">
         <div class="container">
             <form class="form-signin" method="POST" action="./php/adduser.php">
                 <h2 class="form-signin-heading">Sign Up</h2>
