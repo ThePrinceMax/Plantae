@@ -67,7 +67,7 @@
                             <a class="dropdown-item disabled" href="./local1v1.html">OnSite - 1v1 (en cours de développement)</a>
                             <a class="dropdown-item disabled" href="./lan.html">Réseau - 1v1 (en cours de développement)</a>
                         </div>
-                    </li
+                    </li>
                 </ul>
             </div>
 
