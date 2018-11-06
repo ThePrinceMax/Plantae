@@ -57,6 +57,20 @@
                       <a class="nav-link" href="./herbier.html">Herbier</a>
                     </li>
 
+                    <?php
+                        if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
+                        {
+                    ?>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="./jeux.html">Jeux</a>
+                    </li>
+
+                    <?php
+                        }
+                        else {
+                    ?>
+
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
@@ -68,6 +82,10 @@
                             <a class="dropdown-item disabled" href="./lan.html">Réseau - 1v1 (en cours de développement)</a>
                         </div>
                     </li>
+
+                    <?php
+                        }
+                    ?>
                 </ul>
             </div>
 
