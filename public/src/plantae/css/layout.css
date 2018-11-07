@@ -71,7 +71,11 @@ body {
  */
 
 [role="main"] {
-  padding-top: 85px; /* Space for fixed navbar */
+<<<<<<< HEAD
+  padding-top: 5%; /* Space for fixed navbar */
+=======
+  padding-top: 90px; /* Space for fixed navbar */
+>>>>>>> 5cd69c942f9228d1a5a67f620cca89ff2f43532d
 }
 
 /*
