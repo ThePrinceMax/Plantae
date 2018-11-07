@@ -173,7 +173,8 @@
             })
             .when("/signup", {
                 templateUrl : "signup.php"
-            });
+            })
+            .otherwise('/');
         });
 </script>
 
