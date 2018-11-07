@@ -14,6 +14,10 @@
     <script src="./js/popper.min.js"></script>
     <script src="./js/angular.min.js"></script>
     <script src="./js/angular-route.js"></script>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 26c3973acd8dbe7a82da69dc35875a8982da0bb5
     <script src="./js/loading.js"></script>
 
     <!-- CSS Styles -->
