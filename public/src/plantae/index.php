@@ -144,9 +144,6 @@
             .when("/quizz", {
                 templateUrl : "quizz.html"
             })
-            .when("/jeux", {
-                templateUrl : "jeux.html"
-            })
             .when("/jeu-solo", {
                 templateUrl : "local.html"
             })
