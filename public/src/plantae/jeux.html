@@ -1,52 +1,45 @@
-<!-- Sidebar -->
-<section id="sidebar">
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
-				<div class="sidebar-sticky">
-					<br>
-					<ul class="nav flex-column">
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 3</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 4</a>
-						</li>
-
-					</ul>
-					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
-					<ul class="nav flex-column mb-2">
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 3</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 4</a>
-						</li>
-
-					</ul>
-				</div>
-			</nav>
-		</div>
-	</div>
-</section>
-
-
 <!-- Main -->
 <section id="main-content">
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+	<main role="main" class="col-lg-auto">
 		<h2>Voici les différents jeux de plantae !</h2>
-		<p style="color: red;">Cette partie du site est actuellement en cours de développement, merci de votre compréhension.</p>
-	</main>
+		<p style="color: red;">Merci de vous connecter afin de pouvoir jouer.</p>
+
+	<section>
+		<div class="card-deck" id="switch">
+			<div class="card">
+				<img class="card-img-top" src="./img/solo.jpg" alt="Jeu solo">
+				<div class="card-body">
+					<h5 class="card-title">Solo</h5>
+					<p class="card-text">Le mode solo vous permet de jouer face à votre ordinateur. <br /><br /> Le but est simple : être le dernier à mourrir.</p>
+					<a href="./local.html" class="btn btn-secondary">Go somewhere</a>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="./img/quizz.jpg" alt="Quizz">
+				<div class="card-body">
+					<h5 class="card-title">Quizz <br />(en cours de développement)</h5>
+					<p class="card-text">Dans ce quizz, des questions vous seront posées sur plusieurs termes autour de la Botanique. <br /><br />Répondez juste et gagnez des points afin de pouvoir acheter des bonus lors de vos parties.</p>
+					<a href="./quizz.html" class="btn btn-secondary">Go somewhere</a>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="./img/onsite.jpg" alt="Jeu OnSite - 1v1">
+				<div class="card-body">
+					<h5 class="card-title">OnSite - 1v1 <br />(en cours de développement)</h5>
+					<p class="card-text">Le mode OnSite 1v1 vous permet de jouer avec un ami sur un seul ordinateur. <br /><br />La partie se déroule en tour par tour et prends fin dès que l'un des joueurs meurt.</p>
+					<a href="./local1v1.html" class="btn btn-secondary">Go somewhere</a>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="./img/lan.jpg" alt="Jeu Réseau - 1v1">
+				<div class="card-body">
+					<h5 class="card-title">Réseau - 1v1 <br />(en cours de développement)</h5>
+					<p class="card-text">Le mode Réseau 1v1 vous permet de jouer avec un ami mais cette fois-ci via Internet.</p>
+					<a href="./lan.html" class="btn btn-secondary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</main>
 </section>
