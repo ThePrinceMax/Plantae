@@ -5,4 +5,9 @@ $(document).ready(function() {
     e.preventDefault();
     $("#js-content").load(e.target.href);
   })
+
+  $('#js-content #switch #card-body a').click(function(e) {
+    e.preventDefault();
+    $("#js-content").load(e.target.href);
+  })
 });

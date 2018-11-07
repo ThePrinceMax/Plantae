@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" ng-app="plantae">
 <head>
     <meta charset="UTF-8">
     <title>Plantae</title>
@@ -12,7 +12,8 @@
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/popper.min.js"></script>
-    <script src="./js/content.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angular-route.js"></script>
     <script src="./js/loading.js"></script>
 
     <!-- CSS Styles -->
@@ -54,7 +55,7 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="./herbier.html">Herbier</a>
+                      <a class="nav-link" href="#!herbier">Herbier</a>
                     </li>
 
                     <?php
@@ -63,7 +64,7 @@
                     ?>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="./jeux.html">Jeux</a>
+                      <a class="nav-link" href="#!jeux">Jeux</a>
                     </li>
 
                     <?php
@@ -74,12 +75,12 @@
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./local.html">Solo</a>
-                            <a class="dropdown-item disabled" href="./quizz.html">Quizz (en cours de développement)</a>
+                            <a class="dropdown-item" href="#!jeu-solo">Solo</a>
+                            <a class="dropdown-item disabled" href="#!quizz">Quizz (en cours de développement)</a>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Multi-joueur</h6>
-                            <a class="dropdown-item disabled" href="./local1v1.html">OnSite - 1v1 (en cours de développement)</a>
-                            <a class="dropdown-item disabled" href="./lan.html">Réseau - 1v1 (en cours de développement)</a>
+                            <a class="dropdown-item disabled" href="#!jeu-multi-local">OnSite - 1v1 (en cours de développement)</a>
+                            <a class="dropdown-item disabled" href="#!jeu-multi-net">Réseau - 1v1 (en cours de développement)</a>
                         </div>
                     </li>
 
@@ -114,8 +115,7 @@
                       </form>
 
                       <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="./signup.php">Nouveau ici ? Inscrivez-vous !</a>
-                          <a class="dropdown-item disabled" href="#">Vous avez oublié votre mot de passe ?</a>
+                          <a class="dropdown-item" href="#!signup">Nouveau ici ? Inscrivez-vous !</a>
                     </div>
                 </div>
             <?php
@@ -141,7 +141,41 @@
         </nav>
     </section>
 
-    <div id="js-content"></div>
+    <div ng-view></div>
+
+    <script>
+        var app = angular.module("plantae", ["ngRoute"]);
+        app.config(function($routeProvider) {
+            $routeProvider
+            .when("/", {
+                templateUrl : "start.html"
+            })
+            .when("/quizz", {
+                templateUrl : "start.html"
+            })
+            .when("/jeux", {
+                templateUrl : "jeux.html"
+            })
+            .when("/jeu-solo", {
+                templateUrl : "local.html"
+            })
+            .when("/jeu-multi-local", {
+                templateUrl : "local1v1.html"
+            })
+            .when("/jeu-multi-net", {
+                templateUrl : "lan.html"
+            })
+            .when("/herbier", {
+                templateUrl : "herbier.html"
+            })
+            .when("/changepassword", {
+                templateUrl : "/php/changepassword.php"
+            })
+            .when("/signup", {
+                templateUrl : "signup.php"
+            });
+        });
+</script>
 
 </body>
 </html>
