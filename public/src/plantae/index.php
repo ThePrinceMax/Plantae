@@ -151,7 +151,7 @@
                 templateUrl : "start.html"
             })
             .when("/quizz", {
-                templateUrl : "start.html"
+                templateUrl : "quizz.html"
             })
             .when("/jeux", {
                 templateUrl : "jeux.html"
