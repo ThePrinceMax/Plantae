@@ -9,11 +9,11 @@
                 <label for="login" class="sr-only">Adresse mail</label>
                 <input style="margin-bottom: 1rem;" type="email" id="login" name="login" class="form-control" placeholder="Adresse mail" required>
                 <label for="password" class="sr-only">Mot de passe</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
                 <label for="confirm" class="sr-only">Confirm - Mot de passe</label>
-                <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm" required>
+                <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirmer le mot de passe" required>
                 <br>
-                <button class="btn btn-success btn-block" type="submit">Confirmer</button>
+                <button class="btn btn-success btn-block" href="./signin.php" type="submit">Confirmer</button>
             </form>
         </div>
 	</main>
