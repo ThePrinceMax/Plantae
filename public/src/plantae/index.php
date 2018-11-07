@@ -59,17 +59,8 @@
                     </li>
 
                     <?php
-                        if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
+                        if (!($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user'])))
                         {
-                    ?>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="#!jeux">Jeux</a>
-                    </li>
-
-                    <?php
-                        }
-                        else {
                     ?>
 
                     <li class="nav-item dropdown">
