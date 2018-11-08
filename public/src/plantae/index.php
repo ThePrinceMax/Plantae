@@ -16,6 +16,9 @@
     <script src="./js/angular-route.js"></script>
     <script src="./js/loading.js"></script>
 
+    <!-- Statistiques -->
+    <script src="https://www.w3counter.com/tracker.js?id=122588"></script>
+
     <!-- CSS Styles -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/layout.css">
