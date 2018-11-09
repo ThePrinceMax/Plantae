@@ -51,14 +51,22 @@ if (isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password'
     {
         $_SESSION['message'] = 'Congratulations '.$pseudo. ', Account successfully created !<br>';
         $_SESSION['message'] .= 'Please signin to access to your account.';
+<<<<<<< HEAD
         header('Location: #');
+=======
+        header('Location: ../index.php');
+>>>>>>> 3c09fddede51f3fd26a3c45e1bc419798298a535
         exit;
     }
     else
     // Si la requête a échoué, c'est que le login existe déjà
     {
         $_SESSION['message'] = "The login '". $login ."' still exists. Try to signin.";
+<<<<<<< HEAD
         header('Location: #');
+=======
+        header('Location: ../index.php');
+>>>>>>> 3c09fddede51f3fd26a3c45e1bc419798298a535
         exit;
     }
 }
