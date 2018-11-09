@@ -9,7 +9,7 @@
     <meta name="author" content="Maxime Princelle">
 
     <!-- Scripts -->
-    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/angular.min.js"></script>
@@ -98,12 +98,11 @@
                         <div class="form-group">
                             <label for="login">Votre email</label>
                             <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
-                            <small id="emailHelp" class="form-text text-muted">Nous n'allons jamais partager votre adresse mail.</small>
-
-                          <label for="password">Votre mot de passe</label>
-                          <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
-                          <small id="passHelp" class="form-text text-muted">Attention ! Pour le moment ce site n'est pas très sécurisé.</small>
-
+                            <small id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail avec laquelle vous avez créé votre compte.</small>
+                            <br>
+                            <label for="password">Votre mot de passe</label>
+                            <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
+                            <small id="passHelp" class="form-text text-muted">Insérez ici votre mot de passe.</small>
                     </div>
                     <button type="submit" class="btn btn-success">Se connecter</button>
                       </form>
