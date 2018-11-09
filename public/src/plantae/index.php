@@ -98,8 +98,8 @@
                         <div class="form-group">
                             <label for="login">Votre email</label>
                             <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
-                            <small id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail avec laquelle vous avez créé votre compte.</small>
-                            <br>
+                            <small style="margin-bottom: 1rem;" id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail utilisée pour vous inscrire.</small>
+
                             <label for="password">Votre mot de passe</label>
                             <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
                             <small id="passHelp" class="form-text text-muted">Insérez ici votre mot de passe.</small>
