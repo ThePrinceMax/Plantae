@@ -1,6 +1,7 @@
 
 <!-- Script - Animation Points -->
-<script type="text/javascript" src="./js/anim_pts.js"></script>
+<script type="text/javascript" src="./js/anim_progression.js"></script>
+<script type="text/javascript" src="./js/numscroller.js"></script>
 
 <!-- CSS Styles - Nb Tours -->
 <link rel="stylesheet" href="./css/nbtours.css">
@@ -56,7 +57,10 @@
             </div>
             <div class="col-lg text-right">
                 <i class="fa fa-code fa-2x"></i>
-                <h2 class="timer count-title count-number" data-from="0" data-to="100" data-speed="5000"></h2>
+				<h2><span id="points">0</span></h2>
+				<script type="text/javascript">
+					animateValue("points", 0, 100, 5000); //Commande pour mettre à jour
+				</script>
             </div>
         </div>
         <div class="row"><br></div>
