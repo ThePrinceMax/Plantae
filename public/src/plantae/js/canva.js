@@ -9,6 +9,7 @@ function responsiveCanvas(){
   $(canvas).each(function(e){
     var parentWidth = $(this).parent().outerWidth();
     var parentHeight =  $(this).parent().outerHeight();
+
     $(this).attr('width', parentWidth);
     $(this).attr('height', parentHeight);
     console.log(parentWidth);
