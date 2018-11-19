@@ -46,14 +46,14 @@
                 <div class="circle">
                     <div class="fill"></div>
 					<script type="text/javascript">
-						animateValue("progpercent", 100, 0, 8000); //Commande pour mettre à jour la progression
+						animateValue("progpercent", 100, 0, 6000); //Commande pour mettre à jour la progression
 					</script>
 					<h3 class="score"><span id="progpercent">0</span>%</h3>
                 </div>
             </div>
             <div class="col-lg-7 of-1 text-left">
                 <p></p>
-                <h5>Nom de la partie</h5>
+                <h5>Jeu Solo</h5>
                 <p id="fnameFlower">Nom de la fleur</p>
             </div>
             <div class="col-lg text-right">
@@ -63,7 +63,7 @@
                 <i class="fa fa-code fa-2x"></i>
 				<h2><span id="points">0</span></h2>
 				<script type="text/javascript">
-					animateValue("points", 0, 100, 8000); //Commande pour mettre à jour les points
+					animateValue("points", 0, 100, 6000); //Commande pour mettre à jour les points
 				</script>
             </div>
         </div>
@@ -95,15 +95,15 @@
                 </div>
             </div>
             <div class="col border-left border-dark">
-                <canvas id="canvas" style="width: 100%; border-style: solid; border-width: 5px;"> Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;. Merci d'en utiliser un autre ou d'autoriser le contenu JavaScript.
+                <canvas id="canvas" style="width: 100%; border-style: solid; border-width: 1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"> Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;. Merci d'en utiliser un autre ou d'autoriser le contenu JavaScript.
 					<script type="text/javascript">
 						var c = document.getElementById("canvas");
 						var ctx = c.getContext("2d");
 						var image = new Image();
 						image.src = './img/game/flower/rose_red.png';
 						image.onload = function() {
-						  // Cette fonction est appelée lorsque l'image a été chargée
-						  ctx.drawImage(this,50,50); // this fait référence à l'objet courant (=image)
+							// Cette fonction est appelée lorsque l'image a été chargée
+							ctx.drawImage(this,50,50); // this fait référence à l'objet courant (=image)
 						};
 						// Le reste du script ici...
 					</script>
