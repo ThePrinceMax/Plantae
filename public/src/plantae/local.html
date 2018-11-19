@@ -1,7 +1,8 @@
 
-<!-- Script - Animation Points -->
+<!-- Scripts -->
 <script type="text/javascript" src="./js/anim_progression.js"></script>
 <script type="text/javascript" src="./js/numscroller.js"></script>
+<script type="text/javascript" src="./js/canva.js"></script>
 
 <!-- CSS Styles - Nb Tours -->
 <link rel="stylesheet" href="./css/nbtours.css">
@@ -38,13 +39,16 @@
 
 
 <!-- Main -->
-<section id="main-content">
+<section id="main-content" ng-app>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="row align-items-center text-center border-dark rounded" style="background-color:lightgrey;">
             <div class="progression">
                 <div class="circle">
                     <div class="fill"></div>
-                    <h3 class="score">50%</h3>
+					<script type="text/javascript">
+						animateValue("progpercent", 100, 0, 8000); //Commande pour mettre à jour la progression
+					</script>
+					<h3 class="score"><span id="progpercent">0</span>%</h3>
                 </div>
             </div>
             <div class="col-lg-7 of-1 text-left">
@@ -53,19 +57,19 @@
                 <p id="fnameFlower">Nom de la fleur</p>
             </div>
             <div class="col-lg text-right">
-                <h3 id="bnameBiome">Biome</h3> <!-- PARAM -->
+                <h3 id="bnameBiome">Biome</h3>
             </div>
             <div class="col-lg text-right">
                 <i class="fa fa-code fa-2x"></i>
 				<h2><span id="points">0</span></h2>
 				<script type="text/javascript">
-					animateValue("points", 0, 100, 5000); //Commande pour mettre à jour
+					animateValue("points", 0, 100, 8000); //Commande pour mettre à jour les points
 				</script>
             </div>
         </div>
         <div class="row"><br></div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="row">
                     <div class="col">
                         <h3>Infos Plante</h3>
@@ -87,38 +91,17 @@
                         <p id ="pupgradePoints">???</p>
                         <p id ="snameSeason">???</p>
                         <p id ="mnameMonth">???</p>
-                        <p>Ceci est un test</p>
-                        <p>Ceci est un test</p>
-                        <p>Ceci est un test</p>
-                        <p>Ceci est un test</p>
-                        <p>Ceci est un test</p>
-                        <p>Ceci est un test</p>
                     </div>
                 </div>
             </div>
             <div class="col border-left border-dark">
-                <h3>Image</h3>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
-                <p>Ceci est un test</p>
+                <canvas id="canvas" style="width: 100%; border-style: solid; border-width: 5px;"> Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;. Merci d'en utiliser un autre ou d'autoriser le contenu JavaScript.
+				</canvas>
             </div>
         </div>
 	</main>
 
+	<!-- Scripts Jeu-->
     <script type="text/javascript" src="./js/clientSideGame.js"></script>
 
 </section>
