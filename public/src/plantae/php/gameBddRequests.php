@@ -4,14 +4,6 @@ use PDO;
 
 class requete
 {
-
-    function getNomFleur($idFleur)
-    {
-        $fleur = $bdd->query('SELECT nameFr FROM Fleur WHERE idFlower = :idFleur');
-        $res = $fleur->fetch();
-        return $res;
-    }
-
     function getFlower($idFlower)
     {
         $flower = $bdd->query('SELECT * FROM FLOWER WHERE idFlower = :idFlower');
@@ -19,6 +11,21 @@ class requete
         return $res;
     }
 
+    function getNameFlower($arrayFlower){
+        echo $arrayFlower[7];
+    }
+
+    function getPopulationFlower($arrayFlower){
+        echo $arrayFlower[13];
+    }
+
+    function getFamilyFlower($arrayFlower){
+        echo $arrayFlower[6];
+    }
+
+    function getHasNectarFlower($arrayFlower){
+        echo $arrayFlower[14];
+    }
     function getBiome($idBiome)
     {
         $biome = $bdd->query('SELECT * FROM BIOME WHERE idBiome = :idBiome');
@@ -26,29 +33,42 @@ class requete
     }
 
     function getMonth($idMonth){
-        $month->query('SELECT * FROM MONTHS WHERE idMonth = :idMonth');
+        $month = $bdd->query('SELECT * FROM MONTH WHERE idMonth = :idMonth');
         return $month->fetch();
     }
 
+    function getLabelMonth($arrayMonth){
+        echo $arrayMonth[1];
+    }
+
     function getNectar($idNectar){
-        $nectar->query('SELECT * FROM NECTAR WHERE idNectar = :idNectar');
+        $nectar = $bdd->query('SELECT * FROM NECTAR WHERE idNectar = :idNectar');
         return $nectar->fetch();
     }
 
-    function getPollinator($id){
-        $nectar->query('SELECT * FROM NECTAR WHERE idNectar = :idNectar');
-        return $nectar->fetch();
+    function getPollinator($idPollinator){
+        $pollinator = $bdd->query('SELECT * FROM Pollinator WHERE idPollinator = :idPollinator');
+        return $pollinator->fetch();
     }
 
+    function getLeaf($idLeaf){
+        $leaf = $bdd->query('SELECT * FROM Leaf WHERE idLeaf = :idLeaf');
+        return $leaf->fetch();
+    }
+
+    function getPetal($idPetal){
+        $petal = $bdd->query('SELECT * FROM Petal WHERE idPetal = :idPetal');
+        return $leaf->fetch();
+    }
     function getCouleur($idFleur)
     {
-        $seeds = $bdd->query('SELECT label FROM Color WHERE id_couleur = (SELECT id_couleur FROM Fleur WHERE id_fleur = :idFleur');
+        $seeds = $bdd->query('SELECT label FROM Color WHERE idColor = (SELECT idColor FROM Flower WHERE idFlower = :idFleur');
         return $seeds->fetch();
     }
 
     function getDisposition($idFleur)
     {
-        $seeds = $bdd->query('SELECT libelle_dispo FROM Disposition WHERE id_dispo = (SELECT id_dispo FROM Fleur WHERE id_fleur = :idFleur');
+        $seeds = $bdd->query('SELECT labelDispo FROM Disposition WHERE idDispo = (SELECT idDispo FROM Flower WHERE idFlower = :idFleur');
         return $seeds->fetch();
     }
 }
