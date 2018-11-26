@@ -2,7 +2,7 @@
 <!-- Scripts -->
 <script type="text/javascript" src="./js/anim_progression.js"></script>
 <script type="text/javascript" src="./js/numscroller.js"></script>
-<script type="text/javascript" src="./js/canva.js"></script>
+<script type="text/javascript" src="./js/display_canva.js"></script>
 
 <!-- CSS Styles - Nb Tours -->
 <link rel="stylesheet" href="./css/nbtours.css">
@@ -96,17 +96,7 @@
             </div>
             <div class="col border-left border-dark">
                 <canvas id="canvas" style="width: 100%; border-style: solid; border-width: 1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"> Désolé, mais votre navigateur ne prend pas en charge &lt;canvas&gt;. Merci d'en utiliser un autre ou d'autoriser le contenu JavaScript.
-					<script type="text/javascript">
-						var c = document.getElementById("canvas");
-						var ctx = c.getContext("2d");
-						var image = new Image();
-						image.src = './img/game/flower/rose_red.png';
-						image.onload = function() {
-							// Cette fonction est appelée lorsque l'image a été chargée
-							ctx.drawImage(this,50,50); // this fait référence à l'objet courant (=image)
-						};
-						// Le reste du script ici...
-					</script>
+					<script type="text/javascript" src="./js/canva.js"></script>
 				</canvas>
             </div>
         </div>

@@ -97,11 +97,11 @@
                       <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
                         <div class="form-group">
                             <label for="login">Votre email</label>
-                            <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus>
+                            <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus autocomplete="username">
                             <small style="margin-bottom: 1rem;" id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail utilisée pour vous inscrire.</small>
 
                             <label for="password">Votre mot de passe</label>
-                            <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required>
+                            <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required autocomplete="current-password">
                             <small id="passHelp" class="form-text text-muted">Insérez ici votre mot de passe.</small>
                     </div>
                     <button type="submit" class="btn btn-success">Se connecter</button>
