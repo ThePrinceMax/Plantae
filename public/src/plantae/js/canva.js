@@ -10,15 +10,15 @@ var imageBack;
 var imageFlower;
 
 const c = document.getElementById('canvas');
-const ctx = c.getContext('2d');
+const display = c.getContext('2d');
 
 function resetCanvas(option){
     if (option == "nbflowers") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        display.clearRect(0, 0, canvas.width, canvas.height);
         setBiome(biome);
     }
     else if (option == "changeflower") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        display.clearRect(0, 0, canvas.width, canvas.height);
         setBiome(biome);
     }
     else if (option == "putElements") {
@@ -36,7 +36,7 @@ function setBiome(biomeSet) {
     imageBack = new Image();
     imageBack.src = "./img/game/background/" + biomeSet + ".png"
     imageBack.onload = function(){
-        ctx.drawImage(imageBack, 0, 0, canvas.width, canvas.height);
+        display.drawImage(imageBack, 0, 0, canvas.width, canvas.height);
         resetCanvas("putElements");
     }
 }
@@ -66,9 +66,9 @@ function setFlowerNumber(numberFlowersSet, option) {
 
         for (let i = 0; i <= numberFlowersSet; i++) {
           if (i < 8) {
-              ctx.drawImage(imageFlower, canvas.width - (i * 100), canvas.height - 200, 50, 100);
+              display.drawImage(imageFlower, canvas.width - (i * 100), canvas.height - 200, 50, 100);
           } else {
-              ctx.drawImage(imageFlower, canvas.width - ((i - 8 + 1.5) * 100), canvas.height - 150, 50, 100);
+              display.drawImage(imageFlower, canvas.width - ((i - 8 + 1.5) * 100), canvas.height - 150, 50, 100);
           }
         }
     }
