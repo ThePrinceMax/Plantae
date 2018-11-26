@@ -63,8 +63,11 @@
             $this->_baseTemperature = $this->_temperature;
 		}
 
-/*		public static function createBiomeFromBDD($idBiome, $bdd){
+		public static function createBiomeFromBDD($idBiome){
             $nameBiome = "";
+            $seasonList = array();
+            $currentSeason = null;
+            $pollinator = array();
             $airPolution = 0;
             $animalDensity = 0;
             $humidity = 0;
@@ -72,36 +75,22 @@
             $precipitationAverageAmount = 0;
             $precipitationFrequency = 0;
             $temperature = 0;
-            $vegetationDensity = 0;
-            $windForce = 0;
 
-            try
-            {
-                $requete = $bdd->query("SELECT nom_biome, airPolution, animalDensity, humidity, insectDensity, 
-					precipitationAverageAmount, precipitationFrequency, temperature, vegetationDensity, windForce " .
-                    "FROM Biome " .
-                    "WHERE id_biome = :idBiome");
+            $result = gameBddRequests::getBiome($idBiome);
 
-                $result = $requete->fetch();
-
-                $nameBiome = $result[0];
-                $airPolution = $result[1];
-                $animalDensity = $result[2];
-                $humidity = $result[3];
-                $insectDensity = $result[4];
-                $precipitationAverageAmount = $result[5];
-                $precipitationFrequency = $result[6];
-                $temperature = $result[7];
-                $vegetationDensity = $result[8];
-                $windForce = $result[9];
-            }
-            catch(Exception $e)
-            {
-                echo "Erreur : " . $e->getMessage();
-            }
+            $nameBiome = $result[0];
+            $airPolution = $result[1];
+            $animalDensity = $result[2];
+            $humidity = $result[3];
+            $insectDensity = $result[4];
+            $precipitationAverageAmount = $result[5];
+            $precipitationFrequency = $result[6];
+            $temperature = $result[7];
+            $vegetationDensity = $result[8];
+            $windForce = $result[9];
 
             return new Biome($idBiome, $nameBiome, $airPolution, $animalDensity, $humidity, $insectDensity, $precipitationAverageAmount, $precipitationFrequency,$temperature,	$vegetationDensity,$windForce);
-        } */
+        }
 
         public static function createBiomeDebug($idBiome){
             $nameBiome = "";
@@ -169,6 +158,31 @@
             $this->_precipitationAverageAmount = $this->_basePrecipitationAverageAmount;
             $this->_precipitationFrequency = $this->_basePrecipitationFrequency;
             $this->_temperature = $this->_baseTemperature;
+
+        }
+
+        public function seasonEffectCalculator(){
+            $seasonLenghtIsEven = false;
+            $seasonMiddle = 0;
+            if($this->_currentSeason->getMonthDuration()%2 == 0){ //Il n'y a pas de mois du milieu, la saison a un nombre pair de mois
+                $seasonLenghtIsEven = true;
+                $seasonMiddle = intdiv($this->_currentSeason->getMonthDuration(), 2);
+            }
+            else{ //le mois du milieu de la saison correspond a un nombre entier, la saison a un nombre impair de mois
+                $seasonMiddle = intdiv($this->_currentSeason->getMonthDuration(), 2) + 1;
+            }
+
+            if($seasonLenghtIsEven){
+                if($this->_currentSeason->getMonthList() < $seasonMiddle){
+
+                }
+            }
+            else{
+
+            }
+            
+
+
 
         }
 
