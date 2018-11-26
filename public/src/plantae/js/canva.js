@@ -2,26 +2,32 @@
 // Created by Maxime Princelle
 //----------------------------
 
-let numberFlowers;
-let biome;
-let colorFlower;
-let typeFlower;
-let imageBack;
-let imageFlower;
+var numberFlowers;
+var biome;
+var colorFlower;
+var typeFlower;
+var imageBack;
+var imageFlower;
 
 const c = document.getElementById('canvas');
 const ctx = c.getContext('2d');
 
 function resetCanvas(option){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (option == "nbflowers") {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         setBiome(biome);
     }
     else if (option == "changeflower") {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         setBiome(biome);
     }
     else if (option == "putElements") {
-        setFlower(typeFlower, colorFlower, "keepBack");
+        if (colorFlower === undefined && typeFlower === undefined && numberFlowers === undefined) {
+            //No flower has been displayed yet.
+        }
+        else {
+            setFlower(typeFlower, colorFlower, "keepBack");
+        }
     }
 }
 
@@ -31,28 +37,29 @@ function setBiome(biomeSet) {
     imageBack.src = "./img/game/background/" + biomeSet + ".png"
     imageBack.onload = function(){
         ctx.drawImage(imageBack, 0, 0, canvas.width, canvas.height);
+        resetCanvas("putElements");
     }
-    resetCanvas("putElements");
 }
 
 function setFlower(type, color, option) {
+    typeFlower = type;
+    colorFlower = color;
     if (option != "keepBack") {
         resetCanvas("changeflower");
     }
-    typeFlower = type;
-    colorFlower = color;
     imageFlower = new Image();
     imageFlower.src = "./img/game/flower/" + type + "_" + color + ".png";
     setFlowerNumber(numberFlowers, "keepBack");
 }
 
 function setFlowerNumber(numberFlowersSet, option) {
+    numberFlowers = numberFlowersSet;
+
     if (option != "keepBack") {
         resetCanvas("nbflowers");
     }
 
     imageFlower.onload = function() {
-        numberFlowers = numberFlowersSet;
         if (numberFlowersSet > 15) {
           numberFlowersSet = 15;
         }
@@ -66,3 +73,9 @@ function setFlowerNumber(numberFlowersSet, option) {
         }
     }
 }
+
+$(window).resize(function(){
+    setBiome(biome);
+    setFlower(typeFlower, colorFlower);
+    setFlowerNumber(numberFlowers);
+});
