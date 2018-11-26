@@ -26,7 +26,7 @@ class Ai
 
     public function randomAttribute(){
         while($this->_upgradePoints > 0){
-            $this->attributePointToOverallQuality();
+             $this->attributePointToOverallQuality();
             /*
             $field = mt_rand(0,4);
             switch (($field)){
