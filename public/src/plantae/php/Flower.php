@@ -17,6 +17,7 @@
 		private $_hasNectar;
 		public $_nectar;
 		private $_diseaseResistance;
+
 		private $_idealTemperature;
 		private $_temperatureAmplitude;
 		private $_insecticidePower;

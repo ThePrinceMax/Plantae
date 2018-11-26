@@ -26,7 +26,7 @@
 				$this->_fructoseProp = $fructoseProp;
 				$this->_sucroseProp = $sucroseProp;
 				$this->_glucoseProp = $glucoseProp;
-				echo "Nectar";
+				echo "Nectar created";
 			}
 			else {
 				echo "Proportion de fructose/glucose/sucrose ou de protecPhytochemicalProp/attractivePhytoProp incorrecte : somme doit être egale à 100";

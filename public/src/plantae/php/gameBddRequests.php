@@ -1,8 +1,9 @@
 <?php
 
+namespace Game;
 use PDO;
 
-class requete
+class GameBddRequest
 {
     function getFlower($idFlower)
     {

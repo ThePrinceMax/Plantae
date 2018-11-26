@@ -64,6 +64,7 @@
         public static function engineSolo($creatorId, $flowerId, $biomeId, $engineID, $maxTurns){
 		    $engine = new Engine($creatorId, $flowerId, $biomeId, $engineID, false, $maxTurns);
 		    $engine->_ai = Ai::createAiDebug(0,0);
+		    echo "Partie solo créé";
 		    return $engine;
         }
 
@@ -179,14 +180,19 @@
             }
 
             else{
+                echo "nextTurnSOLO\n";
                 if($this->_turnsCounter<$this->_maxTurns){
                     if($this->_turnsCounter % 3){
+                        echo "GIVEPOINTS\n";
                         $this->givePoints();
+                        echo "GIVEPOINTSDONE\n";
+
                     }
+                    echo "NEXT\n";
                     $this->_biome->resetBiomeParam();
                     $this->_biome->nextSeason();
                     $this->_biome->applySeasonEffects();
-
+                    echo "NEXTDONE\n";
                     $this->grainesGermes($this->_creator->_flower);
                     $this->grainesGermes($this->_ai->_flower);
 
@@ -206,7 +212,8 @@
                     $this->_ai->randomAttribute();
                 }
             }
-		return $nextTurnDone;
+            echo "NEXTURNDONE\n";
+            return $nextTurnDone;
         }
 
         public function givePoints(){
@@ -350,7 +357,8 @@
                 $this->_gameFull = true;
             }
         }
-		
+
+
 		private function biomeLoader($biomeID) {
 			if($biomeID == 0){
 			    return Biome::createBiomeDebug(0);
