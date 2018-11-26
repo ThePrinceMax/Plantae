@@ -9,8 +9,8 @@ var typeFlower;
 var imageBack;
 var imageFlower;
 
-const c = document.getElementById('canvas');
-const display = c.getContext('2d');
+const getdisplay = document.getElementById('canvas');
+const display = getdisplay.getContext('2d');
 
 function resetCanvas(option){
     if (option == "nbflowers") {
