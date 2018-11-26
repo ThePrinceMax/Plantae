@@ -19,7 +19,7 @@ if (isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password'
     if ( $password != $confirm )
     {
         $_SESSION['message'] = "Password and confirmed password are different.";
-        header('Location: #');
+        header('Location: /');
         exit;
     }
 
@@ -34,7 +34,7 @@ if (isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password'
     {
         $_SESSION['message'] = $e->getMessage();
         $_SESSION['message'] .= 'Erreur de connexion à la BDD';
-        header('Location: #');
+        header('Location: /');
         exit;
     }
 
@@ -51,17 +51,17 @@ if (isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password'
     {
         $_SESSION['message'] = 'Congratulations '.$pseudo. ', Account successfully created !<br>';
         $_SESSION['message'] .= 'Please signin to access to your account.';
-        header('Location: #');
+        header('Location: /');
         exit;
     }
     else
     // Si la requête a échoué, c'est que le login existe déjà
     {
         $_SESSION['message'] = "The login '". $login ."' still exists. Try to signin.";
-        header('Location: #');
+        header('Location: /');
         exit;
     }
 }
 
-header('Location: #');
+header('Location: /');
 exit;
