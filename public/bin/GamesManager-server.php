@@ -18,7 +18,7 @@ $server = IoServer::factory(
             new GamesManager()
         )
     ),
-    8080
+    3750
 );
 
 $server->run();
