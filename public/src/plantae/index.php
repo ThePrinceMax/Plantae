@@ -15,6 +15,7 @@
     <script src="./js/angular.min.js"></script>
     <script src="./js/angular-route.js"></script>
     <script src="./js/loading.js"></script>
+    <script src="./js/bootstrap-notify.min.js"></script>
 
     <!-- Statistiques -->
     <script src="https://www.w3counter.com/tracker.js?id=122588"></script>
