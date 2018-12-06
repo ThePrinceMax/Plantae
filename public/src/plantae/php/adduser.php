@@ -29,7 +29,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         allow_dismiss: true,
                                         newest_on_top: true,
                                         showProgressbar: false
-                                    });</script>'
+                                    });</script>';
         header('Location: /signup');
         exit;
     }
@@ -55,7 +55,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         allow_dismiss: true,
                                         newest_on_top: true,
                                         showProgressbar: false
-                                    });</script>'
+                                    });</script>';
         header('Location: /signup');
         exit;
     }
@@ -83,7 +83,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         allow_dismiss: true,
                                         newest_on_top: true,
                                         showProgressbar: false
-                                    });</script>'
+                                    });</script>';
     }
     else
     // Si la requête a échoué, c'est que le login existe déjà
@@ -99,7 +99,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         allow_dismiss: true,
                                         newest_on_top: true,
                                         showProgressbar: false
-                                    });</script>'
+                                    });</script>';
     }
 
     header('Location: /signup');
