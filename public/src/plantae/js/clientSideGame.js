@@ -6,7 +6,7 @@ $('#myModal').modal({
 document.getElementById("gameCreation").style.display="none";
 document.getElementById("gameJoining").style.display="none";
 
-var conn = new WebSocket('ws://localhost:13750');
+var conn = new WebSocket('wss://plantae.princelle.org/ws/');
 var flowerList = [];
 var biomeList = [];
 var oldPop = 0;
