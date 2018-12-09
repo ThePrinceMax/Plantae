@@ -3,12 +3,48 @@
 namespace Game;
 use PDO;
 
-class GameBddRequest
+class GameBddRequests
 {
+
+    static $instance=null;
+    private $db;
+
+    public function __construct()
+    {
+        require_once "bdd.php";
+        try {
+            $this->db = new PDO(SQL_DSN, SQL_USERNAME, SQL_PASSWORD);
+        }
+        catch( PDOException $e ) {
+            echo 'Erreur : ' . $e->getMessage();
+            exit;
+        }
+    }
+
+    static function getInstance(){
+        if(self::$instance == null){
+            self::$instance = new GameBddRequests();
+
+        }
+        return self::$instance;
+    }
+
     function getFlower($idFlower)
     {
-        $flower = $bdd->query('SELECT * FROM FLOWER WHERE idFlower = :idFlower');
+        $flower = $this->db->query('SELECT * FROM FLOWER WHERE idFlower = :idFlower');
         $res = $flower->fetch();
+        return $res;
+    }
+
+    function getAllFlowers(){
+        $flower = $this->db->query('SELECT idFlower, nameFr FROM FLOWER');
+        $res = $flower->fetchAll();
+        return $res;
+    }
+
+    function getAllBiomes(){
+        $biome = $this->db->query('SELECT idBiome, nameBiome FROM BIOME');
+        $res = $biome->fetchAll();
         return $res;
     }
 
