@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    header('Location: /signup');
+    header('Location: signup');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         newest_on_top: true,
                                         showProgressbar: false
                                     });</script>';
-        header('Location: /signup');
+        header('Location: signup');
         exit;
     }
 
@@ -46,17 +46,15 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
         $_SESSION['message'] = $e->getMessage();
         $_SESSION['message'] .= 'Erreur de connexion à la BDD';
         $_SESSION['message'] .= '<script>$.notify({
-                                    	// options
                                         title: "Création du compte",
                                         message: "Erreur de connexion à la base de données"
                                     },{
-                                    	// settings
                                     	type: "danger",
                                         allow_dismiss: true,
                                         newest_on_top: true,
                                         showProgressbar: false
                                     });</script>';
-        header('Location: /signup');
+        header('Location: signup');
         exit;
     }
 
@@ -66,7 +64,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
     $q->bindValue(':login', $login, PDO::PARAM_STR);
     $q->bindValue(':password', password_hash($password,PASSWORD_DEFAULT), PDO::PARAM_STR);
     $ok = $q->execute();
-    var_dump($ok);
+    //var_dump($ok);
 
     // Si la requête a été exécutée avec succès
     if ( $ok )
@@ -102,9 +100,9 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                     });</script>';
     }
 
-    header('Location: /signup');
+    header('Location: signup');
     exit;
 }
 
-header('Location: /signup');
+header('Location: signup');
 exit;
