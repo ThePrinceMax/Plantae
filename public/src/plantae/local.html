@@ -7,6 +7,9 @@
 <!-- CSS Styles - Nb Tours -->
 <link rel="stylesheet" href="./css/nbtours.css">
 
+<link rel="stylesheet" href="./css/gameLoginPopup.css">
+
+
 <!-- Sidebar -->
 <section id="sidebar">
 	<div class="container-fluid">
@@ -14,21 +17,35 @@
 			<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
 				<div class="sidebar-sticky">
 					<br>
-					<ul class="nav flex-column">
+					<ul class="nav flex-column" id="augmentButtons">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="endTurn()">Fin du tour</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="temperatureAmplitudeIncrease()">Augmenter l'amplitude</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="overallQualityIncrease()">Améliorer la qualité</a>
+                        </li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
+						    <a class="nav-link" onclick="fructoseIncrease()">Augmenter fructose</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
+						    <a class="nav-link" onclick="glucoseIncrease()">Augmenter glucose</a>
 						</li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="sucroseIncrease()">Augmenter sucrose</a>
+                        </li>
+
+
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
+						    <a class="nav-link" href="#">Créer partie</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
+						    <a class="nav-link" href="#">rejoindre Partie</a>
 						</li>
 					</ul>
 				</div>
@@ -45,16 +62,13 @@
             <div class="progression">
                 <div class="circle">
                     <div class="fill"></div>
-					<script type="text/javascript">
-						animateValue("progpercent", 100, 0, 6000); //Commande pour mettre à jour la progression
-					</script>
 					<h3 class="score"><span id="progpercent">0</span>%</h3>
                 </div>
             </div>
             <div class="col-lg-7 of-1 text-left">
                 <p></p>
                 <h5>Jeu Solo</h5>
-                <p id="fnameFlower">Nom de la fleur</p>
+                <p id="fnameFlowerTitle">Nom de la fleur</p>
             </div>
             <div class="col-lg text-right">
                 <h3 id="bnameBiome">Biome</h3>
@@ -62,9 +76,6 @@
             <div class="col-lg text-right">
                 <i class="fa fa-code fa-2x"></i>
 				<h2><span id="points">0</span></h2>
-				<script type="text/javascript">
-					animateValue("points", 0, 100, 6000); //Commande pour mettre à jour les points
-				</script>
             </div>
         </div>
         <div class="row"><br></div>
@@ -73,11 +84,11 @@
                 <div class="row">
                     <div class="col">
                         <h3>Infos Plante</h3>
-                        <p id="fnameFlower">???</p>
                         <p id="fpopulation">???</p>
                         <p id="fseeds">???</p>
                         <p id="fidealTemperature">???</p>
                         <p id="ftemperatureAmplitude">???</p>
+                        <p id="nquality">???</p>
                         <p id="nfructoseProp">???</p>
                         <p id="nsucroseProp">???</p>
                         <p id="nglucoseProp">???</p>
@@ -87,10 +98,10 @@
                 <div class="row">
                     <div class="col">
                         <h3>Log</h3>
-                        <p id ="connection">???</p>
                         <p id ="pupgradePoints">???</p>
                         <p id ="snameSeason">???</p>
                         <p id ="mnameMonth">???</p>
+                        <p id ="message">???</p>
                     </div>
                 </div>
             </div>
@@ -100,9 +111,76 @@
 				</canvas>
             </div>
         </div>
+
+
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalTitle">Connection au server ...</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="form-action" id="loginActionChoice">
+                            <button class="btnCreateGame" onclick="showGameCreation()">Créer une partie</button>
+                            <button class="btnJoinGame" onclick="showGameJoining()">Rejoindre une partie</button>
+                            <button class="btnJoinGame" onclick="">Page d'acceuil</button>
+
+                        </form>
+
+
+                        <form class="form-container" id="gameCreation">
+                            <h1></h1>
+
+                            <label for="Fleurs"><b>Choix de la fleur</b></label>
+                            <select name="Fleurs" id="createFlowerSelection">
+                            </select>
+
+                            <label for="Biome"><b>Choix du biome</b></label>
+                            <select name="Biomes" id="createBiomeSelection">
+                            </select>
+
+                            <button class="btn" onclick="eventCreateGameSolo()">créer partie</button>
+
+                            <button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+                        </form>
+
+                        <form class="form-container" id="gameJoining">
+                            <h1></h1>
+
+                            <label for="Fleurs"><b>Choix de la fleur</b></label>
+                            <select name="Fleurs" id="joinFlowerSelection">
+                            </select>
+
+
+                            <label for="games"><b></b></label>
+                            <select name="Parties connues" id="ServerGamesSelection">
+                                <option value="0">placeholder 0</option>
+                            </select>
+                            <label for="serverID"><b></b>Entrez l'id du server</label>
+                            <input type="number"placeholder="Entrez l'id du server ou choisissez dans la liste" name="serverID" required>
+
+                            <button class="btn">Se connecter à la partie</button>
+                            <button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 	</main>
 
 	<!-- Scripts Jeu-->
     <script type="text/javascript" src="./js/clientSideGame.js"></script>
 
 </section>
+

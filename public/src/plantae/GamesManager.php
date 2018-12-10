@@ -3,6 +3,7 @@ namespace plantae;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Game\Engine;
+use Game\GameBddRequests;
 use Ratchet\Mock\Connection;
 
 class GamesManager implements MessageComponentInterface {
@@ -54,11 +55,12 @@ class GamesManager implements MessageComponentInterface {
 
         $data = json_decode($msg, true);
         //echo sprintf($data);
-        $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute'];
+        $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute', 'GetAllFlowers', 'GetAllBiomes'];
         if(in_array($data['event'],$valid_functions)) {
             $functionName = 'event' . $data['event'];
             $this->$functionName($from,$data);
         } else {
+            echo "not an event :".$data['event'];
             //$from->send('INVALID REQUEST');
         }
 
@@ -121,12 +123,44 @@ class GamesManager implements MessageComponentInterface {
         }
 
         if($points > 0){
-            //$from->send("Point attribué à ".$variable.", vous avez ".strval($points)." points");
+            $from->send(json_encode(['event' => "Attributed",
+                                    'data' => ['variable' => $variable] ]));
+
+            if($this->isCreator($from->resourceId, $gameId)){
+                $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
+                $from->send(json_encode($arrayCreator));
+            }
+            elseif($this->isPlayer($from->resourceId, $gameId)){
+                $arrayPlayer = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToPlayer());
+                $from->send(json_encode($arrayPlayer));
+            }
+
 
         }
         else{
-            //$from->send("Point non attribué, vous avez ".strval($points)." points");
+            $from->send(json_encode(['event' => "NoMorePoints",
+                                    'data' => [] ]));
         }
+    }
+
+    private function eventGetAllFlowers(ConnectionInterface $from, $data){
+        $dbRequestResult = GameBddRequests::getInstance()->getAllFlowers();
+        $flowerArray=[];
+        foreach ($dbRequestResult as $row){
+            $flowerArray[$row["idFlower"]] = $row["nameFr"];
+       }
+        $arrayToSend = $this->formatMessage('FlowerList', $flowerArray);
+        $from->send(json_encode($arrayToSend));
+    }
+
+    private function eventGetAllBiomes(ConnectionInterface $from, $data){
+        $dbRequestResult = GameBddRequests::getInstance()->getAllBiomes();
+        $biomeArray=[];
+        foreach ($dbRequestResult as $row){
+            $biomeArray[$row["idBiome"]] = $row["nameBiome"];
+        }
+        $arrayToSend = $this->formatMessage('BiomeList', $biomeArray);
+        $from->send(json_encode($arrayToSend));
     }
 
     private function getGame($id){
@@ -331,11 +365,13 @@ class GamesManager implements MessageComponentInterface {
             echo "send info\n";
             $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
             $connCreator->send(json_encode($arrayCreator));
-            $arrayAi = $this->formatMessage('playerInfo', $this->_games[$gameId]->sendAiInfo());
-            $connCreator->send(json_encode($arrayAi));
+            //$arrayAi = $this->formatMessage('playerInfo', $this->_games[$gameId]->sendAiInfo());
+            //$connCreator->send(json_encode($arrayAi));
         }
 
     }
+
+
 
     private function formatMessage($event, $data){
         $array = array();

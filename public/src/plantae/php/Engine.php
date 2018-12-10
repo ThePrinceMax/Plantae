@@ -293,6 +293,8 @@
 
         public function sendInfoToCreator(){
             $array = [
+                'nbTurns' => $this->_maxTurns,
+                'turn' => $this->_turnsCounter,
                 'pname' => $this->_creator->getName(),
                 'pupgradePoints' => $this->_creator->getUpgradePoints(),
                 'fnameFlower' => $this->_creator->_flower->getNameFlower(),
@@ -300,6 +302,7 @@
                 'fseeds' => $this->_creator->_flower->getSeeds(),
 		        'fidealTemperature' => $this->_creator->_flower->getIdealTemperature(),
 		        'ftemperatureAmplitude' => $this->_creator->_flower->getTemperatureAmplitude(),
+                'nquality' => $this->_creator->_flower->_nectar->getOverallQuality(),
                 'nfructoseProp' => $this->_creator->_flower->_nectar->getFructose(),
                 'nsucroseProp' => $this->_creator->_flower->_nectar->getSucrose(),
                 'nglucoseProp' => $this->_creator->_flower->_nectar->getGlucose(),
@@ -313,6 +316,8 @@
 
         public function sendInfoToPlayer(){
             $array = [
+                'nbTurns' => $this->_maxTurns,
+                'turn' => $this->_turnsCounter,
                 'pname' => $this->_player->getName(),
                 'pupgradePoints' => $this->_player->getUpgradePoints(),
                 'fnameFlower' => $this->_player->_flower->getNameFlower(),
