@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    header('Location: ../signup');
+    header('Location: /#!/signup');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         newest_on_top: true,
                                         showProgressbar: false
                                     });</script>';
-        header('Location: ../signup');
+        header('Location: /#!/signup');
         exit;
     }
 
@@ -54,7 +54,7 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                         newest_on_top: true,
                                         showProgressbar: false
                                     });</script>';
-        header('Location: ../signup');
+        header('Location: /#!/signup');
         exit;
     }
 
@@ -100,9 +100,9 @@ if ( isset($_POST['pseudo']) && isset($_POST['login']) && isset($_POST['password
                                     });</script>';
     }
 
-    header('Location: ../signup');
+    header('Location: /#!/signup');
     exit;
 }
 
-header('Location: ../signup');
+header('Location: /#!/signup');
 exit;
