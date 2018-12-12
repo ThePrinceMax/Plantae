@@ -324,6 +324,7 @@
                 'fpopulation' => $this->_player->_flower->getPopulation(),
                 'fseeds' => $this->_player->_flower->getSeeds(),
                 'fidealTemperature' => $this->_player->_flower->getIdealTemperature(),
+                'nquality' => $this->_player->_flower->_nectar->getOverallQuality(),
                 'ftemperatureAmplitude' => $this->_player->_flower->getTemperatureAmplitude(),
                 'nfructoseProp' => $this->_player->_flower->_nectar->getFructose(),
                 'nsucroseProp' => $this->_player->_flower->_nectar->getSucrose(),

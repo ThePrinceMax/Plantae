@@ -1,5 +1,12 @@
+/*
+============================= GENERIC =============================
+ */
 
-var conn = new WebSocket('ws://localhost:13750');
+var conn = new WebSocket('wss://plantae.princelle.org/ws/');
+
+
+
+
 var flowerList = [];
 var biomeList = [];
 var oldPop = 0;
@@ -15,7 +22,7 @@ conn.onmessage = function(e) {
     console.log(data);
     if (data.event == 'playerInfo') {
         eventRefreshInfo(data);
-    } else if (data.event == 'reset') {
+    } else if (data.event == 'Reset') {
         eventRefreshInfo();
     } else if (data.event == 'CreateGameSolo'){
         eventCreateGameSolo();
@@ -29,6 +36,12 @@ conn.onmessage = function(e) {
         eventAttributed(data);
     } else if (data.event == 'NoMorePoints'){
         eventNoMorePoints();
+    } else if (data.event == 'GameWon'){
+        eventGameWon();
+    } else if (data.event == 'GameLost'){
+        eventGameLost();
+    } else if (data.evet == 'Draw'){
+        eventGameDraw();
     }
 
 };
@@ -84,10 +97,38 @@ var eventRefreshInfo = function(data) {
 
 var eventGetAllFlowers = function(data){
     flowerList = data.data;
+
+    let selectFlower = document.getElementById("createFlowerSelection");
+
+    selectFlower.options.length =0;
+    let keyFlower;
+    for (keyFlower in flowerList) {
+        if (flowerList.hasOwnProperty(keyFlower)  &&        // These are explained
+            /^0$|^[1-9]\d*$/.test(keyFlower) &&    // and then hidden
+            keyFlower <= 4294967294                // away below
+        ) {
+            selectFlower.options[selectFlower.options.length] = new Option(flowerList[keyFlower], keyFlower);
+        }
+    }
 }
 
 var eventGetAllBiomes = function(data){
     biomeList = data.data;
+
+    let select = document.getElementById("createBiomeSelection");
+
+    select.options.length =0;
+    let keyBiome;
+    for (keyBiome in biomeList) {
+        if (biomeList.hasOwnProperty(keyBiome)  &&        // These are explained
+            /^0$|^[1-9]\d*$/.test(keyBiome) &&    // and then hidden
+            keyBiome <= 4294967294                // away below
+        ) {
+            select.options[select.options.length] = new Option(biomeList[keyBiome], keyBiome);
+        }
+    }
+
+    conn.removeEventListener('open', initializeModal);
 }
 
 var eventAttributed = function(data){
@@ -96,6 +137,24 @@ var eventAttributed = function(data){
 
 var eventNoMorePoints = function(data){
     document.getElementById("message").innerHTML = "Plus de points!";
+
+}
+
+var eventGameWon = function(){
+    document.getElementById("modalTitle").innerHTML = "Vous avez gagné !";
+    initializeModal();
+
+}
+
+var eventGameLost = function(){
+    document.getElementById("modalTitle").innerHTML = "Vous avez perdu !";
+    initializeModal();
+
+}
+
+var eventGameDraw = function(){
+    document.getElementById("modalTitle").innerHTML = "Egalité !";
+    initializeModal();
 
 }
 
@@ -144,10 +203,44 @@ $('#reset').click(function(){
     sendMsg({event:'reset'});
 });*/
 
-function wait(ms){
+function wait(ms) {
     var start = new Date().getTime();
     var end = start;
-    while(end < start + ms) {
+    while (end < start + ms) {
         end = new Date().getTime();
     }
 }
+/*
+============================= GENERIC =============================
+*/
+
+var initializeModal= function(){
+
+    $('#modalSolo').modal({
+        backdrop: 'static',
+        keyboard: false
+    }, 'show')
+
+    getAllFlowers();
+
+    getAllBiomes();
+
+}
+
+var createGameSolo = function(){
+
+    var flowerSelection = document.getElementById("createFlowerSelection");
+    var flowerId = flowerSelection.options[flowerSelection.selectedIndex].value;
+
+    var biomeSelection = document.getElementById("createBiomeSelection");
+    var biomeId = biomeSelection.options[biomeSelection.selectedIndex].value;
+
+    /*var maxTurnsSelection = document.getElementById("");
+    var maxTurns = e.options[e.selectedIndex].value;*/
+    conn.send('{"event":"CreateGameSolo", "data":{"flowerId":'+flowerId+', "biomeId":'+biomeId+', "maxTurns":10}}');
+
+    $('#modalSolo').modal('hide');
+}
+
+conn.addEventListener('open', initializeModal);
+
