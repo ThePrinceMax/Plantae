@@ -64,7 +64,7 @@ body {
         <section>
           <div>
             <?php
-                require_once('bdd.php');
+                require_once('./php/bdd.php');
                 $reqTulipe = 'SELECT nameFr, family, nameLatin, nbPetals, diseaseResistance, idealTemperature, temperatureAmplitude, colorPetals FROM flower WHERE id = 0';
                 $tabTulipe = $db->query($reqTulipe);
                 $nomFr = $tabTulipe['nameFr'];
