@@ -15,7 +15,6 @@
          * @var Season
          */
 		public $_currentSeason;
-		private $_eventList;
         /**
          * @var Pollinator[]
          */

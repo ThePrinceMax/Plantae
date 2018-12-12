@@ -6,6 +6,8 @@ use Game\Engine;
 use Game\GameBddRequests;
 use Ratchet\Mock\Connection;
 
+
+
 class GamesManager implements MessageComponentInterface {
     /**
      * @var connectionInterface[]
@@ -53,16 +55,26 @@ class GamesManager implements MessageComponentInterface {
 
     public function onMessage(ConnectionInterface $from, $msg) {
 
-        $data = json_decode($msg, true);
-        //echo sprintf($data);
-        $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute', 'GetAllFlowers', 'GetAllBiomes', 'GetAllGames'];
-        if(in_array($data['event'],$valid_functions)) {
-            $functionName = 'event' . $data['event'];
-            $this->$functionName($from,$data);
-        } else {
-            echo "not an event :".$data['event'];
-            //$from->send('INVALID REQUEST');
+        try{
+            $data = json_decode($msg, true);
+            //echo sprintf($data);
+            $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute', 'GetAllFlowers', 'GetAllBiomes', 'GetAllGames'];
+            if(in_array($data['event'],$valid_functions)) {
+                $functionName = 'event' . $data['event'];
+                $this->$functionName($from,$data);
+            } else {
+                echo "not an event :".$data['event'];
+                //$from->send('INVALID REQUEST');
+            }
         }
+        catch (\Exception $e){
+            foreach ($this->clients as $client){
+                $client->send(json_encode(['event' => "ServerError",
+                    'data' => [0 => $e, 1 => $e->getMessage()]]));
+            }
+            exit(0);
+        }
+
 
         /*
         $numRecv = count($this->clients) - 1;
@@ -79,6 +91,8 @@ class GamesManager implements MessageComponentInterface {
     private function eventTest(ConnectionInterface $from, $data){
         $from->send('test réussi!');
     }
+
+
 
     private function eventGetAllGames(ConnectionInterface $from, $data){
         $gamesAvailable = array();
@@ -181,7 +195,7 @@ class GamesManager implements MessageComponentInterface {
     }
 
     private function getGame($id){
-        $gameId = 0;
+        $gameId = -1;
         foreach ($this->_clientsCreator as $key=>$value){
             if($key == $id){
                 $gameId = $value;
@@ -203,6 +217,7 @@ class GamesManager implements MessageComponentInterface {
             if(!$this->_games[$gameId]->isGameFull()){
                 $flowerId = $data['data']['flowerId'];
                 $this->_games[$gameId]->joinGame($from->resourceId, $flowerId);
+                sleep(2);
                 $from->send(json_encode(['event' => "GameJoined",
                     'data' => [] ]));
 
@@ -247,6 +262,7 @@ class GamesManager implements MessageComponentInterface {
                 //$from->send('vous etes pret');
                 if($this->_games[$serverId]->isPVP()){
                     if($this->_games[$serverId]->_player->isReady()){
+                        sleep(2);
                         $this->gameLoop($serverId);
                     }
                 }
@@ -259,6 +275,7 @@ class GamesManager implements MessageComponentInterface {
                 $this->_games[$serverId]->_player->ready();
                 //$from->send('vous etes pret');
                 if($this->_games[$serverId]->_creator->isReady()){
+                    sleep(2);
                     $this->gameLoop($serverId);
                 }
             }
@@ -375,8 +392,11 @@ class GamesManager implements MessageComponentInterface {
         if($this->_games[$gameId]->isPVP()) {
             $connCreator = $this->getConn($this->_games[$gameId]->_creator->getId());
             $connPlayer =  $this->getConn($this->_games[$gameId]->_player->getId());
-           // $connCreator->send('Debut du tour suivant');
-           // $connPlayer->send('Debut du tour suivant');
+
+            $connPlayer->send(json_encode(['event' => "NextTurn",
+                'data' => [] ]));
+            $connCreator->send(json_encode(['event' => "NextTurn",
+                'data' => [] ]));
 
             $this->_games[$gameId]->nextTurn();
             $this->_games[$gameId]->_creator->notReady();
@@ -438,6 +458,34 @@ class GamesManager implements MessageComponentInterface {
 
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
+
+        $gameId = $this->getGame($conn->resourceId);
+
+        if($gameId != -1){
+            if($this->gameExists($gameId)) {
+                $game = $this->_games[$gameId];
+
+                if($this->_games[$gameId]->isPVP()){
+                    if($this->isCreator($conn->resourceId, $gameId)){
+
+                        $player = $this->getConn($game->_player->getId());
+                        $player->send(json_encode(['event' => "EnnemyLeft",
+                            'data' => [] ]));
+                    }
+                    elseif($this->isPlayer($conn->resourceId, $gameId)){
+                        $creator = $this->getConn($game->_creator->getId());
+                        $creator->send(json_encode(['event' => "EnnemyLeft",
+                            'data' => [] ]));
+                    }
+                    $this->endGamePVP($game->_creator->getId(), $game->_player->getId(), $gameId);
+                }
+                else{
+                    $this->endGameSolo($game->_creator->getId(), $gameId);
+                }
+
+            }
+        }
+
         unset($this->clients[$conn->resourceId]);
 
         echo "Connection {$conn->resourceId} has disconnected\n";

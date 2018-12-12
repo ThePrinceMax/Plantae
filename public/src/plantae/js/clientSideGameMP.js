@@ -11,7 +11,7 @@ var oldPop = 0;
 var oldPercent = 0;
 
 conn.onopen = function(e) {
-    document.getElementById("modalTitle").innerHTML = "Connecté au server";
+    document.getElementById("modalTitle").innerHTML = "Connecté au serveur";
 };
 
 conn.onmessage = function(e) {
@@ -22,18 +22,20 @@ conn.onmessage = function(e) {
         eventRefreshInfo(data);
     } else if (data.event == 'Reset') {
         eventResetInfo();
-    } else if (data.event == 'CreateGameSolo'){
+    } else if (data.event == 'CreateGameSolo') {
         eventCreateGameSolo();
-    } else if (data.event == 'CreatedGameMP'){
+    } else if (data.event == 'CreatedGameMP') {
         eventCreatedGameMP();
-    } else if (data.event == 'GetAllGames'){
+    } else if (data.event == 'GetAllGames') {
         eventGetAllGames(data);
-    } else if (data.event == 'PlayerJoined'){
+    } else if (data.event == 'PlayerJoined') {
         eventPlayerJoined();
-    } else if (data.event == 'GameJoined'){
+    }else if (data.event == 'EnnemyLeft') {
+        eventEnnemyLeft();
+    }else if (data.event == 'GameJoined'){
         eventGameJoined();
-    } else if (data.event == 'Connexion'){
-
+    } else if (data.event == 'NextTurn'){
+        eventNextTurn();
     } else if (data.event == 'FlowerList'){
         eventGetAllFlowers(data);
     } else if (data.event == 'BiomeList'){
@@ -52,6 +54,7 @@ conn.onmessage = function(e) {
 };
 
 var eventCreatedGameMP = function () {
+    document.getElementById("modalTitle").innerHTML = "En attente d'un joueur";
     document.getElementById("gameJoiningMP").style.display="none";
     document.getElementById("loginActionChoice").style.display="none";
     document.getElementById("gameCreationMP").style.display="none";
@@ -71,9 +74,16 @@ var eventGameJoined = function(){
     document.getElementById("gameCreationMP").style.display="none";
 }
 
+var eventEnnemyLeft = function() {
+    $('#modalMP').modal('show');
+    document.getElementById("modalTitle").innerHTML = "L'autre joueur s'est déconnecté";
+    document.getElementById("gameJoiningMP").style.display="none";
+    document.getElementById("loginActionChoice").style.display="block";
+    document.getElementById("gameCreationMP").style.display="none";
+}
+
 var eventRefreshInfo = function(data) {
 
-    $('#modalMP').modal('hide');
     if((parseInt(data.data.turn, 10)) === 0){
         setBiome(data.data.bnameBiome);
         setFlower("rose", "red");
@@ -119,6 +129,10 @@ var eventRefreshInfo = function(data) {
     document.getElementById("snameSeason").innerHTML = "Saison : "+data.data.snameSeason;
     document.getElementById("mnameMonth").innerHTML = "Mois : "+data.data.mnameMonth;
 };
+
+var eventNextTurn = function(){
+    $('#modalMP').modal('hide');
+}
 
 var eventGetAllFlowers = function(data){
     flowerList = data.data;
@@ -238,7 +252,7 @@ var getAllGames = function(){
 
 var endTurn = function(){
     document.getElementById("modalTitle").innerHTML = "En attente de l'autre joueur";
-    setTimeout(function(){$('#modalMP').modal('show')}, 1500)
+    $('#modalMP').modal('show');
     conn.send('{"event":"Ready", "data":{"isReady":true}}');
 }
 
