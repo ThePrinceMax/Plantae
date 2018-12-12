@@ -63,7 +63,7 @@
                     </li>
 
                     <?php
-                        if (!($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user'])))
+                        if (($_SERVER['REQUEST_METHOD'] != 'GET' || isset($_SESSION['user'])))
                         {
                     ?>
 
@@ -88,7 +88,7 @@
             <!-- Connexion-->
 
             <?php
-                if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
+                if (($_SERVER['REQUEST_METHOD'] != 'GET' || isset($_SESSION['user'])))
                 {
             ?>
                 <div class="nav-item navbar-right" id="login-interface">
