@@ -4,9 +4,8 @@
 <script type="text/javascript" src="./js/numscroller.js"></script>
 <script type="text/javascript" src="./js/display_canva.js"></script>
 
-<!-- CSS Styles - Nb Tours -->
+<!-- CSS Styles -->
 <link rel="stylesheet" href="./css/nbtours.css">
-
 <link rel="stylesheet" href="./css/gameLoginPopup.css">
 
 
@@ -19,13 +18,13 @@
 					<br>
 					<ul class="nav flex-column" id="augmentButtons">
                         <li class="nav-item">
-                            <a class="nav-link" onclick="endTurn()">Fin du tour</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="temperatureAmplitudeIncrease()">Augmenter l'amplitude</a>
+                            <button type="button" class="btn btn-danger"><a class="nav-link" onclick="endTurn()">Fin du tour</a></button>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" onclick="overallQualityIncrease()">Améliorer la qualité</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="temperatureAmplitudeIncrease()">Augmenter l'amplitude</a>
                         </li>
 						<li class="nav-item">
 						    <a class="nav-link" onclick="fructoseIncrease()">Augmenter fructose</a>
@@ -36,16 +35,14 @@
                         <li class="nav-item">
                             <a class="nav-link" onclick="sucroseIncrease()">Augmenter sucrose</a>
                         </li>
-
-
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Créer partie</a>
+						    <a class="nav-link" href="#!jeu-solo">Créer une partie</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">rejoindre Partie</a>
+						    <a class="nav-link" href="#!jeu-solo">Rejoindre une partie</a>
 						</li>
 					</ul>
 				</div>
@@ -71,11 +68,11 @@
                 <p id="fnameFlowerTitle">Nom de la fleur</p>
             </div>
             <div class="col-lg text-right">
-                <h3 id="bnameBiome">Biome</h3>
+                <h4>Biome : <span id="bnameBiome">???</span></h4>
             </div>
             <div class="col-lg text-right">
                 <i class="fa fa-code fa-2x"></i>
-				<h2><span id="points">0</span></h2>
+				<h4>Population : <span id="points">0</span></h4>
             </div>
         </div>
         <div class="row"><br></div>
@@ -120,24 +117,28 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modalTitle">Connection au server ...</h4>
+                        <h4 class="modal-title" id="modalTitle">Connexion au serveur ...</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color:none;">
 
                         <form class="form-container" id="gameCreationSolo">
                             <h1></h1>
 
-                            <label for="Fleurs"><b>Choix de la fleur</b></label>
+                            <label for="Fleurs"><b>Choix de la fleur : </b></label>
                             <select name="Fleurs" id="createFlowerSelection">
                             </select>
 
-                            <label for="Biome"><b>Choix du biome</b></label>
+                            <br>
+
+                            <label for="Biome"><b>Choix du biome : </b></label>
                             <select name="Biomes" id="createBiomeSelection">
                             </select>
 
-                            <button class="btn" onclick="createGameSolo()">créer partie</button>
+                            <br>
 
-                            <button class="btn cancel" onclick="">Retour à la page d'acceuil</button>
+                            <button class="btn btn-success btn-sm" style="background-color: #4CAF50;"><a class="nav-link" onclick="createGameSolo()">Créer la partie</a></button>
+
+                            <a href="#!" class="btn btn-danger" style="background-color: red;" onclick="function(){$('#modalSolo').modal('hide')}">Retour à la page d'accueil</a>
                         </form>
 
                     </div>
@@ -156,4 +157,3 @@
     <script type="text/javascript" src="./js/clientSideGameSolo.js"></script>
 
 </section>
-

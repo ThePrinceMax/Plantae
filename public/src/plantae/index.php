@@ -23,7 +23,6 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/loading.css">
 
     <!-- Logo -->
@@ -62,75 +61,21 @@
                       <a class="nav-link" href="#!herbier">Herbier</a>
                     </li>
 
-                    <?php
-                        if (!($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user'])))
-                        {
-                    ?>
-
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#!jeu-solo">Solo</a>
+                            <!--
                             <a class="dropdown-item disabled" href="#!quizz">Quizz (en cours de développement)</a>
+                            -->
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Multi-joueur</h6>
-                            <a class="dropdown-item disabled" href="#!jeu-multi-local">OnSite - 1v1 (en cours de développement)</a>
-                            <a class="dropdown-item disabled" href="#!jeu-multi-net">Réseau - 1v1 (en cours de développement)</a>
+                            <a class="dropdown-item" href="#!jeu-onsite">OnSite - 1v1</a>
+                            <a class="dropdown-item" href="#!jeu-online">OnLine - 1v1</a>
                         </div>
                     </li>
-
-                    <?php
-                        }
-                    ?>
                 </ul>
             </div>
-
-            <!-- Connexion-->
-
-            <?php
-                if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
-                {
-            ?>
-                <div class="nav-item navbar-right" id="login-interface">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                      <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
-                        <div class="form-group">
-                            <label for="login">Votre email</label>
-                            <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus autocomplete="username">
-                            <small style="margin-bottom: 1rem;" id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail utilisée pour vous inscrire.</small>
-
-                            <label for="password">Votre mot de passe</label>
-                            <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required autocomplete="current-password">
-                            <small id="passHelp" class="form-text text-muted">Insérez ici votre mot de passe.</small>
-                    </div>
-                    <button type="submit" class="btn btn-success">Se connecter</button>
-                      </form>
-
-                      <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#!signup">Nouveau ici ? Inscrivez-vous !</a>
-                    </div>
-                </div>
-            <?php
-                }
-                else {
-            ?>
-                <div class="nav-item navbar-right" id="logged-interface">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user']; ?>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                        <div>
-                      <button class="btn btn-danger" href="./php/signout.php" style="margin-left:6%;">Se déconnecter</button>
-                  </div>
-                      <div class="dropdown-divider"></div>
-                          <a class="dropdown-item disabled" href="#">Votre profil</a>
-                          <a class="dropdown-item text-danger disabled" href="#">Supprimer votre profil</a>
-                    </div>
-                </div>
-            <?php
-                }
-            ?>
 
         </nav>
     </section>
@@ -145,25 +90,19 @@
                 templateUrl : "start.html"
             })
             .when("/quizz", {
-                templateUrl : "quizz.html"
+                templateUrl : "quizz.php"
             })
             .when("/jeu-solo", {
                 templateUrl : "local.html"
             })
-            .when("/jeu-multi-local", {
+            .when("/jeu-onsite", {
                 templateUrl : "local1v1.html"
             })
-            .when("/jeu-multi-net", {
+            .when("/jeu-online", {
                 templateUrl : "lan.html"
             })
             .when("/herbier", {
                 templateUrl : "herbier.html"
-            })
-            .when("/changepassword", {
-                templateUrl : "/php/changepassword.php"
-            })
-            .when("/signup", {
-                templateUrl : "signup.php"
             })
             .otherwise('/');
         });
