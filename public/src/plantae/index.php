@@ -70,7 +70,9 @@
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#!jeu-solo">Solo</a>
+                            <!--
                             <a class="dropdown-item disabled" href="#!quizz">Quizz (en cours de développement)</a>
+                            -->
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Multi-joueur</h6>
                             <a class="dropdown-item disabled" href="#!jeu-multi-local">OnSite - 1v1 (en cours de développement)</a>
