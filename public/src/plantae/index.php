@@ -61,11 +61,6 @@
                       <a class="nav-link" href="#!herbier">Herbier</a>
                     </li>
 
-                    <?php
-                        if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
-                        {
-                    ?>
-
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
                         <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
@@ -75,14 +70,10 @@
                             -->
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Multi-joueur</h6>
-                            <a class="dropdown-item disabled" href="#!jeu-multi-local">OnSite - 1v1 (en cours de développement)</a>
-                            <a class="dropdown-item disabled" href="#!jeu-multi-net">Réseau - 1v1 (en cours de développement)</a>
+                            <a class="dropdown-item" href="#!jeu-onsite">OnSite - 1v1</a>
+                            <a class="dropdown-item" href="#!jeu-online">OnLine - 1v1</a>
                         </div>
                     </li>
-
-                    <?php
-                        }
-                    ?>
                 </ul>
             </div>
 
@@ -104,20 +95,14 @@
             .when("/jeu-solo", {
                 templateUrl : "local.html"
             })
-            .when("/jeu-multi-local", {
+            .when("/jeu-onsite", {
                 templateUrl : "local1v1.html"
             })
-            .when("/jeu-multi-net", {
+            .when("/jeu-online", {
                 templateUrl : "lan.html"
             })
             .when("/herbier", {
                 templateUrl : "herbier.html"
-            })
-            .when("/changepassword", {
-                templateUrl : "/php/changepassword.php"
-            })
-            .when("/signup", {
-                templateUrl : "signup.php"
             })
             .otherwise('/');
         });
