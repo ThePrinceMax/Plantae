@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST')
     exit;
 }
 
-use PDO;
 session_start();
 unset($_SESSION['message']);
 
