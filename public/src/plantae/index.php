@@ -102,7 +102,7 @@
                 templateUrl : "lan.html"
             })
             .when("/herbier", {
-                templateUrl : "herbier.html"
+                templateUrl : "herbier.php"
             })
             .otherwise('/');
         });
