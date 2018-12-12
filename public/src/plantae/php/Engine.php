@@ -1,9 +1,6 @@
 <?php
 
     namespace Game;
-    use Game\Player;
-    use Game\AI;
-
 
 	//use PDO;
 
