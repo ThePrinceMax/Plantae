@@ -90,7 +90,7 @@
             <?php
                 if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['name']))
                 {
-                    console.log("Not connected");
+                    echo "<script>console.log( 'Not connected' );</script>";
             ?>
                 <div class="nav-item navbar-right" id="login-interface">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
@@ -116,8 +116,7 @@
             <?php
                 }
                 else {
-                    console.log("Welcome");
-                    console.log($_SESSION['name']);
+                    echo "<script>console.log( 'Welcome: " . $_SESSION['name'] . "' );</script>";
             ?>
                 <div class="nav-item navbar-right" id="logged-interface">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['name'] ?>
