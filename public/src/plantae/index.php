@@ -90,7 +90,7 @@
                 templateUrl : "start.html"
             })
             .when("/quizz", {
-                templateUrl : "quizz.html"
+                templateUrl : "quizz.php"
             })
             .when("/jeu-solo", {
                 templateUrl : "local.html"
