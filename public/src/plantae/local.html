@@ -18,7 +18,7 @@
 					<br>
 					<ul class="nav flex-column" id="augmentButtons">
                         <li class="nav-item">
-                            <button type="button" class="btn btn-danger"><a class="nav-link" onclick="endTurn()">Fin du tour</a></button>
+                            <button type="button" class="btn btn-danger btn-sm" style="margin-left:1em;margin-right:1em;margin-top:.5em;margin-bottom:.5em;"><a class="nav-link" onclick="endTurn()">Fin du tour</a></button>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" onclick="overallQualityIncrease()">Améliorer la qualité</a>
@@ -112,18 +112,19 @@
 
 
         <div id="modalSolo" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modalTitle">Connexion au serveur ...</h4>
+                        <h4 class="modal-title" id="modalTitle">Connexion au serveur...</h4>
                     </div>
-                    <div class="modal-body" style="background-color:none;">
+                    <div class="modal-body">
 
                         <form class="form-container" id="gameCreationSolo">
                             <h1></h1>
-
+							<div style="text-align: center;">
+								
                             <label for="Fleurs"><b>Choix de la fleur : </b></label>
                             <select name="Fleurs" id="createFlowerSelection">
                             </select>
@@ -134,11 +135,12 @@
                             <select name="Biomes" id="createBiomeSelection">
                             </select>
 
+							</div>
                             <br>
-
-                            <button class="btn btn-success btn-sm" style="background-color: #4CAF50;"><a class="nav-link" onclick="createGameSolo()">Créer la partie</a></button>
-
-                            <a href="#!" class="btn btn-danger" style="background-color: red;" onclick="function(){$('#modalSolo').modal('hide')}">Retour à la page d'accueil</a>
+							<div style="margin-top:.5rem;">
+						        <button type="button" class="btn btn-success btn-sm btn-block" onclick="createGameSolo()">Créer la partie</button>
+						        <button type="button" class="btn btn-danger btn-sm btn-block" href="/">Retour à la page d'accueil</button>
+						    </div>
                         </form>
 
                     </div>

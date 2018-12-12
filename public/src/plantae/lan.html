@@ -19,8 +19,8 @@
 					<br>
 					<ul class="nav flex-column" id="augmentButtons">
 						<li class="nav-item">
-							<button type="button" class="btn btn-danger"><a class="nav-link" onclick="endTurn()">Fin du tour</a></button>
-						</li>
+                            <button type="button" class="btn btn-danger btn-sm" style="margin-left:1em;margin-right:1em;margin-top:.5em;margin-bottom:.5em;"><a class="nav-link" onclick="endTurn()">Fin du tour</a></button>
+                        </li>
 						<li class="nav-item">
 							<a class="nav-link" onclick="temperatureAmplitudeIncrease()">Augmenter l'amplitude</a>
 						</li>
@@ -71,11 +71,11 @@
 				<p id="fnameFlowerTitle">Nom de la fleur</p>
 			</div>
 			<div class="col-lg text-right">
-				<h3 id="bnameBiome">Biome</h3>
+				<h4>Biome : <span id="bnameBiome">???</span></h4>
 			</div>
 			<div class="col-lg text-right">
 				<i class="fa fa-code fa-2x"></i>
-				<h2><span id="points">0</span></h2>
+				<h4>Population : <span id="points">0</span></h4>
 			</div>
 		</div>
 		<div class="row"><br></div>
@@ -120,52 +120,56 @@
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="modalTitle">Connection au server ...</h4>
+						<h4 class="modal-title" id="modalTitle">Connexion au serveur...</h4>
 					</div>
 					<div class="modal-body">
 
 						<form class="form-action" id="loginActionChoice">
 							<button class="btnCreateGame" onclick="showGameCreationMP()">Créer une partie</button>
 							<button class="btnJoinGame" onclick="showGameJoiningMP()">Rejoindre une partie</button>
-							<button class="btnJoinGame" onclick="">Page d'acceuil</button>
+							<button class="btnJoinGame" onclick="">Page d'accueil</button>
 
 						</form>
-
 
 						<form class="form-container" id="gameCreationMP">
-							<h1></h1>
+                            <h1></h1>
+							<div style="text-align: center;">
+                            <label for="Fleurs"><b>Choix de la fleur : </b></label>
+                            <select name="Fleurs" id="createFlowerSelection">
+                            </select>
 
-							<label for="createFlowerSelection"><b>Choix de la fleur</b></label>
-							<select name="Fleurs" id="createFlowerSelection">
-							</select>
+                            <br>
 
-							<label for="createBiomeSelection"><b>Choix du biome</b></label>
-							<select name="Biomes" id="createBiomeSelection">
-							</select>
-
-							<button class="btn" onclick="createGameMP()">créer partie</button>
-
-							<button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
-						</form>
+                            <label for="Biome"><b>Choix du biome : </b></label>
+                            <select name="Biomes" id="createBiomeSelection">
+                            </select>
+							</div>
+                            <br>
+							<div style="margin-top:.5rem;">
+						        <button type="button" class="btn btn-success btn-sm btn-block" onclick="createGameMP()">Créer la partie</button>
+						        <button type="button" class="btn btn-danger btn-sm btn-block cancel" onclick="backToLoginActionChoice()">Retour</button>
+						    </div>
+                        </form>
 
 						<form class="form-container" id="gameJoiningMP">
 							<h1></h1>
-
-							<label for="joinFlowerSelection"><b>Choix de la fleur</b></label>
+							<div style="text-align: center;">
+							<label for="joinFlowerSelection"><b>Choix de la fleur :</b></label>
 							<select name="Fleurs" id="joinFlowerSelection"></select>
 
+							<br>
 
 							<label for="serverGamesSelection"><b></b></label>
+							<label for="serverID"><b>ID de la partie :</b></label>
 							<select name="Parties connues" id="serverGamesSelection"></select>
-							<label for="serverID"><b></b>Entrez l'id du server</label>
-							<input type="number"placeholder="Entrez l'id du server ou choisissez dans la liste" id="serverID" name="serverID" required>
+							<input type="number" placeholder="ID de la partie" id="serverID" name="serverID" required>
 
-							<button class="btn" onclick="joinGame()">Se connecter à la partie</button>
-							<button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+							</div>
+							<div style="margin-top:1.5rem;">
+							<button class="btn btn-success btn-sm btn-block" onclick="joinGame()">Se connecter à la partie</button>
+							<button class="btn btn-danger btn-sm btn-block cancel" onclick="backToLoginActionChoice()">Retour</button>
+							</div>
 						</form>
-
-					</div>
-					<div class="modal-footer">
 
 					</div>
 				</div>
@@ -180,4 +184,3 @@
 	<script type="text/javascript" src="./js/clientSideGameMP.js"></script>
 
 </section>
-
