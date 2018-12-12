@@ -1,9 +1,6 @@
 <?php
 
     namespace Game;
-    use Game\Player;
-    use Game\AI;
-
 
 	//use PDO;
 
@@ -18,7 +15,7 @@
          */
 		public $_player;
         /**
-         * @var AI
+         * @var Ai
          */
 		public $_ai;
         /**
@@ -26,7 +23,11 @@
          */
 		private $_biome;
 
-		private $_turnsCounter;
+		private $_eventList;
+
+		private $_currentEvent;
+
+        private $_turnsCounter;
 		private $_maxTurns;
 		private $_engineID;
 		private $_isPVP;
@@ -363,7 +364,6 @@
                 $this->_gameFull = true;
             }
         }
-
 
 		private function biomeLoader($biomeID) {
 			if($biomeID == 0){

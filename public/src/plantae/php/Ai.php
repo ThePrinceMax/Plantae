@@ -26,8 +26,7 @@ class Ai
 
     public function randomAttribute(){
         while($this->_upgradePoints > 0){
-             $this->attributePointToOverallQuality();
-            /*
+            //$this->attributePointToOverallQuality();
             $field = mt_rand(0,4);
             switch (($field)){
                 case 0:
@@ -45,7 +44,7 @@ class Ai
                 case 4:
                     $this->attributePointToTemperatureAmplitude();
                     break;
-            }*/
+            }
         }
         echo ("AI UPGRADED FIELDS");
     }
