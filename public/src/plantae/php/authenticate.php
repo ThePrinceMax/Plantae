@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST')
 session_start();
 unset($_SESSION['message']);
 
+use PDO;
 
 if ( isset($_POST['login']) && isset($_POST['password']) )
 {
