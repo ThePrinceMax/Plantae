@@ -85,57 +85,6 @@
                 </ul>
             </div>
 
-            <!-- Connexion-->
-
-            <?php
-                if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['name']))
-                {
-                    echo "<script>console.log( 'Not connected' );</script>";
-            ?>
-                <div class="nav-item navbar-right" id="login-interface">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connectez-vous
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                      <form class="px-4 py-3 form-signin" method="POST" action="./php/authenticate.php">
-                        <div class="form-group">
-                            <label for="login">Votre email</label>
-                            <input type="email" id="login" name="login" class="form-control border" placeholder="Adresse Mail" required autofocus autocomplete="username">
-                            <small style="margin-bottom: 1rem;" id="passHelp" class="form-text text-muted">Insérez ici votre adresse mail utilisée pour vous inscrire.</small>
-
-                            <label for="password">Votre mot de passe</label>
-                            <input type="password" id="password" name="password" class="form-control border" placeholder="Mot de passe" required autocomplete="current-password">
-                            <small id="passHelp" class="form-text text-muted">Insérez ici votre mot de passe.</small>
-                    </div>
-                    <button type="submit" class="btn btn-success">Se connecter</button>
-                      </form>
-
-                      <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#!signup">Nouveau ici ? Inscrivez-vous !</a>
-                    </div>
-                </div>
-            <?php
-                }
-                else {
-                    echo "<script>console.log( 'Welcome: " . $_SESSION['name'] . "' );</script>";
-            ?>
-                <div class="nav-item navbar-right" id="logged-interface">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['name'] ?>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
-                        <div>
-                      <button class="btn btn-danger" href="./php/signout.php" style="margin-left:6%;">Se déconnecter</button>
-                    <!--
-                  </div>
-                      <div class="dropdown-divider"></div>
-                          <a class="dropdown-item disabled" href="#">Votre profil</a>
-                          <a class="dropdown-item text-danger disabled" href="./php/signout.php">Supprimer votre profil</a>
-                    </div>
-                -->
-                </div>
-            <?php
-                }
-            ?>
-
         </nav>
     </section>
 
