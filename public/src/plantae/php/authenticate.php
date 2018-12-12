@@ -38,6 +38,7 @@ if ( isset($_POST['login']) && isset($_POST['password']) )
     {
         if ( password_verify($password,$user['password']) )
         {
+            echo "<script>console.log( 'Authenticated' );</script>";
             $_SESSION['name'] = $user['pseudo'];
             header('Location: /');
             exit;
