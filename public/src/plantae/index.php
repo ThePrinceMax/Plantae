@@ -116,7 +116,8 @@
             <?php
                 }
                 else {
-                    console.log("Welcome" $_SESSION['name']);
+                    console.log("Welcome");
+                    console.log($_SESSION['name']);
             ?>
                 <div class="nav-item navbar-right" id="logged-interface">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['name'] ?>
