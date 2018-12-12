@@ -55,7 +55,7 @@
           <entry key="dummy" value="2" />
           <entry key="html" value="2243" />
           <entry key="js" value="4644" />
-          <entry key="php" value="4306" />
+          <entry key="php" value="4308" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -63,7 +63,7 @@
           <entry key="CSS" value="86" />
           <entry key="HTML" value="2243" />
           <entry key="JavaScript" value="4644" />
-          <entry key="PHP" value="4306" />
+          <entry key="PHP" value="4308" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -80,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -137,11 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plantae/php/Engine.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="187">
+              <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -230,11 +230,11 @@
         <option value="$PROJECT_DIR$/src/plantae/php/RandomEvent.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Biome.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/bdd.php" />
-        <option value="$PROJECT_DIR$/src/plantae/php/Engine.php" />
         <option value="$PROJECT_DIR$/bin/GamesManager-server.php" />
         <option value="$PROJECT_DIR$/src/plantae/GamesManager.php" />
         <option value="$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js" />
         <option value="$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js" />
+        <option value="$PROJECT_DIR$/src/plantae/php/Engine.php" />
       </list>
     </option>
   </component>
@@ -398,12 +398,12 @@
       <workItem from="1544310604585" duration="34995000" />
       <workItem from="1544429042884" duration="4557000" />
       <workItem from="1544463814156" duration="12300000" />
-      <workItem from="1544518208062" duration="30883000" />
+      <workItem from="1544518208062" duration="31569000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137446000" />
+    <option name="totallyTimeSpent" value="138132000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -650,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/php/Engine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -674,6 +667,13 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plantae/php/Engine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
