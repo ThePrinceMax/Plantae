@@ -55,7 +55,7 @@ class GamesManager implements MessageComponentInterface {
 
         $data = json_decode($msg, true);
         //echo sprintf($data);
-        $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute', 'GetAllFlowers', 'GetAllBiomes'];
+        $valid_functions = ['CreateGamePVP','CreateGameSolo','JoinGame','ModifyParam','connect', 'send', 'Test', 'Join', 'Ready', 'Attribute', 'GetAllFlowers', 'GetAllBiomes', 'GetAllGames'];
         if(in_array($data['event'],$valid_functions)) {
             $functionName = 'event' . $data['event'];
             $this->$functionName($from,$data);
@@ -79,15 +79,32 @@ class GamesManager implements MessageComponentInterface {
     private function eventTest(ConnectionInterface $from, $data){
         $from->send('test réussi!');
     }
+
+    private function eventGetAllGames(ConnectionInterface $from, $data){
+        $gamesAvailable = array();
+
+        foreach ($this->_games as $game){
+            if($game->isGameFull() == false){
+                $gamesAvailable[$game->getId()] = $game->getId();
+            }
+        }
+
+        $from->send(json_encode(['event' => 'GetAllGames', 'data' => $gamesAvailable]));
+
+    }
+
    private function eventCreateGamePVP(ConnectionInterface $from, $data){
         $flowerId = $data['data']['flowerId'];
         $biomeId = $data['data']['biomeId'];
         $maxTurns = $data['data']['maxTurns'];
         $this->_games[$this->_nextGameId] = Engine::enginePVP($from->resourceId, $flowerId,$biomeId, $this->_nextGameId, $maxTurns);
         //$from->send(('id server: '.strval($this->_games[$this->_nextGameId]->getId())));
+       $from->send(json_encode(['event' => "CreatedGameMP",
+           'data' => [] ]));
         $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$this->_nextGameId]->sendInfoToCreator());
         $from->send(json_encode($arrayCreator));
         $this->_clientsCreator[$from->resourceId] = $this->_nextGameId;
+        echo '==SERVER ID : '+$this->_nextGameId+' ==';
         $this->_nextGameId++;
     }
 
@@ -186,18 +203,26 @@ class GamesManager implements MessageComponentInterface {
             if(!$this->_games[$gameId]->isGameFull()){
                 $flowerId = $data['data']['flowerId'];
                 $this->_games[$gameId]->joinGame($from->resourceId, $flowerId);
-                //$from->send('Server rejoin');
+                $from->send(json_encode(['event' => "GameJoined",
+                    'data' => [] ]));
+
+                $connCreator = $this->getConn($this->_games[$gameId]->_creator->getId());
+                $connCreator->send(json_encode(['event' => "PlayerJoined",
+                    'data' => [] ]));
+
                 $this->_clientsPlayer[$from->resourceId] = $gameId;
                 $arrayPlayer = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToPlayer());
                 $from->send(json_encode($arrayPlayer));
             }
             else{
-                //$from->send("La partie est pleine");
+                $from->send(json_encode(['event' => "GameFull",
+                    'data' => [] ]));
             }
 
         }
         else{
-            //$from->send("La partie n'existe pas");
+            $from->send(json_encode(['event' => "GameNull",
+                'data' => [] ]));
         }
     }
 
@@ -254,19 +279,24 @@ class GamesManager implements MessageComponentInterface {
                 }
             }
             elseif($winner == 0){
-               // $connCreator->send('La partie est finie, égalité');
-               // $connPlayer->send('La partie est finie, égalité');
+                $connCreator->send(json_encode(['event' => "Draw",
+                    'data' => [] ]));
+                $connPlayer->send(json_encode(['event' => "Draw",
+                    'data' => [] ]));
                 $gameEnded = true;
             }
             else{
                 $gameEnded = true;
                 if($winner == $this->_games[$gameId]->_creator->getId()){
-                   // $connCreator->send('La partie est finie, vous avez gagné');
-                   // $connPlayer->send('La partie est finie, vous avez perdu');
-                }
+                    $connCreator->send(json_encode(['event' => "GameWon",
+                        'data' => [] ]));
+                    $connPlayer->send(json_encode(['event' => "GameLost",
+                        'data' => [] ]));                }
                 elseif($winner == $this->_games[$gameId]->_player->getId()){
-                   // $connCreator->send('La partie est finie, vous avez perdu');
-                   // $connPlayer->send('La partie est finie, vous avez gagné');
+                    $connCreator->send(json_encode(['event' => "GameLost",
+                        'data' => [] ]));
+                    $connPlayer->send(json_encode(['event' => "GameWon",
+                        'data' => [] ]));
                 }
             }
         }
@@ -280,16 +310,19 @@ class GamesManager implements MessageComponentInterface {
                 }
             }
             elseif($winner == 0){
-               // $connCreator->send('La partie est finie, égalité');
+                $connCreator->send(json_encode(['event' => "Draw",
+                    'data' => [] ]));
                 $gameEnded = true;
             }
             else{
                 $gameEnded = true;
                 if($winner == $this->_games[$gameId]->_creator->getId()){
-                   // $connCreator->send('La partie est finie, vous avez gagné');
+                    $connCreator->send(json_encode(['event' => "GameWon",
+                        'data' => [] ]));
                 }
                 elseif($winner == -2){
-                   // $connCreator->send('La partie est finie, vous avez perdu');
+                    $connCreator->send(json_encode(['event' => "GameLost",
+                        'data' => [] ]));
                 }
             }
         }

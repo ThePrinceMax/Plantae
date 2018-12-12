@@ -114,7 +114,7 @@
 
 
 
-        <div id="myModal" class="modal fade" role="dialog">
+        <div id="modalSolo" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -124,15 +124,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-action" id="loginActionChoice">
-                            <button class="btnCreateGame" onclick="showGameCreation()">Créer une partie</button>
-                            <button class="btnJoinGame" onclick="showGameJoining()">Rejoindre une partie</button>
-                            <button class="btnJoinGame" onclick="">Page d'acceuil</button>
-
-                        </form>
-
-
-                        <form class="form-container" id="gameCreation">
+                        <form class="form-container" id="gameCreationSolo">
                             <h1></h1>
 
                             <label for="Fleurs"><b>Choix de la fleur</b></label>
@@ -143,28 +135,9 @@
                             <select name="Biomes" id="createBiomeSelection">
                             </select>
 
-                            <button class="btn" onclick="eventCreateGameSolo()">créer partie</button>
+                            <button class="btn" onclick="createGameSolo()">créer partie</button>
 
-                            <button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
-                        </form>
-
-                        <form class="form-container" id="gameJoining">
-                            <h1></h1>
-
-                            <label for="Fleurs"><b>Choix de la fleur</b></label>
-                            <select name="Fleurs" id="joinFlowerSelection">
-                            </select>
-
-
-                            <label for="games"><b></b></label>
-                            <select name="Parties connues" id="ServerGamesSelection">
-                                <option value="0">placeholder 0</option>
-                            </select>
-                            <label for="serverID"><b></b>Entrez l'id du server</label>
-                            <input type="number"placeholder="Entrez l'id du server ou choisissez dans la liste" name="serverID" required>
-
-                            <button class="btn">Se connecter à la partie</button>
-                            <button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+                            <button class="btn cancel" onclick="">Retour à la page d'acceuil</button>
                         </form>
 
                     </div>
@@ -180,7 +153,7 @@
 	</main>
 
 	<!-- Scripts Jeu-->
-    <script type="text/javascript" src="./js/clientSideGame.js"></script>
+    <script type="text/javascript" src="./js/clientSideGameSolo.js"></script>
 
 </section>
 

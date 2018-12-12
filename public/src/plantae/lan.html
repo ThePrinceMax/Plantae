@@ -1,3 +1,15 @@
+
+<!-- Scripts -->
+<script type="text/javascript" src="./js/anim_progression.js"></script>
+<script type="text/javascript" src="./js/numscroller.js"></script>
+<script type="text/javascript" src="./js/display_canva.js"></script>
+
+<!-- CSS Styles - Nb Tours -->
+<link rel="stylesheet" href="./css/nbtours.css">
+
+<link rel="stylesheet" href="./css/gameLoginPopup.css">
+
+
 <!-- Sidebar -->
 <section id="sidebar">
 	<div class="container-fluid">
@@ -5,36 +17,36 @@
 			<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
 				<div class="sidebar-sticky">
 					<br>
-					<ul class="nav flex-column">
+					<ul class="nav flex-column" id="augmentButtons">
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
+							<a class="nav-link" onclick="endTurn()">Fin du tour</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
+							<a class="nav-link" onclick="temperatureAmplitudeIncrease()">Augmenter l'amplitude</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 3</a>
+							<a class="nav-link" onclick="overallQualityIncrease()">Améliorer la qualité</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 4</a>
+							<a class="nav-link" onclick="fructoseIncrease()">Augmenter fructose</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" onclick="glucoseIncrease()">Augmenter glucose</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" onclick="sucroseIncrease()">Augmenter sucrose</a>
+						</li>
+
 
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 1</a>
+							<a class="nav-link" href="#">Créer partie</a>
 						</li>
 						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 2</a>
+							<a class="nav-link" href="#">rejoindre Partie</a>
 						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 3</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" href="#">Bouton 4</a>
-						</li>
-
 					</ul>
 				</div>
 			</nav>
@@ -44,9 +56,128 @@
 
 
 <!-- Main -->
-<section id="main-content">
+<section id="main-content" ng-app>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-		<h2>Bienvenue sur le multijoueur Réseau !</h2>
-		<p style="color: red;">Cette partie du site est actuellement en cours de développement, merci de votre compréhension.</p>
+		<div class="row align-items-center text-center border-dark rounded" style="background-color:lightgrey;">
+			<div class="progression">
+				<div class="circle">
+					<div class="fill"></div>
+					<h3 class="score"><span id="progpercent">0</span>%</h3>
+				</div>
+			</div>
+			<div class="col-lg-7 of-1 text-left">
+				<p></p>
+				<h5>Jeu Solo</h5>
+				<p id="fnameFlowerTitle">Nom de la fleur</p>
+			</div>
+			<div class="col-lg text-right">
+				<h3 id="bnameBiome">Biome</h3>
+			</div>
+			<div class="col-lg text-right">
+				<i class="fa fa-code fa-2x"></i>
+				<h2><span id="points">0</span></h2>
+			</div>
+		</div>
+		<div class="row"><br></div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="row">
+					<div class="col">
+						<h3>Infos Plante</h3>
+						<p id="fpopulation">???</p>
+						<p id="fseeds">???</p>
+						<p id="fidealTemperature">???</p>
+						<p id="ftemperatureAmplitude">???</p>
+						<p id="nquality">???</p>
+						<p id="nfructoseProp">???</p>
+						<p id="nsucroseProp">???</p>
+						<p id="nglucoseProp">???</p>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<h3>Log</h3>
+						<p id ="pupgradePoints">???</p>
+						<p id ="snameSeason">???</p>
+						<p id ="mnameMonth">???</p>
+						<p id ="message">???</p>
+					</div>
+				</div>
+			</div>
+			<div class="col border-left border-dark">
+				<canvas id="canvas" style="width: 100%; border-style: solid; border-width: 1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"> Désolé, mais votre navigateur ne prend pas en charge &lt;canvas&gt;. Merci d'en utiliser un autre ou d'autoriser le contenu JavaScript.
+					<script type="text/javascript" src="./js/canva.js"></script>
+				</canvas>
+			</div>
+		</div>
+
+
+
+		<div id="modalMP" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalTitle">Connection au server ...</h4>
+					</div>
+					<div class="modal-body">
+
+						<form class="form-action" id="loginActionChoice">
+							<button class="btnCreateGame" onclick="showGameCreationMP()">Créer une partie</button>
+							<button class="btnJoinGame" onclick="showGameJoiningMP()">Rejoindre une partie</button>
+							<button class="btnJoinGame" onclick="">Page d'acceuil</button>
+
+						</form>
+
+
+						<form class="form-container" id="gameCreationMP">
+							<h1></h1>
+
+							<label for="createFlowerSelection"><b>Choix de la fleur</b></label>
+							<select name="Fleurs" id="createFlowerSelection">
+							</select>
+
+							<label for="createBiomeSelection"><b>Choix du biome</b></label>
+							<select name="Biomes" id="createBiomeSelection">
+							</select>
+
+							<button class="btn" onclick="createGameMP()">créer partie</button>
+
+							<button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+						</form>
+
+						<form class="form-container" id="gameJoiningMP">
+							<h1></h1>
+
+							<label for="joinFlowerSelection"><b>Choix de la fleur</b></label>
+							<select name="Fleurs" id="joinFlowerSelection"></select>
+
+
+							<label for="serverGamesSelection"><b></b></label>
+							<select name="Parties connues" id="serverGamesSelection"></select>
+							<label for="serverID"><b></b>Entrez l'id du server</label>
+							<input type="number"placeholder="Entrez l'id du server ou choisissez dans la liste" id="serverID" name="serverID" required>
+
+							<button class="btn" onclick="joinGame()">Se connecter à la partie</button>
+							<button class="btn cancel" onclick="backToLoginActionChoice()">Retour</button>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
 	</main>
+
+	<!-- Scripts Jeu-->
+	<script type="text/javascript" src="./js/clientSideGameMP.js"></script>
+
 </section>
+
