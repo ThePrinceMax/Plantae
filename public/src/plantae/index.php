@@ -63,7 +63,7 @@
                     </li>
 
                     <?php
-                        if (($_SERVER['REQUEST_METHOD'] != 'GET' || isset($_SESSION['user'])))
+                        if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
                         {
                     ?>
 
@@ -88,7 +88,7 @@
             <!-- Connexion-->
 
             <?php
-                if (($_SERVER['REQUEST_METHOD'] != 'GET' || isset($_SESSION['user'])))
+                if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_SESSION['user']))
                 {
             ?>
                 <div class="nav-item navbar-right" id="login-interface">
@@ -117,16 +117,18 @@
                 else {
             ?>
                 <div class="nav-item navbar-right" id="logged-interface">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user']; ?>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php$_SESSION['user']?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right shadow-lg" style="position:absolute;" aria-labelledby="navbarDropdown">
                         <div>
                       <button class="btn btn-danger" href="./php/signout.php" style="margin-left:6%;">Se déconnecter</button>
+                    <!--
                   </div>
                       <div class="dropdown-divider"></div>
                           <a class="dropdown-item disabled" href="#">Votre profil</a>
-                          <a class="dropdown-item text-danger disabled" href="#">Supprimer votre profil</a>
+                          <a class="dropdown-item text-danger disabled" href="./php/signout.php">Supprimer votre profil</a>
                     </div>
+                -->
                 </div>
             <?php
                 }
