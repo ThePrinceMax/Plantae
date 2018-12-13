@@ -216,26 +216,24 @@ $('#reset').click(function(){
 });*/
 
 var redirectToOnline = function() {
-    $('#modalSolo').modal('hide');
+    $location.path("/jeu-online");
+    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("jeu-online");
-    
 }
 
 var redirectToSolo = function(){
-    $('#modalSolo').modal('hide');
+    $location.path("/jeu-solo");
+    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("jeu-solo");
 }
 
 var redirectToIndex = function(){
-    $('#modalSolo').modal('hide');
+    $location.path("/");
+    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("/");
-
 }
 
 function wait(ms) {

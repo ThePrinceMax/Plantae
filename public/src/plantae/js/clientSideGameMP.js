@@ -305,24 +305,24 @@ $('#reset').click(function(){
 });*/
 
 var redirectToOnline = function() {
+    $location.path("/jeu-online");
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("jeu-online");
 }
 
 var redirectToSolo = function(){
+    $location.path("/jeu-solo");
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("jeu-solo");
 }
 
 var redirectToIndex = function(){
+    $location.path("/");
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $location.path("/");
 }
 
 function wait(ms) {
