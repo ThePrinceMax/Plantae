@@ -4,7 +4,7 @@
 
 
 
-## Presentation 
+## Présentation 
 
 Sur ce jeu à rôle éducatif au tour par tour, vous apprendrez à vous occuper d'une plante qui puisse résister à n'importe quel environnement.
 
@@ -16,6 +16,11 @@ Rendez-vous sur [Plantae](https://plantae.princelle.org) pour jouer !
 (Un navigateur trop ancien peut poser problème (aka. IE))
 
 
+## Membres du groupe : 
+
+PRINCELLE Maxime
+LEHMANN Loïc 
+DIYAN Guil
 
 ## Plusieurs modes de jeu
 
