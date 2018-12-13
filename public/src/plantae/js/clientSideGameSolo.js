@@ -216,21 +216,27 @@ $('#reset').click(function(){
 });*/
 
 var redirectToOnline = function() {
-    $location.path("/jeu-online");
+    setTimeout(function () {
+        window.location.href = '/jeu-online';
+    }, 150);
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
 }
 
 var redirectToSolo = function(){
-    $location.path("/jeu-solo");
+    setTimeout(function () {
+        window.location.href = '/jeu-solo';
+    }, 150);
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
 }
 
 var redirectToIndex = function(){
-    $location.path("/");
+    setTimeout(function () {
+        window.location.href = '/';
+    }, 150);
     $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
@@ -276,4 +282,3 @@ var createGameSolo = function(){
 }
 
 conn.addEventListener('open', initializeModal);
-
