@@ -78,7 +78,7 @@ body {
             ?>
             <h2>Tulipe</h2>
             <p>
-              La <?php print $nomFr ?>, aussi appelé <?php print $nomLatin ?> en latin, provient de la famille <?php print $family ?>. Cette fleur possède en générale <?php print $nbPetales ?> pétales qui sont de couleurs <?php print $couleurPetales ?>. Sa température idéale est d'environ <?php print $idealTemperature ?> °C avec une amplitude d'à peu près <?php print $temperatureAmplitude ?> °C. Elle a une resistance aux maladies d'environ <?php print $maladieDef ?>.
+              La <?php echo $nomFr ?>, aussi appelé <?php echo $nomLatin ?> en latin, provient de la famille <?php echo $family ?>. Cette fleur possède en générale <?php echo $nbPetales ?> pétales qui sont de couleurs <?php echo $couleurPetales ?>. Sa température idéale est d'environ <?php echo $idealTemperature ?> °C avec une amplitude d'à peu près <?php echo $temperatureAmplitude ?> °C. Elle a une resistance aux maladies d'environ <?php echo $maladieDef ?>.
             </p>
           </div>
         </section>
