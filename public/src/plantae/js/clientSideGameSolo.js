@@ -219,21 +219,22 @@ var redirectToOnline = function() {
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $window.location.href = '/jeu-online';
+    $location.path("jeu-online");
+    
 }
 
 var redirectToSolo = function(){
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $window.location.href = '/jeu-solo';
+    $location.path("jeu-solo");
 }
 
 var redirectToIndex = function(){
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    $window.location.href = '/#!';
+    $location.path("/");
 
 }
 
