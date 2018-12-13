@@ -2,8 +2,8 @@
 ============================= GENERIC =============================
  */
 
-var conn = new WebSocket('ws://localhost:13750');
-//var conn = new WebSocket('wss://plantae.princelle.org/ws/');
+//var conn = new WebSocket('ws://localhost:13750');
+var conn = new WebSocket('wss://plantae.princelle.org/ws/');
 
 
 
