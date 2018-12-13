@@ -33,6 +33,7 @@
 			}
 		}
 
+		/// Crée un nectar avec des valeurs arbitraires (pas de base de données)
 		public static function createNectarDebug($idNectar){
             $nameNectar = "";
             $overallQuality = 0;
@@ -52,13 +53,13 @@
             return new Nectar($idNectar, $nameNectar, $overallQuality, $fructoseProp, $sucroseProp, $glucoseProp);
         }
 
-		// Fonction retournant le nombre en format pourcentage
+		/// Fonction retournant le nombre en format pourcentage
 		public function percent($number)
 		{
     		return $number * 100 ;
 		}
 
-		// Getter et setter pour l'id
+		/// Getter et setter pour l'id
 		public function getIdNectar()
 		{
 			return $this->_idNectar;
@@ -72,7 +73,7 @@
 			}
 		}
 
-		// Getter et setter pour le nom
+		/// Getter et setter pour le nom
 		public function getNameNectar()
 		{
 			return $this->_nameNectar;
@@ -86,31 +87,31 @@
 			}
 		}
 
-		// Getter et setter pour la qualité
+		/// Getter et setter pour la qualité
 		public function getOverallQuality()
 		{
 			return $this->_overallQuality;
 		}
 
-		// Getter pour la proportion de fructose
+		/// Getter pour la proportion de fructose
 		public function getFructose()
 		{
 			return $this->_fructoseProp;
 		}
 
-		// Getter pour la proportion de glucose
+		/// Getter pour la proportion de glucose
 		public function getGlucose()
 		{
 			return $this->_glucoseProp;
 		}
 
-		// Getter pour la proportion de sucrose
+		/// Getter pour la proportion de sucrose
 		public function getSucrose()
 		{
 			return $this->_sucroseProp;
 		}
 
-		// Augmente proportion de fructose
+		/// Augmente proportion de fructose
 		public function increaseFructose()
 		{
 			$this->_fructoseProp += 2;
@@ -118,7 +119,7 @@
 			$this->_sucroseProp-- ;
 		}
 
-		// Augmente proportion de glucose
+		/// Augmente proportion de glucose
 		public function increaseGlucose()
 		{
 			$this->_glucoseProp +=2;
@@ -126,7 +127,7 @@
 			$this->_sucroseProp-- ;
 		}
 
-		// Augmente proportion de sucrose
+		/// Augmente proportion de sucrose
 		public function increaseSucrose()
 		{
 			$this->_sucroseProp += 2;
@@ -134,13 +135,13 @@
 			$this->_glucoseProp--;
 		}
 
-		// Augmente la qualité
+		/// Augmente la qualité
 		public function increaseOverallQuality()
 		{
 			$this->_overallQuality++;
 		}
 
-		// Diminue proportion de fructose
+		/// Diminue proportion de fructose
 		public function decreaseFructose()
 		{
 			$this->_fructoseProp -= 2;
@@ -148,7 +149,7 @@
 			$this->_sucroseProp++ ;
 		}
 
-		// Diminue proportion de glucose
+		/// Diminue proportion de glucose
 		public function decreaseGlucose()
 		{
 			$this->_glucoseProp -=2;
@@ -156,7 +157,7 @@
 			$this->_sucroseProp++ ;
 		}
 
-		// Diminue proportion de sucrose
+		/// Diminue proportion de sucrose
 		public function decreaseSucrose()
 		{
 			$this->_sucroseProp -= 2;
@@ -164,7 +165,7 @@
 			$this->_glucoseProp++;
 		}
 
-		// Diminue la qualité
+		/// Diminue la qualité
 		public function decreaseOverallQuality()
 		{
 			$this->_overallQuality--;

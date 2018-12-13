@@ -9,10 +9,11 @@
 
     class Month{
 
+        /// Attributs
         private $_idMonth;
         private $_nameMonth;
 
-
+        /// Constructeur de mois 
         public function __construct($idMonth, $monthName)
         {
             $this->_idMonth = $idMonth;
@@ -22,6 +23,7 @@
         /*public function createMonthFromBDD($idMonth, $bdd){
         }*/
 
+        /// Crée un mois selon le numero de mois (sans base de données)
         public static function createMonthDebug($idMonth){
             $monthName = "";
             switch($idMonth){
@@ -65,11 +67,13 @@
             return new Month($idMonth, $monthName);
         }
 
+        /// Retourne l'id du mois
         public function getMonthId(){
             return $this->_idMonth;
 
         }
 
+        /// Retourne le nom du mois
         public function getMonthName(){
             return $this->_nameMonth;
         }
