@@ -296,6 +296,7 @@ class GamesManager implements MessageComponentInterface {
                 }
             }
             elseif($winner == 0){
+                sleep(2);
                 $connCreator->send(json_encode(['event' => "Draw",
                     'data' => [] ]));
                 $connPlayer->send(json_encode(['event' => "Draw",
@@ -304,6 +305,7 @@ class GamesManager implements MessageComponentInterface {
             }
             else{
                 $gameEnded = true;
+                sleep(2);
                 if($winner == $this->_games[$gameId]->_creator->getId()){
                     $connCreator->send(json_encode(['event' => "GameWon",
                         'data' => [] ]));
@@ -344,8 +346,7 @@ class GamesManager implements MessageComponentInterface {
             }
         }
 
-        if($gameEnded){
-            if($this->_games[$gameId]->isPVP()) {
+        if($gameEnded){if($this->_games[$gameId]->isPVP()) {
 
             $this->endGamePVP($connCreator->resourceId, $connPlayer->resourceId, $gameId);
             echo ("GAME ".$gameId." ENDED");
@@ -410,12 +411,10 @@ class GamesManager implements MessageComponentInterface {
         }
         else{
             $connCreator = $this->getConn($this->_games[$gameId]->_creator->getId());
-           // $connCreator->send('Debut du tour suivant');
-            echo "avant\n";
+            $connCreator->send(json_encode(['event' => "NextTurn",
+                'data' => [] ]));
             $this->_games[$gameId]->nextTurn();
-            echo "après\n";
             $this->_games[$gameId]->_creator->notReady();
-            echo "send info\n";
             $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
             $connCreator->send(json_encode($arrayCreator));
             //$arrayAi = $this->formatMessage('playerInfo', $this->_games[$gameId]->sendAiInfo());

@@ -23,7 +23,7 @@
 		private $_insecticidePower;
 		private $_seeds;
 
-		//Constructeur de la classe Flower
+		/// Constructeur de la classe Flower
 		public function __construct($idFlower, $nameFlower, $population, $hasNectar, $nectarId, $idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds)
 		{
             $this->_idFlower = $idFlower;
@@ -78,6 +78,7 @@
 
         }*/
 
+		/// Crée une fleur avec des valeurs arbitraires (sans base de données)
         public static function createFlowerDebug($idFlower){
             $nameFlower = "";
             $population = 0;
@@ -103,49 +104,49 @@
             return new Flower($idFlower, $nameFlower, $population, $hasNectar, $nectarId ,$idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds);
         }
 
-		// Retourne l'id de la fleur
+		/// Retourne l'id de la fleur
 		public function getIdFlower()
 		{
 			return $this->_idFlower;
 		}
 
-		// Retourne la puissance de l'insecticide
+		/// Retourne la puissance de l'insecticide
 		public function getNameFlower()
 		{
 			return $this->_nameFlower;
 		}		
 
-		// Retourne la population
+		/// Retourne la population
 		public function getPopulation()
 		{
 			return $this->_population;
 		}
 
-		// Retourne le nombre de graines
+		/// Retourne le nombre de graines
 		public function getSeeds()
 		{
 			return $this->_seeds;
 		}
 
-		// Retourne la temperature idéale
+		/// Retourne la temperature idéale
 		public function getIdealTemperature()
 		{
 			return $this->_idealTemperature;
 		}
 
-        // Récupère l'amplitude de temperature
+        /// Récupère l'amplitude de temperature
         public function getTemperatureAmplitude()
         {
             return $this->_temperatureAmplitude;
         }
 
-		// Retourne la puissance de l'insecticide
+		/// Retourne la puissance de l'insecticide
 		public function getInsecticidePower()
 		{
 			return $this->_insecticidePower;
 		}
 
-		// Modifie la resistance aux maladies
+		/// Modifie la resistance aux maladies
 		public function setDiseaseResistance($diseaseResistance)
 		{
 			if (is_int($diseaseResistance))
@@ -154,7 +155,7 @@
 			}
 		}
 
-		// Modifie la temperature ideale
+		/// Modifie la temperature ideale
 		public function setIdealTemperature($idealTemperature)
 		{
 			if (is_int($idealTemperature))
@@ -163,7 +164,7 @@
 			}
 		}
 
-		// Modifie la puissance de l'insecticide
+		/// Modifie la puissance de l'insecticide
 		public function setInsecticidePower($insecticidePower)
 		{
 			if (is_int($insecticidePower))
@@ -173,7 +174,7 @@
 		}
 
 
-		// Modifie la population
+		/// Modifie la population
 		public function setPopulation($population)
 		{
 			if (is_int($population))
@@ -182,7 +183,7 @@
 			}
 		}
 
-		// Modifie le nombre de graines
+		/// Modifie le nombre de graines
 		public function setSeeds($seeds)
 		{
 			if (is_int($seeds))
@@ -191,7 +192,7 @@
 			}
 		}
 
-		// Modifie l'amplitude de temperature
+		/// Modifie l'amplitude de temperature
 		public function increaseTemperatureAmplitude($temperatureAmplitude)
 		{
 			if (is_int($temperatureAmplitude))
@@ -200,7 +201,7 @@
 			}
 		}
 
-		// Modifie la presence/absence de nectar
+		/// Modifie la presence/absence de nectar
 		public function setNectar($nectar){
 			if (is_bool($nectar)){
 				if ($nectar == true){
@@ -213,6 +214,7 @@
 			}
 		}
 
+		/// Supprime le nectar de la fleur
 		public function closeNectar(){
             unset($this->_nectar);
         }

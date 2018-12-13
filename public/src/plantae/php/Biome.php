@@ -27,6 +27,7 @@
 		private $_precipitationFrequency;
 		private $_temperature;
 
+        /// Attributs de base utilisés comme sauvegarde
         private $_baseAirPolution;
         private $_baseAnimalDensity;
         private $_baseHumidity;
@@ -35,7 +36,7 @@
         private $_basePrecipitationFrequency;
         private $_baseTemperature;
 
-		// Constructeur de la classe Biome
+		/// Constructeur de la classe Biome
 		private function __construct($idBiome, $nameBiome, $seasonList	, $currentSeason,$pollinator, $airPolution,	$animalDensity,	$humidity,	$insectDensity,	$precipitationAverageAmount,	$precipitationFrequency,	$temperature)
 		{
 		    $this->_idBiome = $idBiome;
@@ -52,7 +53,7 @@
 		    $this->_precipitationFrequency = $precipitationFrequency;
 		    $this->_temperature = $temperature;
 
-
+            /// Initialise les attributs de base avec les attributs en paramètres
             $this->_baseAirPolution = $this->_airPolution;
             $this->_baseAnimalDensity = $this->_animalDensity;
             $this->_baseHumidity = $this->_humidity;
@@ -62,7 +63,9 @@
             $this->_baseTemperature = $this->_temperature;
 		}
 
+        /// Crée le biome à partir de la base de données 
 		public static function createBiomeFromBDD($idBiome){
+            
             $nameBiome = "";
             $seasonList = array();
             $currentSeason = null;
@@ -75,8 +78,10 @@
             $precipitationFrequency = 0;
             $temperature = 0;
 
+            /// Recupere les données du biome d'id idBiome
             $result = gameBddRequests::getBiome($idBiome);
 
+            /// Met a jour l'instance de biome avec ceux de la base de données
             $nameBiome = $result[0];
             $airPolution = $result[1];
             $animalDensity = $result[2];
@@ -88,9 +93,11 @@
             $vegetationDensity = $result[8];
             $windForce = $result[9];
 
+            /// Retourne le biome issu de la base de données
             return new Biome($idBiome, $nameBiome, $airPolution, $animalDensity, $humidity, $insectDensity, $precipitationAverageAmount, $precipitationFrequency,$temperature,	$vegetationDensity,$windForce);
         }
 
+        /// Crée un biome avec des valeurs arbitraires (pas de base de données)
         public static function createBiomeDebug($idBiome){
             $nameBiome = "";
             $seasonList = array();
@@ -124,6 +131,7 @@
             return new Biome($idBiome, $nameBiome,$seasonList, $currentSeason, $pollinator,$airPolution, $animalDensity, $humidity, $insectDensity, $precipitationAverageAmount, $precipitationFrequency,$temperature);
         }
 
+        /// Set la saison courante par la prochaine saison
         public function nextSeason(){
             $nextSeasonInList = 0;
             if($this->_currentSeason->nextMonth() ==0){
@@ -141,6 +149,7 @@
             }
         }
 
+        /// Set la saison actuelle de base 
         public function setBaseSeason(){
             for($i = 0; $i < sizeof($this->_seasonList); $i++){
                 if($this->_seasonList[$i]->getCurrentMonth()->getMonthId() <= $this->_currentSeason->getCurrentMonth()->getMonthId()){
@@ -149,6 +158,7 @@
             }
         }
 
+        /// Reset les paramètres du biome avec les paramètres de base
         public function resetBiomeParam(){
             $this->_airPolution = $this->_baseAirPolution;
             $this->_animalDensity = $this->_baseAnimalDensity;
@@ -160,6 +170,7 @@
 
         }
 
+        
         public function seasonEffectCalculator(){
             $seasonLenghtIsEven = false;
             $seasonMiddle = 0;
@@ -185,6 +196,7 @@
 
         }
 
+        /// Set les attributs du biome selon les effets de la saison actuelle 
         public function applySeasonEffects(){
             $this->_airPolution += $this->_currentSeason->getHumidityModifier();
             $this->_humidity += $this->_currentSeason->getHumidityModifier();
@@ -195,21 +207,21 @@
         }
 
 
-		// Getter pour le nom
+		/// Getter pour le nom
 		public function getNameBiome()
 		{
 			return $this->_nameBiome;
 		}
 
 
-		// Getter pour l'id
+		/// Getter pour l'id
 		public function getIdBiome()
 		{
 			return $this->_idBiome;
 		}
 
 
-		// Getter / Setter pour la pollution de l'air
+		/// Getter / Setter pour la pollution de l'air
 		public function getAirPolution()
 		{
 			return $this->_airPolution;
@@ -223,7 +235,7 @@
 		}
 
 
-		// Getter / Setter pour la densité animale
+		/// Getter / Setter pour la densité animale
 		public function getAnimalDensity()
 		{
 			return $this->_animalDensity;
@@ -237,7 +249,7 @@
 		}
 
 
-		// Getter / Setter pour l'humidité
+		/// Getter / Setter pour l'humidité
 		public function getHumidity()
 		{
 			return $this->_humidity;
@@ -251,7 +263,7 @@
 		}
 
 
-		// Getter / Setter pour la densité des insectes
+		/// Getter / Setter pour la densité des insectes
 		public function getInsectDensity()
 		{
 			return $this->_insectDensity;
@@ -265,7 +277,7 @@
 		}
 
 
-		// Getter / Setter pour la quantité moyenne de precipitations
+		/// Getter / Setter pour la quantité moyenne de precipitations
 		public function getPrecipitationAverageAmount()
 		{
 			return $this->_precipitationAverageAmount;
@@ -279,7 +291,7 @@
 		}
 
 
-		// Getter / Setter pour la frequence des precipitations
+		/// Getter / Setter pour la frequence des precipitations
 		public function getPrecipitationFrequency()
 		{
 			return $this->_precipitationFrequency;
@@ -293,7 +305,7 @@
 		}
 
 
-		// Getter / Setter pour la temperature
+		/// Getter / Setter pour la temperature
 		public function getTemperature()
 		{
 			return $this->_temperature;
@@ -306,6 +318,7 @@
 			}
 		}
 
+        /// Supprime les saisons et les pollinisateurs du biome actuel
 		public function closeBiome(){
             foreach ($this->_seasonList as $item){
                 $item->closeSeason();

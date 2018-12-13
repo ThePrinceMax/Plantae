@@ -23,9 +23,15 @@
          */
 		private $_biome;
 
+        /**
+         * @var RandomEvent[]
+         */
 		private $_eventList;
 
-		private $_currentEvent;
+		/**
+         * @var RandomEvent
+         */
+		public $_currentEvent;
 
         private $_turnsCounter;
 		private $_maxTurns;
@@ -50,11 +56,111 @@
 			$this->_engineID = $engineID;
 			$this->_biome = $this->biomeLoader($biomeID);
 			$this->_biome->setBaseSeason();
+			$this->_eventList = $this->eventLoader($biomeID);
+			$this->_currentEvent = null;
 			$this->_turnsCounter = 0;
 			$this->_maxTurns = $maxTurns;
 
 			echo "engine created";
 		}
+
+		public function eventLoader($biomeID){
+		    $eventIDList= array();
+		    switch($biomeID){
+                case 0:
+                    $eventIDList[] = 0;
+                    $eventIDList[] = 1;
+            }
+
+            $eventList = array();
+		    foreach ($eventIDList as $eventID){
+		        $eventList[] = RandomEvent::createEventDebug($eventID);
+            }
+            return $eventList;
+
+        }
+
+        public function triggerEvent(){
+		    $this->_currentEvent = null;
+
+		    $eventTriggered = false;
+
+		    $temperatureWeight = 35;
+		    $humidityWeight = 35;
+		    $airPolutionWeight = 30;
+
+		    foreach ($this->_eventList as $item){
+		        echo $item->getName();
+
+		        if($eventTriggered == false){
+                    $eventTriggerWeight = 0;
+
+                    if($this->_biome->getTemperature() >= $item->getTemperatureMinCond() && $this->_biome->getTemperature() <= $item->getTemperatureMaxCond()){
+                        $eventTriggerWeight += $temperatureWeight;
+                    }
+                    if ($this->_biome->getHumidity()  >= $item->getHumidityMinCond() && $this->_biome->getHumidity()  <= $item->getHumidityMaxCond()){
+                        $eventTriggerWeight += $humidityWeight;
+                    }
+                    if ($this->_biome->getAirPolution()  >= $item->getAirPolutionMinCond() && $this->_biome->getAirPolution()  <= $item->getAirPolutionMaxCond()){
+                        $eventTriggerWeight += $airPolutionWeight;
+                    }
+
+                    // probaEvent         | 100%
+                    // eventTriggerScale  | $eventTriggerWeight
+
+                    $eventTriggerScale =  intdiv($eventTriggerWeight * $item->getActivationProb(),100);
+
+                    echo "EVENT SCALE: ".$eventTriggerScale;
+
+                    $numberRolled = mt_rand(0,100);
+                    echo "NUMBER ROLLED: ".$numberRolled;
+
+
+
+                    if($numberRolled <= $eventTriggerScale){
+                        $eventTriggered = true;
+                        $this->_currentEvent = $item;
+                    }
+
+                }
+
+            }
+            return $eventTriggered;
+        }
+
+        public function applyEventEffects(){
+
+		    echo $this->_currentEvent->getName();
+
+		    // vacAct | 100
+            // val    | pourcentVale
+            echo "APPLY EVENT";
+            $this->_biome->setAirPolution(intdiv($this->_currentEvent->getAirPolutionModifier() * $this->_biome->getAirPolution(), 100));
+            $this->_biome->setAnimalDensity(intdiv($this->_currentEvent->getAnimalDensityModifier() * $this->_biome->getAnimalDensity(), 100));
+            $this->_biome->setHumidity(intdiv($this->_currentEvent->getHumidityModifier() * $this->_biome->getHumidity(), 100));
+            $this->_biome->setInsectDensity(intdiv($this->_currentEvent->getInsectDensityModifier() * $this->_biome->getInsectDensity(), 100));
+            $this->_biome->setPrecipitationAverageAmount(intdiv($this->_currentEvent->getPrecipitationAverageAmountModifier() * $this->_biome->getPrecipitationAverageAmount(), 100));
+            $this->_biome->setPrecipitationFrequency(intdiv($this->_currentEvent->getPrecipitationFrequencyModifier() * $this->_biome->getPrecipitationFrequency(), 100));
+            $this->_biome->setTemperature(intdiv($this->_currentEvent->getTemperatureModifier() * $this->_biome->getTemperature(), 100));
+            $this->_creator->_flower->setPopulation(intdiv($this->_currentEvent->getFlowerPopulationModifier() * $this->_creator->_flower->getPopulation(), 100));
+            $this->_creator->_flower->setSeeds(intdiv($this->_currentEvent->getFlowerSeedsModifier() * $this->_creator->_flower->getSeeds(), 100));
+
+            if($this->isPVP()){
+                $this->_player->_flower->setPopulation(intdiv($this->_currentEvent->getFlowerPopulationModifier() * $this->_player->_flower->getPopulation(), 100));
+                $this->_player->_flower->setSeeds(intdiv($this->_currentEvent->getFlowerSeedsModifier() * $this->_player->_flower->getSeeds(), 100));
+
+            }
+            else{
+                $this->_ai->_flower->setPopulation(intdiv($this->_currentEvent->getFlowerPopulationModifier() * $this->_ai->_flower->getPopulation(), 100));
+                $this->_ai->_flower->setSeeds(intdiv($this->_currentEvent->getFlowerSeedsModifier() * $this->_ai->_flower->getSeeds(), 100));
+
+            }
+
+            foreach ($this->_biome->_pollinisators as $pollinator){
+                $pollinator->setPopulation(intdiv($pollinator->getPopulation() * $this->_currentEvent->getPollinatorPopulationModifier(), 100));
+            }
+
+        }
 
 		public static function enginePVP($creatorId, $flowerId, $biomeId, $engineID, $maxTurns){
 
@@ -160,6 +266,11 @@
                     $this->_biome->resetBiomeParam();
                     $this->_biome->nextSeason();
                     $this->_biome->applySeasonEffects();
+                    $eventTriggered = $this->triggerEvent();
+
+                    if($eventTriggered){
+                        $this->applyEventEffects();
+                    }
 
                     $this->grainesGermes($this->_creator->_flower);
                     $this->grainesGermes($this->_player->_flower);
@@ -193,6 +304,13 @@
                     $this->_biome->resetBiomeParam();
                     $this->_biome->nextSeason();
                     $this->_biome->applySeasonEffects();
+
+                    $eventTriggered = $this->triggerEvent();
+
+                    if($eventTriggered){
+                        $this->applyEventEffects();
+                    }
+
                     echo "NEXTDONE\n";
                     $this->grainesGermes($this->_creator->_flower);
                     $this->grainesGermes($this->_ai->_flower);
@@ -312,6 +430,10 @@
                 'mnameMonth' => $this->_biome->_currentSeason->getCurrentMonth()->getMonthName(),
             ];
 
+            if($this->_currentEvent != null){
+                $array['currentEvent'] = $this->_currentEvent->getName();
+            }
+
 		    return $array;
         }
 
@@ -335,6 +457,10 @@
                 'mnameMonth' => $this->_biome->_currentSeason->getCurrentMonth()->getMonthName(),
             ];
 
+            if($this->_currentEvent != null){
+                $array['currentEvent'] = $this->_currentEvent->getName();
+            }
+
             return $array;
         }
 
@@ -354,6 +480,10 @@
                 'snameSeason' => $this->_biome->_currentSeason->getSeason(),
                 'mnameMonth' => $this->_biome->_currentSeason->getCurrentMonth()->getMonthName(),
             ];
+
+            if($this->_currentEvent != null){
+                $array['currentEvent'] = $this->_currentEvent->getName();
+            }
 
             return $array;
         }

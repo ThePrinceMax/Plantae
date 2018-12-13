@@ -6,7 +6,7 @@
 	class Season
 	{
 
-		// Attributs de la classe saison
+		/// Attributs de la classe saison
 		private $_idSeason;
 		private $_nameSeason;
         /**
@@ -25,7 +25,7 @@
 		private $_temperatureModifier;
 		private $_windForceModifier;
 
-		// Constructeur de la classe Season
+		/// Constructeur de la classe Season
 		public function __construct($idSeason, $nameSeason, $monthList, $currentMonth, $monthDuration, $humidityModifier, $insectDensityModifier, $precipitationAmountModifier, $precipitationFrequencyModifier, $temperatureModifier)
 		{
             $this->_idSeason = $idSeason;
@@ -80,6 +80,7 @@
             }
         }*/
 
+        /// Crée une saison selon le numero de saison (pas de base de données)
         public static function createSeasonDebug($idSeason){
             $nameSeason = "";
             $monthList = array();
@@ -153,7 +154,7 @@
             return new Season($idSeason, $nameSeason, $monthList, $currentMonth, $monthDuration, $humidityModifier, $insectDensityModifier, $precipitationAmountModifier, $precipitationFrequencyModifier, $temperatureModifier);
         }
 
-		// Retourne la liste des mois
+		/// Retourne la liste des mois
 		public function getMonthList()
 		{
 			return $this->_monthList;
@@ -164,6 +165,7 @@
             return $this->_currentMonth;
         }
 
+        /// Set le mois actuel 
         public function setBaseMonth(){
             for($i = 0; $i < sizeof($this->_monthList); $i++){
                 if($this->_monthList[$i]->getMonthId() <= $this->_currentMonth->getMonthId()){
@@ -172,6 +174,7 @@
             }
         }
 
+        /// Set le mois actuel 
         public function nextMonth()
         {
             $nextMonthInList =0;
@@ -189,19 +192,19 @@
             return $nextMonthInList;
         }
 
-		// Retourne le nom de la saison courant
+		/// Retourne le nom de la saison courant
 		public function getSeason()
 		{
 			return $this->_nameSeason;
 		}
 
-		// Retourne la durée du mois courant
+		/// Retourne la durée du mois courant
 		public function getMonthDuration()
 		{
 			return $this->_monthDuration;
 		}
 
-		// Retourne le changement d'humidité
+		/// Retourne le changement d'humidité
 		public function getHumidityModifier()
 		{
 			return $this->_humidityModifier;
@@ -213,30 +216,31 @@
 			return $this->_insectDensityModifier;
 		}
 
-		// Retourne le changement de quantité de precipitations
+		/// Retourne le changement de quantité de precipitations
 		public function getPrecipitationAmountModifier()
 		{
 			return $this->_precipitationAmountModifier;
 		}
 
-		// Retourne le changement de frequence de precipitations
+		/// Retourne le changement de frequence de precipitations
 		public function getPrecipitationFrequencyModifier()
 		{
 			return $this->_precipitationFrequencyModifier;
 		}
 
-		// Retourne le changement de temperature 
+		/// Retourne le changement de temperature 
 		public function getTemperatureModifier()
 		{
 			return $this->_temperatureModifier;
 		}
 
-		// Retourne le changement de force du vent
+		/// Retourne le changement de force du vent
 		public function getWindForceModifier()
 		{
 			return $this->_windForceModifier;
 		}
 
+        /// Supprime les mois de la saison
 		public function closeSeason(){
             foreach($this->_monthList as $item){
                 unset($item);

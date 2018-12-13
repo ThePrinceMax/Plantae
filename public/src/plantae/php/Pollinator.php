@@ -17,7 +17,7 @@
 		private $_sucroseAttraction ;
 
 
-		//Constructeur de la classe pollinator
+		/// Constructeur de la classe pollinator
 		public function __construct($namePollinator , $idPollinator , $efficiency , $population ,$temperatureTolerance,$fructoseAttraction , $glucoseAttraction , $sucroseAttraction)
 		{
             $this->_namePollinator = $namePollinator;
@@ -65,6 +65,7 @@
             return new Pollinator($namePollinator , $idPollinator , $efficiency , $population , $phytochemicalAttraction , $fructoseAttraction , $glucoseAttraction , $sucroseAttraction);
         }*/
 
+		/// Crée un pollinisateur avec des valeurs arbitraires (sans base de données)
         public static function createPollinatorDebug($idPollinator){
             $namePollinator = "";
             $efficiency = 0;
@@ -89,7 +90,7 @@
 
         }
 
-		// Getter et setter pour l'id
+		/// Getter et setter pour l'id
 		public function getIdPollinator()
 		{
 			return $this->_idPollinator;
@@ -103,7 +104,7 @@
 			}
 		}
 
-		// Getter et setter pour le nom
+		/// Getter et setter pour le nom
 		public function getNamePollinator()
 		{
 			return $this->_namePollinator;
@@ -117,7 +118,7 @@
 			}
 		} 
 
-		// Getter et setter pour l'efficacité
+		/// Getter et setter pour l'efficacité
 		public function getEfficiency()
 		{
 			return $this->_efficiency;
@@ -135,7 +136,7 @@
             return $this->_temperatureTolerance;
         }
 
-		// Getter et setter pour la population
+		/// Getter et setter pour la population
 		public function getPopulation()
 		{
 			return $this->_population;
@@ -149,7 +150,7 @@
 			}
 		}
 
-		// Getter et setter pour l'attraction niveau fructose
+		/// Getter et setter pour l'attraction niveau fructose
 		public function getFructoseAttraction()
 		{
 			return $this->_fructoseAttraction;
@@ -163,7 +164,7 @@
 			}
 		}
 
-		// Getter et setter pour l'attraction niveau glucose
+		/// Getter et setter pour l'attraction niveau glucose
 		public function getGlucoseAttraction()
 		{
 			return $this->_glucoseAttraction;
@@ -177,7 +178,7 @@
 			}
 		}
 
-		// Getter et setter pour l'attraction niveau sucrose
+		/// Getter et setter pour l'attraction niveau sucrose
 		public function getSucroseAttraction()
 		{
 			return $this->_sucroseAttraction;
