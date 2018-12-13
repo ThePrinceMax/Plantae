@@ -2,7 +2,9 @@
 ============================= GENERIC =============================
  */
 
-var conn = new WebSocket('wss://plantae.princelle.org:13750');
+var conn = new WebSocket('ws://localhost:13750');
+//var conn = new WebSocket('wss://plantae.princelle.org/ws/');
+
 
 var gameList = [];
 var flowerList = [];
@@ -52,6 +54,8 @@ conn.onmessage = function(e) {
         eventGameDraw();
     }
 };
+
+
 
 var eventCreatedGameMP = function () {
     document.getElementById("modalTitle").innerHTML = "En attente d'un joueur";
@@ -299,6 +303,28 @@ $('#pick').click(function(){
 $('#reset').click(function(){
     sendMsg({event:'reset'});
 });*/
+
+var redirectToOnline = function(){
+    $('#modalMP').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-online')
+}
+
+var redirectToSolo = function(){
+    $('#modalMP').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-solo')
+}
+
+var redirectToIndex = function(){
+    $('#modalMP').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/')
+
+}
 
 function wait(ms) {
     var start = new Date().getTime();

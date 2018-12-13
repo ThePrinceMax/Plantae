@@ -2,7 +2,8 @@
 ============================= GENERIC =============================
  */
 
-var conn = new WebSocket('wss://plantae.princelle.org:13750');
+var conn = new WebSocket('ws://localhost:13750');
+//var conn = new WebSocket('wss://plantae.princelle.org/ws/');
 
 
 
@@ -213,6 +214,28 @@ $('#pick').click(function(){
 $('#reset').click(function(){
     sendMsg({event:'reset'});
 });*/
+
+var redirectToOnline = function(){
+    $('#modalSolo').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-online')
+}
+
+var redirectToSolo = function(){
+    $('#modalSolo').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-solo')
+}
+
+var redirectToIndex = function(){
+    $('#modalSolo').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/')
+
+}
 
 function wait(ms) {
     var start = new Date().getTime();
