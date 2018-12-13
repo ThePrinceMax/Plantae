@@ -216,7 +216,6 @@ $('#reset').click(function(){
 });*/
 
 var redirectToOnline = function() {
-    $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("jeu-online");
@@ -224,18 +223,15 @@ var redirectToOnline = function() {
 }
 
 var redirectToSolo = function(){
-    $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("jeu-solo");
 }
 
 var redirectToIndex = function(){
-    $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("/");
-
 }
 
 function wait(ms) {

@@ -305,21 +305,18 @@ $('#reset').click(function(){
 });*/
 
 var redirectToOnline = function() {
-    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("jeu-online");
 }
 
 var redirectToSolo = function(){
-    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("jeu-solo");
 }
 
 var redirectToIndex = function(){
-    $('#modalMP').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
     $location.path("/");
