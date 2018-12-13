@@ -2,7 +2,7 @@
 ============================= GENERIC =============================
  */
 
-var conn = new WebSocket('wss://plantae.princelle.org/ws/');
+var conn = new WebSocket('wss://plantae.princelle.org:13750');
 
 
 
@@ -93,6 +93,17 @@ var eventRefreshInfo = function(data) {
     document.getElementById("bnameBiome").innerHTML = data.data.bnameBiome;
     document.getElementById("snameSeason").innerHTML = "Saison : "+data.data.snameSeason;
     document.getElementById("mnameMonth").innerHTML = "Mois : "+data.data.mnameMonth;
+    if(data.data.currentEvent !== undefined){
+        document.getElementById("message").innerHTML = "Event : " + data.data.currentEvent;
+    }
+    else{
+        document.getElementById("message").innerHTML = "???";
+    }
+
+    if(data.data.nbTurns === data.data.turn){
+        initializeModal();
+    }
+
 };
 
 var eventGetAllFlowers = function(data){
