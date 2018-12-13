@@ -18,8 +18,8 @@ Rendez-vous sur [Plantae](https://plantae.princelle.org) pour jouer !
 
 ## Membres du groupe : 
 
-PRINCELLE Maxime
-LEHMANN Loïc 
+PRINCELLE Maxime <br>
+LEHMANN Loïc <br>
 DIYAN Guil
 
 ## Plusieurs modes de jeu
