@@ -40,21 +40,11 @@
 
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Paramètres du jeu</h6>
-					<!--
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Créer une partie</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Rejoindre une partie</a>
+						    <a class="nav-link" href="#!jeu-online">Créer/Rejoindre une autre partie</a>
 						</li>
 					</ul>
-					-->
-					<div style="margin-top:.5rem; margin-left:1rem; margin-rignt:1rem;">
-						<button type="button" class="btn btn-success btn-sm" onclick="showGameCreationMP()">Créer une nouvelle partie</button>
-						<br>
-						<button style="margin-top:.5rem;" type="button" class="btn btn-secondary btn-sm" onclick="showGameJoiningMP()">Rejoindre une autre partie</button>
-					</div>
 				</div>
 			</nav>
 		</div>
@@ -78,11 +68,11 @@
 				<p id="fnameFlowerTitle">Nom de la fleur</p>
 			</div>
 			<div class="col-lg text-right">
-				<h4>Biome : <span id="bnameBiome">???</span></h4>
+				<h4>Biome: <span id="bnameBiome">???</span></h4>
 			</div>
 			<div class="col-lg text-right">
 				<i class="fa fa-code fa-2x"></i>
-				<h4>Population : <span id="points">0</span></h4>
+				<h4>Population: <span id="points">0</span></h4>
 			</div>
 		</div>
 		<div class="row"><br></div>
@@ -122,7 +112,7 @@
 
 
 		<div id="modalMP" class="modal fade" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog  modal-dialog-centered">
 
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -136,7 +126,7 @@
 							<button class="btnJoinGame btn btn-secondary btn-block" onclick="showGameJoiningMP()">Rejoindre une partie</button>
 							<br>
 							<br>
-							<button class="btnJoinGame btn btn-danger btn-block" onclick="">Retour à la page d'accueil</button>
+							<button class="btnJoinGame btn btn-danger btn-block" onclick="redirectToIndex()">Retour à la page d'accueil</button>
 
 						</form>
 
