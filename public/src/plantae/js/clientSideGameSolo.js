@@ -215,25 +215,25 @@ $('#reset').click(function(){
     sendMsg({event:'reset'});
 });*/
 
-var redirectToOnline = function(){
+var redirectToOnline = function() {
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-online')
+    $window.location.href = '/jeu-online';
 }
 
 var redirectToSolo = function(){
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/jeu-solo')
+    $window.location.href = '/jeu-solo';
 }
 
 var redirectToIndex = function(){
     $('#modalSolo').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
-    window.history.pushState(null, '', 'https://plantae.princelle.org/#!/')
+    $window.location.href = '/#!';
 
 }
 
