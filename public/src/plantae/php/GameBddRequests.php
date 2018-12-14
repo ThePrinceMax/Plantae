@@ -118,7 +118,7 @@ class GameBddRequests
 
     function getBiomePollinatorsId($idBiome)
     {
-        $biomePollinatorsId = $this->db->prepare('SELECT idBiome, idPollinator FROM BIOME_POLLINATORS WHERE idBiome = :idBiome ');
+        $biomePollinatorsId = $this->db->prepare('SELECT idPollinator FROM BIOME_POLLINATORS WHERE idBiome = :idBiome ');
         $biomePollinatorsId->bindValue(':idBiome', $idBiome, PDO::PARAM_INT);
         $biomePollinatorsId->execute();
         $res = $biomePollinatorsId->fetchAll();
