@@ -38,7 +38,7 @@
         <counts>
           <entry key="css" value="3" />
           <entry key="html" value="19" />
-          <entry key="js" value="28" />
+          <entry key="js" value="30" />
           <entry key="php" value="86" />
         </counts>
       </usages-collector>
@@ -46,7 +46,7 @@
         <counts>
           <entry key="CSS" value="3" />
           <entry key="HTML" value="19" />
-          <entry key="JavaScript" value="28" />
+          <entry key="JavaScript" value="30" />
           <entry key="PHP" value="86" />
         </counts>
       </usages-collector>
@@ -82,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="63">
-              <caret line="463" column="28" selection-start-line="463" selection-start-column="28" selection-end-line="463" selection-end-column="28" />
+              <caret line="463" selection-start-line="463" selection-end-line="464" />
               <folding>
                 <element signature="e#25#63#0#PHP" expanded="true" />
               </folding>
@@ -103,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plantae/php/bdd.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -113,10 +113,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGame.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1346">
-              <caret line="83" column="12" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="12" />
+            <state relative-caret-position="170">
+              <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-end-line="110" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -145,7 +166,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hide</find>
       <find>wait</find>
       <find>ready</find>
       <find>eventCreate</find>
@@ -174,6 +194,7 @@
       <find>getSeeds</find>
       <find>endGamePVP</find>
       <find>send</find>
+      <find>disc</find>
       <find>eventPla</find>
     </findStrings>
   </component>
@@ -196,15 +217,15 @@
         <option value="$PROJECT_DIR$/src/plantae/php/Ai.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Season.php" />
         <option value="$PROJECT_DIR$/src/plantae/lan.html" />
-        <option value="$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js" />
         <option value="$PROJECT_DIR$/src/plantae/GamesManager.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Pollinator.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Flower.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Biome.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/GameBddRequests.php" />
-        <option value="$PROJECT_DIR$/src/plantae/php/bdd.php" />
         <option value="$PROJECT_DIR$/src/plantae/php/Engine.php" />
         <option value="$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js" />
+        <option value="$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js" />
+        <option value="$PROJECT_DIR$/src/plantae/php/bdd.php" />
       </list>
     </option>
   </component>
@@ -234,7 +255,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1050" />
@@ -370,12 +391,12 @@
       <workItem from="1544518208062" duration="44276000" />
       <workItem from="1544695444538" duration="4589000" />
       <workItem from="1544704232746" duration="9396000" />
-      <workItem from="1544737302870" duration="31697000" />
+      <workItem from="1544737302870" duration="32807000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196521000" />
+    <option name="totallyTimeSpent" value="197631000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,13 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/herbier.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-431">
@@ -574,16 +588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="106" column="72" selection-start-line="106" selection-end-line="107" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/lan.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
@@ -605,13 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="128" column="5" lean-forward="true" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/php/bdd.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -650,23 +647,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="463" selection-start-line="463" selection-end-line="464" />
+          <folding>
+            <element signature="e#25#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1346">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="12" />
+        <state relative-caret-position="170">
+          <caret line="109" column="27" lean-forward="true" selection-start-line="109" selection-end-line="110" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
+    <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameSolo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="463" column="28" selection-start-line="463" selection-start-column="28" selection-end-line="463" selection-end-column="28" />
+        <state relative-caret-position="104">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
           <folding>
-            <element signature="e#25#63#0#PHP" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plantae/php/bdd.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
