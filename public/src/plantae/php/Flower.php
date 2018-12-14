@@ -15,8 +15,12 @@
 		private $_nameFlower;
 		private $_population;
 		private $_hasNectar;
+        /**
+         * @var Nectar
+         */
 		public $_nectar;
 		private $_diseaseResistance;
+		private $_tubeLenght;
 
 		private $_idealTemperature;
 		private $_temperatureAmplitude;
@@ -24,59 +28,38 @@
 		private $_seeds;
 
 		/// Constructeur de la classe Flower
-		public function __construct($idFlower, $nameFlower, $population, $hasNectar, $nectarId, $idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds)
+		public function __construct($idFlower, $nameFlower, $population, $hasNectar, $nectar, $diseaseResistance, $idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds)
 		{
             $this->_idFlower = $idFlower;
             $this->_nameFlower = $nameFlower;
             $this->_population = $population;
             $this->_hasNectar = $hasNectar;
-            $this->_nectar = Nectar::createNectarDebug($nectarId);
+            $this->_nectar = $nectar;
             $this->_idealTemperature = $idealTemperature;
             $this->_temperatureAmplitude = $temperatureAmplitude;
             $this->_insecticidePower = $insecticidePower;
             $this->_seeds = $seeds;
 		}
 
-/*		public static function createFlowerFromBDD($idFlower, $bdd){
-            echo "Flower";
-            $nameFlower = "";
-            $population = 0;
-            $hasNectar = False;
-            $nectarQuantity = 0;
-            $diseaseResistance = 0;
-            $idealTemperature = 0;
-            $temperatureAmplitude = 0;
-            $insecticidePower = 0;
-            $seeds = 0;
+		public static function createFlowerFromBDD($idFlower){
 
-            // Recuperation selon l'id
-            try
-            {
-                $requete = $bdd->query("SELECT nom_fr, population, hasNectar, nectarQuantity, diseaseResistance, idealTemperature
-					temperatureAmplitude, insecticidePower, seeds " .
-                    "FROM Fleur " .
-                    "WHERE id_fleur = :idFlower");
+            $result = GameBddRequests::getInstance()->getFlower($idFlower);
 
-                $result = $requete->fetch();
+            $nameFlower = $result['nameFr'];
+            $population = $result['population'];
+            $hasNectar = $result['hasNectar'];
 
-                $nameFlower = $result[0];
-                $population = $result[1];
-                $hasNectar = $result[2];
-                $nectarQuantity = $result[3];
-                $diseaseResistance = $result[4];
-                $idealTemperature = $result[5];
-                $temperatureAmplitude = $result[6];
-                $insecticidePower = $result[7];
-                $seeds = $result[8];
-            }
-            catch(Exception $e)
-            {
-                echo "Erreur : " . $e->getMessage();
-            }
+            $nectar = Nectar::createNectarFromBdd($idFlower);
 
-            return new Flower($idFlower, $nameFlower, $population, $hasNectar, $nectarQuantity, $diseaseResistance, $idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds);
+            $diseaseResistance = $result['diseaseResistance'];
+            $idealTemperature = $result['idealTemperature'];
+            $temperatureAmplitude = $result['temperatureAmplitude'];
+            $insecticidePower = $result['insecticidePower'];
+            $seeds = $result['seeds'];
 
-        }*/
+            return new Flower($idFlower, $nameFlower, $population, $hasNectar, $nectar, $diseaseResistance, $idealTemperature, $temperatureAmplitude, $insecticidePower, $seeds);
+
+        }
 
 		/// Crée une fleur avec des valeurs arbitraires (sans base de données)
         public static function createFlowerDebug($idFlower){

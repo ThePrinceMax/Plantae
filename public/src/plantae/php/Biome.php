@@ -66,35 +66,54 @@
         /// Crée le biome à partir de la base de données 
 		public static function createBiomeFromBDD($idBiome){
             
-            $nameBiome = "";
             $seasonList = array();
             $currentSeason = null;
-            $pollinator = array();
-            $airPolution = 0;
-            $animalDensity = 0;
-            $humidity = 0;
-            $insectDensity = 0;
-            $precipitationAverageAmount = 0;
-            $precipitationFrequency = 0;
-            $temperature = 0;
+
+            $pollinisators = array();
 
             /// Recupere les données du biome d'id idBiome
-            $result = gameBddRequests::getBiome($idBiome);
+            $result = gameBddRequests::getInstance()->getBiome($idBiome);
+            $seasonsId = gameBddRequests::getInstance()->getBiomeSeasonsId($idBiome);
+
+            $tempSeasonList = array();
+
+            foreach ($seasonsId as $seasonId){
+                $tempSeasonList[$seasonId['idSeason']] = Season::createSeasonFromBDD($seasonId['idSeason']);
+            }
+
+            sort($tempSeasonList);
+
+
+            for($i = 0; $i < count($seasonsId); $i++){
+                $seasonList[$i] = null;
+                foreach ($tempSeasonList as $row){
+                    if($seasonList[$i] == null){
+                        $seasonList[$i] = $row;
+                    }
+                }
+            }
+
+            $currentSeason = $seasonList[3];
+
+            $pollinisatorsId = gameBddRequests::getInstance()->getBiomePollinatorsId($idBiome);
+
+            foreach ($pollinisatorsId as $pollinisatorId){
+                $pollinisators[$pollinisatorId['idPollinator']] = Pollinator::createPollinatorFromBDD($pollinisatorId['idPollinator']);
+            }
 
             /// Met a jour l'instance de biome avec ceux de la base de données
-            $nameBiome = $result[0];
-            $airPolution = $result[1];
-            $animalDensity = $result[2];
-            $humidity = $result[3];
-            $insectDensity = $result[4];
-            $precipitationAverageAmount = $result[5];
-            $precipitationFrequency = $result[6];
-            $temperature = $result[7];
-            $vegetationDensity = $result[8];
-            $windForce = $result[9];
+            $nameBiome = $result['nameBiome'];
+            $airPolution = $result['airPolution'];
+            $animalDensity = $result['animalDensity'];
+            $humidity = $result['humidity'];
+            $insectDensity = $result['insectDensity'];
+            $precipitationAverageAmount = $result['precipitationAverageAmount'];
+            $precipitationFrequency = $result['precipitationFrequency'];
+            $temperature = $result['temperature'];
+
 
             /// Retourne le biome issu de la base de données
-            return new Biome($idBiome, $nameBiome, $airPolution, $animalDensity, $humidity, $insectDensity, $precipitationAverageAmount, $precipitationFrequency,$temperature,	$vegetationDensity,$windForce);
+            return new Biome($idBiome, $nameBiome, $seasonList	, $currentSeason, $pollinisators, $airPolution, $animalDensity,	$humidity, $insectDensity,	$precipitationAverageAmount, $precipitationFrequency, $temperature);
         }
 
         /// Crée un biome avec des valeurs arbitraires (pas de base de données)

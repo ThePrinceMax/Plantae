@@ -23,6 +23,15 @@
         /*public function createMonthFromBDD($idMonth, $bdd){
         }*/
 
+        public static function createMonthFromBDD($idMonth){
+
+            $result = GameBddRequests::getInstance()->getMonth($idMonth);
+
+            $monthName = $result['labelMonth'];
+
+            return new Month($idMonth, $monthName);
+        }
+
         /// Crée un mois selon le numero de mois (sans base de données)
         public static function createMonthDebug($idMonth){
             $monthName = "";
