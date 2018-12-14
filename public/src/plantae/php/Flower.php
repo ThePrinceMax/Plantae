@@ -19,8 +19,6 @@
          * @var Nectar
          */
 		public $_nectar;
-		private $_diseaseResistance;
-		private $_tubeLenght;
 
 		private $_idealTemperature;
 		private $_temperatureAmplitude;
