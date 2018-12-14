@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  jeu. 13 déc. 2018 à 14:37
+-- Généré le :  ven. 14 déc. 2018 à 18:44
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.1.9
 
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `T3_plantae`
+-- Base de données :  `t3`
 --
-CREATE DATABASE IF NOT EXISTS `T3_plantae` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `T3_plantae`;
+CREATE DATABASE IF NOT EXISTS `t3` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `t3`;
 
 -- --------------------------------------------------------
 
@@ -33,37 +33,91 @@ USE `T3_plantae`;
 DROP TABLE IF EXISTS `BIOME`;
 CREATE TABLE `BIOME` (
   `idBiome` int(11) NOT NULL,
-  `nameBiome` varchar(50) DEFAULT NULL,
+  `nameBiome` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
   `airPolution` int(11) DEFAULT NULL,
   `animalDensity` int(11) DEFAULT NULL,
   `humidity` int(11) DEFAULT NULL,
   `insectDensity` int(11) DEFAULT NULL,
   `precipitationAverageAmount` int(11) DEFAULT NULL,
   `precipitationFrequency` int(11) DEFAULT NULL,
-  `temperature` int(11) DEFAULT NULL,
-  `vegetationDensity` int(11) DEFAULT NULL,
-  `windForce` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `temperature` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `BIOME`
 --
 
-INSERT INTO `BIOME` (`idBiome`, `nameBiome`, `airPolution`, `animalDensity`, `humidity`, `insectDensity`, `precipitationAverageAmount`, `precipitationFrequency`, `temperature`, `vegetationDensity`, `windForce`) VALUES
-(0, 'Prairie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'Desert', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `BIOME` (`idBiome`, `nameBiome`, `airPolution`, `animalDensity`, `humidity`, `insectDensity`, `precipitationAverageAmount`, `precipitationFrequency`, `temperature`) VALUES
+(0, 'Prairie', 15, 20, 50, 40, 40, 50, 15),
+(1, 'Foret tropicale', 10, 50, 70, 60, 60, 65, 25),
+(2, 'Foret temperee', 13, 40, 55, 50, 50, 55, 10),
+(3, 'Toundra', 10, 25, 30, 30, 20, 35, 5),
+(4, 'Savane', 10, 30, 25, 35, 40, 20, 18),
+(5, 'Desert', 5, 5, 10, 30, 20, 30, 25);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `BIOMEEVENTLIST`
+-- Structure de la table `BIOME_EVENTLIST`
 --
 
-DROP TABLE IF EXISTS `BIOMEEVENTLIST`;
-CREATE TABLE `BIOMEEVENTLIST` (
+DROP TABLE IF EXISTS `BIOME_EVENTLIST`;
+CREATE TABLE `BIOME_EVENTLIST` (
   `idBiome` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `BIOME_EVENTLIST`
+--
+
+INSERT INTO `BIOME_EVENTLIST` (`idBiome`, `idEvent`) VALUES
+(0, 0),
+(1, 0),
+(2, 0),
+(0, 1),
+(2, 1),
+(4, 1),
+(5, 1),
+(2, 2),
+(3, 2),
+(5, 2),
+(1, 3),
+(4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `BIOME_POLLINATORS`
+--
+
+DROP TABLE IF EXISTS `BIOME_POLLINATORS`;
+CREATE TABLE `BIOME_POLLINATORS` (
+  `idBiome` int(11) NOT NULL,
+  `idPollinator` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `BIOME_POLLINATORS`
+--
+
+INSERT INTO `BIOME_POLLINATORS` (`idBiome`, `idPollinator`) VALUES
+(0, 0),
+(0, 1),
+(0, 1),
+(0, 2),
+(0, 3),
+(0, 4),
+(1, 4),
+(1, 1),
+(1, 2),
+(2, 0),
+(2, 4),
+(2, 2),
+(3, 1),
+(3, 4),
+(4, 4),
+(5, 4);
 
 -- --------------------------------------------------------
 
@@ -76,6 +130,36 @@ CREATE TABLE `BIOME_SEASONS` (
   `idBiome` int(11) NOT NULL,
   `idSeason` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `BIOME_SEASONS`
+--
+
+INSERT INTO `BIOME_SEASONS` (`idBiome`, `idSeason`) VALUES
+(0, 0),
+(1, 0),
+(2, 0),
+(3, 0),
+(4, 0),
+(5, 0),
+(0, 1),
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(0, 2),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(0, 3),
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 3);
 
 -- --------------------------------------------------------
 
@@ -92,81 +176,63 @@ CREATE TABLE `COLOR` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `DISPOSITION`
---
-
-DROP TABLE IF EXISTS `DISPOSITION`;
-CREATE TABLE `DISPOSITION` (
-  `idDispo` int(11) NOT NULL,
-  `labelDispo` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `FLOWER`
 --
 
 DROP TABLE IF EXISTS `FLOWER`;
 CREATE TABLE `FLOWER` (
-  `idColor` int(11) DEFAULT NULL,
-  `idPetal` int(11) DEFAULT NULL,
-  `idForm` int(11) DEFAULT NULL,
-  `idDispo` int(11) DEFAULT NULL,
-  `idLeaf` int(11) DEFAULT NULL,
   `idFlower` int(11) NOT NULL,
-  `family` varchar(20) DEFAULT NULL,
   `nameFr` varchar(20) DEFAULT NULL,
+  `family` varchar(20) DEFAULT NULL,
   `nameLatin` varchar(30) DEFAULT NULL,
   `inflorescence` int(11) DEFAULT NULL,
   `nbPetals` int(11) DEFAULT NULL,
-  `formLeaves` int(11) DEFAULT NULL,
   `colorPetals` varchar(50) DEFAULT NULL,
   `population` int(11) DEFAULT NULL,
   `hasNectar` tinyint(1) DEFAULT NULL,
-  `nectarQuantity` int(11) DEFAULT NULL,
-  `diseaseResistance` int(11) DEFAULT NULL,
   `idealTemperature` int(11) DEFAULT NULL,
   `temperatureAmplitude` int(11) DEFAULT NULL,
   `insecticidePower` int(11) DEFAULT NULL,
-  `seeds` int(11) DEFAULT NULL,
-  `tubeLength` int(11) DEFAULT '0'
+  `seeds` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `FLOWER`
 --
 
-INSERT INTO `FLOWER` (`idColor`, `idPetal`, `idForm`, `idDispo`, `idLeaf`, `idFlower`, `family`, `nameFr`, `nameLatin`, `inflorescence`, `nbPetals`, `formLeaves`, `colorPetals`, `population`, `hasNectar`, `nectarQuantity`, `diseaseResistance`, `idealTemperature`, `temperatureAmplitude`, `insecticidePower`, `seeds`, `tubeLength`) VALUES
-(NULL, NULL, NULL, NULL, NULL, 0, 'liliacées', 'tulipe', 'tulipa clusiana', NULL, 5, NULL, 'jaune', 100, 1, NULL, NULL, 20, 10, 50, 50, 0),
-(NULL, NULL, NULL, NULL, NULL, 10, ' Rosaceae', 'Rose Papa Meilland', 'Rosae', NULL, NULL, NULL, 'Rouge', 100, 1, NULL, 55, 22, 9, 55, 45, 0);
+INSERT INTO `FLOWER` (`idFlower`, `nameFr`, `family`, `nameLatin`, `inflorescence`, `nbPetals`, `colorPetals`, `population`, `hasNectar`, `idealTemperature`, `temperatureAmplitude`, `insecticidePower`, `seeds`) VALUES
+(0, 'tulipe', 'liliacées', 'tulipa clusiana', NULL, 5, 'jaune', 95, 1, 20, 10, 50, 50),
+(1, 'Lys', 'Liliaceae', 'Lylium longiflorum', NULL, 6, 'blanche', 96, 1, 0, 20, 50, 50),
+(2, 'Jonquille', ' Amarylidacées', 'Narcissus jonquilla', NULL, 6, 'Jaune', 97, 1, 12, 3, 60, 40),
+(3, 'Lotus', 'Nélumbonacées', 'Nelumbo nucifera', NULL, 13, 'blanc rosé', 98, 1, 33, 3, 45, 55),
+(4, 'Sakura', 'Rosaceae', 'Prunus serulata', NULL, 5, 'rose', 99, 1, 12, 10, 50, 50),
+(5, 'Iris versicolore', 'Iridaceae', 'Iris versicolor', NULL, 6, 'Violet', 100, 1, 10, 20, 40, 50),
+(6, 'Jasmin', 'Oleaceae', 'Jasminum polyanthum', NULL, 5, 'blanc', 101, 1, 15, 5, 45, 55),
+(7, 'Coquelicot', 'Papaveraceae', 'Papaver rhoeas', NULL, 4, 'rouge', 102, 1, 10, 5, 50, 50),
+(8, 'Dahlia', 'Asteraceae', 'Dahlia pinnata', NULL, 9, 'rouge', 103, 1, 5, 10, 20, 50),
+(9, 'Orchis papillon', 'Orchidaceae', 'Anacamptis papilionacea', NULL, 7, 'violet', 104, 1, 5, 5, 60, 50),
+(10, 'Rose Papa Meilland', ' Rosaceae', 'Rosae', NULL, NULL, 'Rouge', 105, 1, 22, 9, 55, 45);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `FORM`
+-- Structure de la table `FLOWER_NECTAR`
 --
 
-DROP TABLE IF EXISTS `FORM`;
-CREATE TABLE `FORM` (
-  `idForm` int(11) NOT NULL,
-  `labelForm` varchar(20) DEFAULT NULL
+DROP TABLE IF EXISTS `FLOWER_NECTAR`;
+CREATE TABLE `FLOWER_NECTAR` (
+  `idFlower` int(11) NOT NULL,
+  `idNectar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `LEAF`
+-- Déchargement des données de la table `FLOWER_NECTAR`
 --
 
-DROP TABLE IF EXISTS `LEAF`;
-CREATE TABLE `LEAF` (
-  `idForm` int(11) NOT NULL,
-  `idDispo` int(11) NOT NULL,
-  `idLeaf` int(11) NOT NULL,
-  `form` int(11) DEFAULT NULL,
-  `dispo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `FLOWER_NECTAR` (`idFlower`, `idNectar`) VALUES
+(0, 0),
+(1, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -180,6 +246,24 @@ CREATE TABLE `MONTH` (
   `labelMonth` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `MONTH`
+--
+
+INSERT INTO `MONTH` (`idMonth`, `labelMonth`) VALUES
+(0, 'Janvier'),
+(1, 'Février'),
+(2, 'Mars'),
+(3, 'Avril'),
+(4, 'Mai'),
+(5, 'Juin'),
+(6, 'Juillet'),
+(7, 'Août'),
+(8, 'Septembre'),
+(9, 'Octobre'),
+(10, 'Novembre'),
+(11, 'Decembre');
+
 -- --------------------------------------------------------
 
 --
@@ -191,26 +275,27 @@ CREATE TABLE `NECTAR` (
   `idNectar` int(11) NOT NULL,
   `nameNectar` varchar(50) DEFAULT NULL,
   `overallQuality` int(11) DEFAULT NULL,
-  `attractivePhytochemicalProp` int(11) DEFAULT NULL,
-  `protectivePhytochemicalProp` int(11) DEFAULT NULL,
   `fructoseProp` int(11) DEFAULT NULL,
   `glucoseProp` int(11) DEFAULT NULL,
   `sucroseProp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `PETAL`
+-- Déchargement des données de la table `NECTAR`
 --
 
-DROP TABLE IF EXISTS `PETAL`;
-CREATE TABLE `PETAL` (
-  `id_Couleur` int(11) NOT NULL,
-  `idPetale` int(11) NOT NULL,
-  `color` int(11) DEFAULT NULL,
-  `number` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `NECTAR` (`idNectar`, `nameNectar`, `overallQuality`, `fructoseProp`, `glucoseProp`, `sucroseProp`) VALUES
+(0, 'Nectar de tulipe', 20, 20, 40, 40),
+(1, 'Nectar de Lys', 22, 50, 25, 25),
+(2, 'Nectar de Jonquille', 25, 40, 30, 30),
+(3, 'Nectar3', 24, 45, 15, 40),
+(4, 'Nectar4', 26, 60, 10, 30),
+(5, 'Nectar5', 23, 45, 5, 45),
+(6, 'Nectar6', 25, 50, 25, 25),
+(7, 'Nectar7', 25, 40, 30, 30),
+(8, 'Nectar8', 25, 33, 33, 34),
+(9, 'Nectar9', 15, 33, 33, 34),
+(10, 'Nectar10', 25, 50, 25, 25);
 
 -- --------------------------------------------------------
 
@@ -226,10 +311,20 @@ CREATE TABLE `POLLINATOR` (
   `efficiency` int(11) DEFAULT NULL,
   `fructoseAttraction` int(11) DEFAULT NULL,
   `glucoseAttraction` int(11) DEFAULT NULL,
-  `phytochemicalAttraction` int(11) DEFAULT NULL,
   `sucroseAttraction` int(11) DEFAULT NULL,
-  `flowerMaxTubeLength` int(11) NOT NULL DEFAULT '0'
+  `temperatureTolerance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `POLLINATOR`
+--
+
+INSERT INTO `POLLINATOR` (`idPollinator`, `namePollinator`, `populationPollinator`, `efficiency`, `fructoseAttraction`, `glucoseAttraction`, `sucroseAttraction`, `temperatureTolerance`) VALUES
+(0, 'Abeilles', 1000, 100, 80, 10, 10, 20),
+(1, 'Papillons', 700, 100, 25, 50, 25, 10),
+(2, 'Guêpes', 300, 90, 5, 35, 60, 25),
+(3, 'Bourdons', 500, 120, 20, 30, 50, 15),
+(4, 'Fourmis', 3000, 20, 20, 20, 60, 30);
 
 -- --------------------------------------------------------
 
@@ -267,8 +362,34 @@ DROP TABLE IF EXISTS `RANDOMEVENT`;
 CREATE TABLE `RANDOMEVENT` (
   `idEvent` int(11) NOT NULL,
   `nameEvent` varchar(50) DEFAULT NULL,
-  `labelEvent` varchar(500) DEFAULT NULL
+  `temperatureMinCond` int(11) NOT NULL,
+  `temperatureMaxCond` int(11) NOT NULL,
+  `humidityMinCond` int(11) NOT NULL,
+  `humidityMaxCond` int(11) NOT NULL,
+  `airPolutionMinCond` int(11) NOT NULL,
+  `airPolutionMaxCond` int(11) NOT NULL,
+  `activationProb` int(11) NOT NULL,
+  `airPolutionModifier` int(11) NOT NULL,
+  `animalDensityModifier` int(11) NOT NULL,
+  `humidityModifier` int(11) NOT NULL,
+  `insectDensityModifier` int(11) NOT NULL,
+  `precipitationAverageAmountModifier` int(11) NOT NULL,
+  `precipitationFrequencyModifier` int(11) NOT NULL,
+  `temperatureModifier` int(11) NOT NULL,
+  `flowerPopulationModifier` int(11) NOT NULL,
+  `flowerSeedsModifier` int(11) NOT NULL,
+  `pollinatorPopulationModifier` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `RANDOMEVENT`
+--
+
+INSERT INTO `RANDOMEVENT` (`idEvent`, `nameEvent`, `temperatureMinCond`, `temperatureMaxCond`, `humidityMinCond`, `humidityMaxCond`, `airPolutionMinCond`, `airPolutionMaxCond`, `activationProb`, `airPolutionModifier`, `animalDensityModifier`, `humidityModifier`, `insectDensityModifier`, `precipitationAverageAmountModifier`, `precipitationFrequencyModifier`, `temperatureModifier`, `flowerPopulationModifier`, `flowerSeedsModifier`, `pollinatorPopulationModifier`) VALUES
+(0, 'Pluie', 1, 50, 30, 70, 0, 100, 50, 100, 100, 130, 110, 130, 130, 80, 110, 90, 100),
+(1, 'Secheresse', 25, 50, 20, 50, 0, 100, 50, 100, 100, 70, 100, 60, 60, 140, 80, 100, 100),
+(2, 'Blizzard', -20, 0, 10, 30, 0, 100, 50, 100, 100, 60, 80, 50, 50, 30, 50, 90, 90),
+(3, 'Orage', 1, 30, 40, 80, 0, 100, 50, 100, 100, 80, 120, 140, 110, 40, 100, 100, 100);
 
 -- --------------------------------------------------------
 
@@ -283,10 +404,19 @@ CREATE TABLE `SEASON` (
   `precipitationAmountModifier` int(11) DEFAULT NULL,
   `precipitationFrequencyModifier` int(11) DEFAULT NULL,
   `temperatureModifier` int(11) DEFAULT NULL,
-  `windForceModifier` int(11) DEFAULT NULL,
   `nameSeason` varchar(20) DEFAULT NULL,
   `idSeason` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `SEASON`
+--
+
+INSERT INTO `SEASON` (`humidityModifier`, `insectDensityModifier`, `precipitationAmountModifier`, `precipitationFrequencyModifier`, `temperatureModifier`, `nameSeason`, `idSeason`) VALUES
+(0, 50, 10, 25, 5, 'Printemps', 0),
+(-10, 25, 20, -25, 15, 'Été', 1),
+(15, -15, 30, 25, 20, 'Automne', 2),
+(15, -25, 25, 25, -15, 'Hiver', 3);
 
 -- --------------------------------------------------------
 
@@ -301,6 +431,24 @@ CREATE TABLE `SEASONS_MONTHS` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Déchargement des données de la table `SEASONS_MONTHS`
+--
+
+INSERT INTO `SEASONS_MONTHS` (`idSeason`, `idMonth`) VALUES
+(0, 2),
+(0, 3),
+(0, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(2, 8),
+(2, 9),
+(2, 10),
+(3, 0),
+(3, 1),
+(3, 11);
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -311,11 +459,18 @@ ALTER TABLE `BIOME`
   ADD PRIMARY KEY (`idBiome`);
 
 --
--- Index pour la table `BIOMEEVENTLIST`
+-- Index pour la table `BIOME_EVENTLIST`
 --
-ALTER TABLE `BIOMEEVENTLIST`
+ALTER TABLE `BIOME_EVENTLIST`
   ADD PRIMARY KEY (`idBiome`,`idEvent`),
   ADD KEY `FK_Event` (`idEvent`);
+
+--
+-- Index pour la table `BIOME_POLLINATORS`
+--
+ALTER TABLE `BIOME_POLLINATORS`
+  ADD KEY `FK_Pollinator` (`idPollinator`),
+  ADD KEY `FK_BiomePolli` (`idBiome`);
 
 --
 -- Index pour la table `BIOME_SEASONS`
@@ -331,41 +486,23 @@ ALTER TABLE `COLOR`
   ADD PRIMARY KEY (`idColor`);
 
 --
--- Index pour la table `DISPOSITION`
---
-ALTER TABLE `DISPOSITION`
-  ADD PRIMARY KEY (`idDispo`);
-
---
 -- Index pour la table `FLOWER`
 --
 ALTER TABLE `FLOWER`
   ADD PRIMARY KEY (`idFlower`) USING BTREE;
 
 --
--- Index pour la table `FORM`
+-- Index pour la table `FLOWER_NECTAR`
 --
-ALTER TABLE `FORM`
-  ADD PRIMARY KEY (`idForm`);
-
---
--- Index pour la table `LEAF`
---
-ALTER TABLE `LEAF`
-  ADD PRIMARY KEY (`idForm`,`idDispo`,`idLeaf`),
-  ADD KEY `FK_A_UNE_DISPOSITION` (`idDispo`);
+ALTER TABLE `FLOWER_NECTAR`
+  ADD UNIQUE KEY `idFlower` (`idFlower`),
+  ADD UNIQUE KEY `idNectar` (`idNectar`);
 
 --
 -- Index pour la table `NECTAR`
 --
 ALTER TABLE `NECTAR`
   ADD PRIMARY KEY (`idNectar`);
-
---
--- Index pour la table `PETAL`
---
-ALTER TABLE `PETAL`
-  ADD PRIMARY KEY (`id_Couleur`,`idPetale`);
 
 --
 -- Index pour la table `POLLINATOR`
@@ -413,10 +550,18 @@ ALTER TABLE `QUIZZ`
 --
 
 --
--- Contraintes pour la table `BIOMEEVENTLIST`
+-- Contraintes pour la table `BIOME_EVENTLIST`
 --
-ALTER TABLE `BIOMEEVENTLIST`
-  ADD CONSTRAINT `FK_Event` FOREIGN KEY (`idEvent`) REFERENCES `RANDOMEVENT` (`idEvent`) ON DELETE NO ACTION;
+ALTER TABLE `BIOME_EVENTLIST`
+  ADD CONSTRAINT `FK_Event` FOREIGN KEY (`idEvent`) REFERENCES `RANDOMEVENT` (`idEvent`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Fk_BiomeEvent` FOREIGN KEY (`idBiome`) REFERENCES `BIOME` (`idBiome`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `BIOME_POLLINATORS`
+--
+ALTER TABLE `BIOME_POLLINATORS`
+  ADD CONSTRAINT `FK_BiomePolli` FOREIGN KEY (`idBiome`) REFERENCES `BIOME` (`idBiome`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_Pollinator` FOREIGN KEY (`idPollinator`) REFERENCES `POLLINATOR` (`idPollinator`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `BIOME_SEASONS`
@@ -426,17 +571,11 @@ ALTER TABLE `BIOME_SEASONS`
   ADD CONSTRAINT `FK_Season` FOREIGN KEY (`idSeason`) REFERENCES `SEASON` (`idSeason`) ON DELETE NO ACTION;
 
 --
--- Contraintes pour la table `LEAF`
+-- Contraintes pour la table `FLOWER_NECTAR`
 --
-ALTER TABLE `LEAF`
-  ADD CONSTRAINT `FK_A_UNE_DISPOSITION` FOREIGN KEY (`idDispo`) REFERENCES `DISPOSITION` (`idDispo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_EST_DE_FORME` FOREIGN KEY (`idForm`) REFERENCES `FORM` (`idForm`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `PETAL`
---
-ALTER TABLE `PETAL`
-  ADD CONSTRAINT `FK_EST_COLOREE` FOREIGN KEY (`id_Couleur`) REFERENCES `COLOR` (`idColor`);
+ALTER TABLE `FLOWER_NECTAR`
+  ADD CONSTRAINT `FK_FlowerNect` FOREIGN KEY (`idFlower`) REFERENCES `FLOWER` (`idFlower`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_Nect` FOREIGN KEY (`idNectar`) REFERENCES `NECTAR` (`idNectar`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
