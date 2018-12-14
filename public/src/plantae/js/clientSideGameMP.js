@@ -107,7 +107,7 @@ var eventRefreshInfo = function(data) {
 
     if((parseInt(data.data.turn, 10)) === 0){
         setBiome(data.data.bnameBiome);
-        setFlower("rose", "red");
+        setFlower("f", data.data.fnameFlower);
 
     }
 

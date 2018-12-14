@@ -55,7 +55,7 @@
           <entry key="css" value="86" />
           <entry key="dummy" value="2" />
           <entry key="html" value="2245" />
-          <entry key="js" value="6087" />
+          <entry key="js" value="6101" />
           <entry key="php" value="10013" />
         </counts>
       </usages-collector>
@@ -63,7 +63,7 @@
         <counts>
           <entry key="CSS" value="86" />
           <entry key="HTML" value="2245" />
-          <entry key="JavaScript" value="6087" />
+          <entry key="JavaScript" value="6101" />
           <entry key="PHP" value="9951" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SQL" value="62" />
@@ -82,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1971">
-              <caret line="283" column="5" lean-forward="true" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
+            <state relative-caret-position="63">
+              <caret line="463" column="28" selection-start-line="463" selection-start-column="28" selection-end-line="463" selection-end-column="28" />
               <folding>
                 <element signature="e#25#63#0#PHP" expanded="true" />
               </folding>
@@ -112,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+            <state relative-caret-position="1346">
+              <caret line="83" column="12" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -145,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Won</find>
       <find>hide</find>
       <find>wait</find>
       <find>ready</find>
@@ -175,6 +174,7 @@
       <find>getSeeds</find>
       <find>endGamePVP</find>
       <find>send</find>
+      <find>eventPla</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -370,12 +370,12 @@
       <workItem from="1544518208062" duration="44276000" />
       <workItem from="1544695444538" duration="4589000" />
       <workItem from="1544704232746" duration="9396000" />
-      <workItem from="1544737302870" duration="30829000" />
+      <workItem from="1544737302870" duration="31697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195653000" />
+    <option name="totallyTimeSpent" value="196521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -643,16 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1971">
-          <caret line="283" column="5" lean-forward="true" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
-          <folding>
-            <element signature="e#25#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/php/Engine.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -662,10 +652,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/plantae/js/clientSideGameMP.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+        <state relative-caret-position="1346">
+          <caret line="83" column="12" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plantae/GamesManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="463" column="28" selection-start-line="463" selection-start-column="28" selection-end-line="463" selection-end-column="28" />
+          <folding>
+            <element signature="e#25#63#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
