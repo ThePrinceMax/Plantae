@@ -1,7 +1,21 @@
 <?php
 
+	if (isset($_POST['vrai'])){
+		if ('reponse' == $answerT){
+			echo "vrai";
+			print "vrai";
+		}
+		else {
+			echo "faux la bonne reponse est : " . $answerT;
+			print "faux";	
+		}
+	}
+	else {
+		echo "Actuellement erreur au niveau du POST pour verifier si valeurs justes ou non";
+	}
 
 ?>
+
 
 <!-- Sidebar -->
 <section id="sidebar">
@@ -60,11 +74,19 @@
 		try {
 
 		// Query
-    	$queryNb="select count(*) as nb from QUIZZ";
+    	$queryNb="SELECT count(*) AS nb FROM QUIZZ";
     	//Get Results
-    	$resultsNb = $db->query($queryNb);
-    	$dataNb = $queryNb->fetch();
-    	$nbLignes = $dataNb['nb'];
+    	
+    	$nbLignes = 0;
+
+    	foreach ($db->query($queryNb) as $row){
+    		//print $row['nb'];
+    		$nbLignes = $row['nb'];
+    	}
+    	print "Nombres de questions totals actuelles dans la base : " . $nbLignes;
+    	//$dataNb = $queryNb->fetch(PDO::FETCH_ASSOC);
+    	//$nbLignes = $resultsNb['nb'];
+
 
 		$listeQuestion = array();
     	$listeRep1 = array();
@@ -93,20 +115,24 @@
       		$i++;
     	}
 		*/
-
     	$quest = $listeQuestion[0];
     	$answerT = $listeRep1[0];
     	$answerF1 = $listeRep2[0];
     	$answerF2 = $listeRep3[0];
-    	refresh();
+    	$id = 0;
 
-		function refresh(){
-			$i = rand(0, $nbLignes);
-			$quest = $listeQuestion[$i];
-			$answerT = $listeRep1[$i];
-			$answerF1 = $listeRep2[$i];
-			$answerF2 = $listeRep3[$i];
+
+    	function refresh($nbLignes, $listQuest, $listRep1, $listRep2, $listRep3){
+			$i = rand(0, $nbLignes - 1);
+			$quest = $listQuest[$i];
+			$answerT = $listRep1[$i];
+			$answerF1 = $listRep2[$i];
+			$answerF2 = $listRep3[$i];
+			return $i;
 		}
+
+    	
+    	$id = refresh($nbLignes, $listeQuestion, $listeRep1, $listeRep2, $listeRep3);
 
     	}
     	catch(Exception $e){
@@ -114,12 +140,14 @@
     		exit;	
     	}		
 		?>
-		<form action="reponse.php" method="POST">
-			<label for="question"><?php echo $quest ?></label>
+
+		<form action="" method="POST">
+			<input type="hidden" name="id" value=<?php echo $id ?> >
+			<label for="question"> <?php echo $quest ?> </label> 
 			<select name="cbRep">
-				<option value="vrai"><?php echo $answerT ?></option>
-				<option value="faux1"><?php echo $answerF1 ?></option>
-				<option value="faux2"><?php echo $answerF2 ?></option>
+				<option value="vrai" name="vrai"> <?php echo $answerT ?> </option>
+				<option value="faux1" name="faux1"> <?php echo $answerF1 ?> </option>
+				<option value="faux2" name="faux2"> <?php echo $answerF2 ?> </option>
 			</select>
 			<input type="submit" name="confirm">
 		</form>
