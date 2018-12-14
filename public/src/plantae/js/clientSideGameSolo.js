@@ -3,9 +3,18 @@
  */
 
 //var conn = new WebSocket('ws://localhost:13750');
-var conn = new WebSocket('wss://plantae.princelle.org/ws/');
 
+var connectedToOnline = false;
 
+var conn;
+
+if(location.origin.includes("localhost")){
+    conn = new WebSocket('ws://localhost:13750');
+}
+else{
+    conn = new WebSocket('wss://plantae.princelle.org/ws/');
+    connectedToOnline = true;
+}
 
 
 var flowerList = [];
@@ -13,8 +22,17 @@ var biomeList = [];
 var oldPop = 0;
 var oldPercent = 0;
 
+var oldPopOp = 0;
+var oldPercentOp = 0;
+
 conn.onopen = function(e) {
-    document.getElementById("modalTitle").innerHTML = "Connecté au server";
+    if(connectedToOnline){
+        document.getElementById("modalTitle").innerHTML = "Connecté au serveur distant";
+    }
+    else{
+        document.getElementById("modalTitle").innerHTML = "Connecté au serveur local";
+
+    }
 };
 
 conn.onmessage = function(e) {
@@ -84,6 +102,13 @@ var eventRefreshInfo = function(data) {
 
     }
     oldPop = pop;
+
+    let popOp = parseInt(data.data.opponentPopulation, 10)
+    if(oldPopOp !== popOp && data.data.opponentPopulation !== undefined && data.data.opponentPopulation !==  null){
+        animateValue("opponentPopulation", oldPopOp, popOp, 2000); //Commande pour mettre à jour les points
+
+    }
+    oldPopOp = popOp;
 
     document.getElementById("fseeds").innerHTML = "Graines : "+data.data.fseeds;
     document.getElementById("fidealTemperature").innerHTML = "Température idéale : "+data.data.fidealTemperature;
