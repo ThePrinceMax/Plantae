@@ -3,6 +3,8 @@
  */
 
 var connectedToOnline = false;
+var savedNbTurns = -1;
+var savedturns = -1;
 
 var conn;
 
@@ -111,6 +113,9 @@ var eventRefreshInfo = function(data) {
 
     }
 
+    savedNbTurns = data.data.nbTurns;
+    savedturns = data.data.turns;
+
     let flowerToDisplay = Math.floor((~~(((parseInt(data.data.fpopulation, 10)+ 999) / 1000) * 1000))/650);
 
     console.log(flowerToDisplay);
@@ -164,9 +169,10 @@ var eventRefreshInfo = function(data) {
     if(data.data.currentEvent !== undefined){
         document.getElementById("message").innerHTML = "Event : " + data.data.currentEvent;
     }
+    /*
     else{
         document.getElementById("message").innerHTML = "???";
-    }
+    }*/
 
     if(data.data.nbTurns === data.data.turn){
         initializeModal();
@@ -175,7 +181,14 @@ var eventRefreshInfo = function(data) {
 };
 
 var eventNextTurn = function(){
-    $('#modalMP').modal('hide');
+    if(savedturns+1 !== savedNbTurns){
+        $('#modalMP').modal('hide');
+    }
+    else{
+        savedNbTurns = -1;
+        savedturns = -1;
+    }
+
 }
 
 var eventGetAllFlowers = function(data){
@@ -421,7 +434,7 @@ var createGameMP = function(){
 
     /*var maxTurnsSelection = document.getElementById("");
     var maxTurns = e.options[e.selectedIndex].value;*/
-    conn.send('{"event":"CreateGamePVP", "data":{"flowerId":'+flowerId+', "biomeId":'+biomeId+', "maxTurns":10}}');
+    conn.send('{"event":"CreateGamePVP", "data":{"flowerId":'+flowerId+', "biomeId":'+biomeId+', "maxTurns":15}}');
 
 }
 

@@ -301,7 +301,7 @@ var createGameSolo = function(){
 
     /*var maxTurnsSelection = document.getElementById("");
     var maxTurns = e.options[e.selectedIndex].value;*/
-    conn.send('{"event":"CreateGameSolo", "data":{"flowerId":'+flowerId+', "biomeId":'+biomeId+', "maxTurns":10}}');
+    conn.send('{"event":"CreateGameSolo", "data":{"flowerId":'+flowerId+', "biomeId":'+biomeId+', "maxTurns":15}}');
 
     $('#modalSolo').modal('hide');
 }
