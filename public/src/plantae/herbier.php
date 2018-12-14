@@ -1,107 +1,32 @@
-<style>
-      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-      body, h2, p {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: #444;
-  color: #333;
-  font-family: Helvetica, sans-serif;
-}
-
-#book {
-  background:white;
-  position: absolute;
-  width: 830px;
-  height: 260px;
-  left: 50%;
-  top: 50%;
-  margin-left: -400px;
-  margin-top: -125px;
-}
-
-#pages section {
-  background: white;
-  display: block;
-  width: 400px;
-  height: 250px;
-  position: absolute;
-  left: 415px;
-  top: 5px;
-  overflow: hidden;
-}
-#pages section>div {
-  display: block;
-  width: 400px;
-  height: 250px;
-  font-size: 12px;
-}
-#pages section p,
-#pages section h2 {
-  padding: 3px 35px;
-  line-height: 1.4em;
-  text-align: justify;
-}
-#pages section h2{
-  margin: 15px 0 10px;
-}
-
-#pageflip-canvas {
-  position: absolute;
-  z-index: 100;
-}
-
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
-  <div>
-    <div id="book">
-      <canvas id="pageflip-canvas"></canvas>
-      <div id="pages">
-        <section>
-          <div>
-            <?php
-                require_once('./php/bdd.php');
-                $reqTulipe = 'SELECT nameFr, family, nameLatin, nbPetals, diseaseResistance, idealTemperature, temperatureAmplitude, colorPetals FROM flower WHERE id = 0';
-                $tabTulipe = $db->query($reqTulipe);
-                $nomFr = $tabTulipe['nameFr'];
-                $family = $tabTulipe['family'];
-                $nomLatin = $tabTulipe['nameLatin'];
-                $nbPetales = $tabTulipe['nbPetals'];
-                $maladieDef = $tabTulipe['diseaseResistance'];
-                $idealTemperature = $tabTulipe['idealTemperature'];
-                $temperatureAmplitude = $tabTulipe['temperatureAmplitude'];
-                $couleurPetales = $tabTulipe['colorPetals'];
-            ?>
-            <h2>Tulipe</h2>
-            <p>
-              La <?php echo $nomFr ?>, aussi appelé <?php echo $nomLatin ?> en latin, provient de la famille <?php echo $family ?>. Cette fleur possède en générale <?php echo $nbPetales ?> pétales qui sont de couleurs <?php echo $couleurPetales ?>. Sa température idéale est d'environ <?php echo $idealTemperature ?> °C avec une amplitude d'à peu près <?php echo $temperatureAmplitude ?> °C. Elle a une resistance aux maladies d'environ <?php echo $maladieDef ?>.
-            </p>
-          </div>
-        </section>
-        <section>
-          <div>
-            <h2>Fleur 2</h2>
-            <p>Description fleur 2</p>
-          </div>
-        </section>
-        <section>
-          <div>
-            <h2>Fleur 3</h2>
-            <p>Description fleur 3</p>
-          </div>
-        </section>
-        <section>
-          <div>
-            <h2>Fleur 4</h2>
-            <p>Description fleur 4</p>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-    <script  src="js/index.js"></script>
-</div>
+<section id="main-content">
+			<div class="card-deck" id="switch">
+				<div class="card">
+					<img class="card-img-left" src="./img/solo.jpg" alt="Jeu solo">
+					<div class="card-body">
+						<h5 class="card-title">Solo</h5>
+						<p class="card-text">Le mode solo vous permet de jouer face à votre ordinateur. <br /> Le but est simple : être le dernier à mourrir.</p>
+					</div>
+				</div>
+				<div class="card">
+					<img class="card-img-left" src="./img/onsite.jpg" alt="Jeu OnSite - 1v1">
+					<div class="card-body">
+						<h5 class="card-title">OnSite - 1v1</h5>
+						<p class="card-text">Le mode OnSite 1v1 vous permet de jouer avec un ami sur un seul ordinateur. <br />La partie se déroule en tour par tour et prends fin dès que l'un des joueurs meurt.</p>
+					</div>
+				</div>
+				<div class="card">
+					<img class="card-img-left" src="./img/lan.jpg" alt="Jeu OnLine - 1v1">
+					<div class="card-body">
+						<h5 class="card-title">OnLine - 1v1</h5>
+						<p class="card-text">Le mode OnLine 1v1 vous permet de jouer avec un ami mais cette fois-ci via Internet.<br />La partie se déroule en tour par tour et prends fin dès que l'un des joueurs meurt.<br>Créez ou rejoignez un salon pour pouvoir jouer.</p>
+					</div>
+				</div>
+				<div class="card">
+					<img class="card-img-left" src="./img/quizz.jpg" alt="Quizz">
+					<div class="card-body">
+						<h5 class="card-title">Quizz</h5>
+						<p class="card-text">Dans ce quizz, des questions vous seront posées sur plusieurs termes autour de la Botanique. <br />Répondez juste et gagnez des points afin de pouvoir acheter des bonus lors de vos parties.</p>
+					</div>
+				</div>
+			</div>
+</section>

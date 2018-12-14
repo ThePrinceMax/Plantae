@@ -57,11 +57,10 @@
                         <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
                     </li>
 
-                    <!--
+
                     <li class="nav-item">
                       <a class="nav-link" href="#!herbier">Herbier</a>
                     </li>
-                    -->
 
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle btn btn-outline-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jeux</button>
