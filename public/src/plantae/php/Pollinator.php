@@ -15,7 +15,6 @@
 		private $_fructoseAttraction ;
 		private $_glucoseAttraction ; 
 		private $_sucroseAttraction ;
-		private $_flowerMaxTubeLenght;
 
 
 		/// Constructeur de la classe pollinator

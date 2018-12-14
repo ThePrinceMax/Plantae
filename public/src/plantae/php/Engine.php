@@ -367,20 +367,24 @@
             $popFleurAPolliniser = $flower->getPopulation();
             $fleursPollinisee = 0;
             $popFleurAPolliniser = $popFleurAPolliniser - intdiv((100-$flower->_nectar->getOverallQuality()), 2);
-            for($i = 0; $i < sizeof($this->_biome->_pollinisators) ; $i++){ //25% de la pop ne sera pas attiré par les fleurs
-                if($this->_biome->_pollinisators[$i]->getTemperatureTolerance()-15 < $this->_biome->getTemperature()){
-                    $pollinatorPop =$this->_biome->_pollinisators[$i]->getPopulation();
-                    $pollinatorPopSucrose = intdiv($this->_biome->_pollinisators[$i]->getSucroseAttraction()*$pollinatorPop, 100);
-                    $pollinatorPopGlucose = intdiv($this->_biome->_pollinisators[$i]->getGlucoseAttraction()*$pollinatorPop, 100);
-                    $pollinatorPopFructose = intdiv($this->_biome->_pollinisators[$i]->getFructoseAttraction()*$pollinatorPop, 100);
+            foreach($this->_biome->_pollinisators as $pollinator){ //25% de la pop ne sera pas attiré par les fleurs
+                if($pollinator->getTemperatureTolerance()-15 < $this->_biome->getTemperature()){
+                    $pollinatorPop =$pollinator->getPopulation();
+                    $pollinatorPopSucrose = intdiv($pollinator->getSucroseAttraction()*$pollinatorPop, 100);
+                    $pollinatorPopGlucose = intdiv($pollinator->getGlucoseAttraction()*$pollinatorPop, 100);
+                    $pollinatorPopFructose = intdiv($pollinator->getFructoseAttraction()*$pollinatorPop, 100);
                     $fleursPotentiellementPollinisee = 0;
                     $fleursPotentiellementPollinisee += intdiv($popFleurAPolliniser*100, $pollinatorPopSucrose);
                     $fleursPotentiellementPollinisee += intdiv($popFleurAPolliniser*100, $pollinatorPopGlucose);
                     $fleursPotentiellementPollinisee += intdiv($popFleurAPolliniser*100, $pollinatorPopFructose);
-                    $fleursPollinisee += intdiv($this->_biome->_pollinisators[$i]->getEfficiency()*$fleursPotentiellementPollinisee, 100);
+                    $fleursPollinisee += intdiv($pollinator->getEfficiency()*$fleursPotentiellementPollinisee, 100);
                 }
             }
+            if($fleursPollinisee > $flower->getPopulation()){
+                $fleursPollinisee = $flower->getPopulation();
+            }
             $flower->setSeeds($flower->getSeeds()+$fleursPollinisee*2);
+
 
         }
 
@@ -410,16 +414,16 @@
         }
 
         public function mortalitePollinisateur(){
-            for($i = 0; $i < sizeof($this->_biome->_pollinisators); $i++){
-                $this->_biome->_pollinisators[$i]->setPopulation($this->_biome->_pollinisators[$i]->getPopulation()
-                    - intdiv($this->_biome->_pollinisators[$i]->getPopulation()*intdiv($this->_biome->getInsectDensity(), 4), 100)) ;
+            foreach($this->_biome->_pollinisators as $pollinator){
+                $pollinator->setPopulation($pollinator->getPopulation()
+                    - intdiv($pollinator->getPopulation()*intdiv($this->_biome->getInsectDensity(), 4), 100)) ;
             }
         }
 
         public function reproductionPollinisateur(){
-            for($i = 0; $i < sizeof($this->_biome->_pollinisators); $i++){
-                $this->_biome->_pollinisators[$i]->setPopulation($this->_biome->_pollinisators[$i]->getPopulation()
-                    +intdiv($this->_biome->_pollinisators[$i]->getPopulation()*50, 100)) ;
+            foreach($this->_biome->_pollinisators as $pollinator){
+                $pollinator->setPopulation($pollinator->getPopulation()
+                    +intdiv($pollinator->getPopulation()*50, 100)) ;
             }
         }
 
