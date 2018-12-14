@@ -114,7 +114,7 @@ var eventRefreshInfo = function(data) {
     }
 
     savedNbTurns = data.data.nbTurns;
-    savedturns = data.data.turns;
+    savedturns = data.data.turn; //ok
 
     let flowerToDisplay = Math.floor((~~(((parseInt(data.data.fpopulation, 10)+ 999) / 1000) * 1000))/650);
 
