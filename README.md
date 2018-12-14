@@ -10,7 +10,7 @@ Sur ce jeu à rôle éducatif au tour par tour, vous apprendrez à vous occuper 
 
 Rendez-vous sur [Plantae](https://plantae.princelle.org) pour jouer !
 
-<small>Notre site fonctionne avec la plupart des navigateurs actuels mais nécessite JavaScript. <br>L’utilisation d’un navigateur comme Internet Explorer ou trop ancien peut poser problème</small>
+<small>Notre site fonctionne avec la plupart des navigateurs actuels mais nécessite JavaScript. <br>L’utilisation d’un navigateur comme Internet Explorer ou trop ancien peut poser problème</small>
 
 ## Membres du groupe
 
@@ -68,36 +68,36 @@ Répondez juste et améliorez vos connaissances afin d'être plus efficace dans 
 
 <img src="./README_files/bee.png" width="100" height=100> <br>
 
-Nous avons étudié l’impact des abeilles en fonction de l’environnement mais également du type de fleur qu’elles butinent.
+Nous avons étudié l’impact des abeilles en fonction de l’environnement mais également du type de fleur qu’elles butinent.
 
-Nous avons donc ajouté a notre IA la capacité de simuler l’activité des abeilles et donc d’intéragir sur la reproduction de la fleur ainsi que sur sa santé.
+Nous avons donc ajouté a notre IA la capacité de simuler l’activité des abeilles et donc d’intéragir sur la reproduction de la fleur ainsi que sur sa santé.
 
 
 ### Saisons
 
 <img src="./README_files/seasons.png" width="100" height="100">
 
-Il est possible de changer le biome dans lequel votre plante va évoluer.
+Il est possible de changer le biome dans lequel votre plante va évoluer.
 
-En effet, ce dernier joue un rôle important dans le développement de la fleur mais agit également sur les pollinisateurs (abeilles) et donc indirectement sur la reproduction de la fleur.
+En effet, ce dernier joue un rôle important dans le développement de la fleur mais agit également sur les pollinisateurs (abeilles) et donc indirectement sur la reproduction de la fleur.
 
-Il sera important de choisir la bonne fleur avec des caractéristiques qui lui permetteront de tenir peu importe l’environnement.
+Il sera important de choisir la bonne fleur avec des caractéristiques qui lui permetteront de tenir peu importe l’environnement.
 
 ### Météo
 
 <img src="./README_files/weather.png" width="100" height="100">
 
-Comme vous pouvez choisr le biome, notre IA pourra changer les paramètres de votre environnement en cours de partie, en plaçant, par exemple, un temps pluvieux, ensoleillé, mais cette dernière pourra aussi jouer sur la température en rendant votre biome sec, humide ou même hivernal.
+Comme vous pouvez choisr le biome, notre IA pourra changer les paramètres de votre environnement en cours de partie, en plaçant, par exemple, un temps pluvieux, ensoleillé, mais cette dernière pourra aussi jouer sur la température en rendant votre biome sec, humide ou même hivernal.
 
-Des événèments seront également déclenchés de manière aléatoire tels qu’un orage, du vent puissant, ou de la pluie forte.
+Des événèments seront également déclenchés de manière aléatoire tels qu’un orage, du vent puissant, ou de la pluie forte.
 
 ### Fleur
 
 <img src="./README_files/fleur_mario.png" witdth="100" height="100">
 
-Comme dit précedemment, choisir sa fleur est une étape primor- diale qui peut vous mener à la victoire.
+Comme dit précedemment, choisir sa fleur est une étape primor- diale qui peut vous mener à la victoire.
 
-En choisissant les meilleures caractéristiques vous pouvez plus ou moins aisément battre votre adversaire rien qu’avec votre sélection sans même utiliser vos points.
+En choisissant les meilleures caractéristiques vous pouvez plus ou moins aisément battre votre adversaire rien qu’avec votre sélection sans même utiliser vos points.
 
 ### Points
 
@@ -119,28 +119,28 @@ Vous pourrez ainsi améliorer votre nectar, ou l'amplitude de température idéa
 
 L’interface repose sur du Web.
 
-Cette méthode permet à notre jeu de fonctionner sur toutes les plateformes possibles sans installation requise.
+Cette méthode permet à notre jeu de fonctionner sur toutes les plateformes possibles sans installation requise.
 
-Afin d’avoir une interface qui soit la plus uniforme possible, nous avons utilisé des librairies telles que Bootstrap, Angular en passant par JQuery.
+Afin d’avoir une interface qui soit la plus uniforme possible, nous avons utilisé des librairies telles que Bootstrap, Angular en passant par JQuery.
 
-Toutes ces libraries ont l’avantage d’être compatibles avec la plupart des navigateurs, garantissant ainsi le multi-plateforme.
+Toutes ces libraries ont l’avantage d’être compatibles avec la plupart des navigateurs, garantissant ainsi le multi-plateforme.
 
 ### Moteur
 <img src="./README_files/logo.png" width="100" height="100">
 <img src="./README_files/php.png" width="100" height="80">
 
-Pour le moteur du jeu nous utilisons la librairie Ratchet qui permet la création de WebSockets.
+Pour le moteur du jeu nous utilisons la librairie Ratchet qui permet la création de WebSockets.
 
-Ainsi, tout le moteur est codé en PHP, mais également les différentes connexions à la base de donnée que ce soit pour la gestion des utilisateurs mais aussi la gestion des fleurs et des biomes.
+Ainsi, tout le moteur est codé en PHP, mais également les différentes connexions à la base de donnée que ce soit pour la gestion des utilisateurs mais aussi la gestion des fleurs et des biomes.
 
 
 ### Base de données
 <img src="./README_files/phpmyadmin.png" width="180" height="100">
 <img src="./README_files/mysql.png" width="175" height="100">
 
-Afin d’être en accord avec ce que nous avons étudié jusqu’à présent avec les bases de données, nous avons utilisé phpMyAdmin basé sur MySQL qui nous permet facilement de gérer nos différentes données (Utilisateurs, Fleurs,...).
+Afin d’être en accord avec ce que nous avons étudié jusqu’à présent avec les bases de données, nous avons utilisé phpMyAdmin basé sur MySQL qui nous permet facilement de gérer nos différentes données (Utilisateurs, Fleurs,...).
 
-De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
+De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
 
 -----------------
 ## Installation / Mise en place
@@ -167,7 +167,7 @@ De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
 
 8. Maintenant, toujours dans le deuxième terminal/invite de commande, lancez la commande : <br>```php ./public/bin/GamesManager-server.php```
 
-9. Vous pouvez maintenant jouer au jeu. En vous connectant au site <br><small>(Le mode multijoueur via le réseau ne fonctionnera pas, si vous souhaitez jouer à plusieurs, ouvrez deux navigateurs sur la même session).</small>
+9. Vous pouvez maintenant jouer au jeu. En vous connectant au site à l'adresse : [localhost:8000](http://localhost:8000)<br><small>(Le mode multijoueur via le réseau ne fonctionnera pas, si vous souhaitez jouer à plusieurs, ouvrez deux navigateurs sur la même session).</small>
 
 10. Si vous souhaitez fermer le jeu, fermez tout simplement les deux terminaux ou invite de commande.
 
