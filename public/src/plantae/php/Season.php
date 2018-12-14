@@ -8,6 +8,11 @@
 
 		/// Attributs de la classe saison
 		private $_idSeason;
+
+        /**
+         * @return mixed
+         */
+
 		private $_nameSeason;
         /**
          * @var Month[]
@@ -41,44 +46,68 @@
             $this->setBaseMonth();
 		}
 
-		/* A CORRIGER public static function createSeasonFromBDD($idSeason, $bdd){
-            echo "Season";
-            $nameSeason = "";
+		public static function createSeasonFromBDD($idSeason){
+
             $monthList = array();
             $currentMonth = null;
-            $monthDuration = 0;
-            $humidityModifier = 0;
-            $insectDensityModifier = 0;
-            $precipitationAmountModifier = 0;
-            $precipitationFrequencyModifier = 0;
-            $temperatureModifier = 0;
-            $windForceModifier = 0;
 
-            // Recuperation des données a partir de l'id du mois
-            try
-            {
-                $requete = $bdd->query("SELECT nom_month, id_season, nom_season, humidityModifier, insectDensityModifier, 	
-					monthDuration, precipitationAmountModifier, precipationFrequencyModifier, temperatureModifier, windForceModifier " .
-                    "FROM Season " .
-                    "WHERE id_month = :idMonth");
 
-                $result = $requete->fetch();
+            $result = gameBddRequests::getInstance()->getSeason($idSeason);
+            $monthsId = gameBddRequests::getInstance()->getSeasonMonthsId($idSeason);
 
-                $nameSeason = $result[2];
-                $humidityModifier = $result[3];
-                $insectDensityModifier = $result[4];
-                $monthDuration = $result[5];
-                $precipitationAmountModifier = $result[6];
-                $precipitationFrequencyModifier = $result[7];
-                $temperatureModifier = $result[8];
-                $windForceModifier = $result[9];
 
+
+            $tempMonthList = array();
+
+            foreach ($monthsId as $monthId){
+                $tempMonthList[$monthId['idMonth']] = Month::createMonthFromBDD($monthId['idMonth']);
+                //echo "==MOIS==".$monthId['idMonth'];
             }
-            catch(Exception $e)
-            {
-                echo "Erreur : " . $e->getMessage();
+
+            sort($tempMonthList);
+
+
+            for($y = 0; $y < count($monthsId); $y++){
+                $monthList[$y] = null;
+                foreach ($tempMonthList as $row){
+                    if($monthList[$y] == null){
+                        $monthList[$y] = $row;
+                        //echo "MONTH ".$monthList[$i].getMonthId();
+                    }
+                }
             }
-        }*/
+
+            $currentMonth = $monthList[0];
+
+
+            /*
+            foreach ($monthsId as $monthId){
+                $monthList[$monthId['idMonth']] = Month::createMonthFromBDD($monthId['idMonth']);
+                if($currentMonth == null){
+                    $currentMonth = $monthList[$monthId['idMonth']];
+                }
+            }
+            foreach ($monthList as $month){
+                if($month->getMonthId() < $currentMonth->getMonthId()){
+                    $currentMonth = $month;
+                }
+            }*/
+
+            $nameSeason = $result['nameSeason'];
+            $humidityModifier = $result['humidityModifier'];
+            $insectDensityModifier = $result['insectDensityModifier'];
+            $precipitationAmountModifier = $result['precipitationAmountModifier'];
+            $precipitationFrequencyModifier = $result['precipitationFrequencyModifier'];
+            $temperatureModifier = $result['temperatureModifier'];
+
+            $monthDuration = count($monthList);
+
+
+
+
+            return new Season($idSeason, $nameSeason, $monthList, $currentMonth, $monthDuration, $humidityModifier, $insectDensityModifier, $precipitationAmountModifier, $precipitationFrequencyModifier, $temperatureModifier);
+
+        }
 
         /// Crée une saison selon le numero de saison (pas de base de données)
         public static function createSeasonDebug($idSeason){
@@ -239,6 +268,11 @@
 		{
 			return $this->_windForceModifier;
 		}
+
+        public function getIdSeason()
+        {
+            return $this->_idSeason;
+        }
 
         /// Supprime les mois de la saison
 		public function closeSeason(){

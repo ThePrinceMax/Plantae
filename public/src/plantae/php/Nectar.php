@@ -11,8 +11,6 @@
 		private $_fructoseProp;
 		private $_sucroseProp;
 		private $_glucoseProp;
-		private $_protectivePhytochemicalProp;
-		private $_attractivePhytochemicalProp;
 
 		//Constructeur de la classe Nectar
 		private function __construct($id, $name, $quality, $fructoseProp, $sucroseProp, $glucoseProp)
@@ -32,6 +30,18 @@
 				echo "Proportion de fructose/glucose/sucrose ou de protecPhytochemicalProp/attractivePhytoProp incorrecte : somme doit être egale à 100";
 			}
 		}
+
+		public static function createNectarFromBdd($idNectar){
+
+		    $result = GameBddRequests::getInstance()->getNectar($idNectar);
+
+            $nameNectar = $result['nameNectar'];
+            $overallQuality = $result['overallQuality'];
+            $fructoseProp = $result['fructoseProp'];
+            $sucroseProp = $result['sucroseProp'];
+            $glucoseProp = $result['glucoseProp'];
+            return new Nectar($idNectar, $nameNectar, $overallQuality, $fructoseProp, $sucroseProp, $glucoseProp);
+        }
 
 		/// Crée un nectar avec des valeurs arbitraires (pas de base de données)
 		public static function createNectarDebug($idNectar){

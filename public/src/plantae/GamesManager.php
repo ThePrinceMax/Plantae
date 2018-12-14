@@ -178,7 +178,7 @@ class GamesManager implements MessageComponentInterface {
         $dbRequestResult = GameBddRequests::getInstance()->getAllFlowers();
         $flowerArray=[];
         foreach ($dbRequestResult as $row){
-            $flowerArray[$row["idFlower"]] = $row["nameFr"];
+            $flowerArray[$row["idFlower"]] = utf8_encode($row["nameFr"]);
        }
         $arrayToSend = $this->formatMessage('FlowerList', $flowerArray);
         $from->send(json_encode($arrayToSend));
@@ -188,7 +188,8 @@ class GamesManager implements MessageComponentInterface {
         $dbRequestResult = GameBddRequests::getInstance()->getAllBiomes();
         $biomeArray=[];
         foreach ($dbRequestResult as $row){
-            $biomeArray[$row["idBiome"]] = $row["nameBiome"];
+            echo "===".$row["idBiome"]." VAUT ".$row["nameBiome"]."===";
+            $biomeArray[$row["idBiome"]] = utf8_encode($row["nameBiome"]);
         }
         $arrayToSend = $this->formatMessage('BiomeList', $biomeArray);
         $from->send(json_encode($arrayToSend));

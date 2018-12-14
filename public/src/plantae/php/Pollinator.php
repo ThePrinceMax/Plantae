@@ -2,7 +2,7 @@
     namespace Game;
 	//use PDO;
 
-	class pollinator 
+	class Pollinator
 	{
 		/*
 		Attributs de la classe pollinator : id, nom, efficacité, population et différentes attractions
@@ -15,6 +15,7 @@
 		private $_fructoseAttraction ;
 		private $_glucoseAttraction ; 
 		private $_sucroseAttraction ;
+		private $_flowerMaxTubeLenght;
 
 
 		/// Constructeur de la classe pollinator
@@ -30,40 +31,20 @@
             $this->_sucroseAttraction = $sucroseAttraction;
 		}
 
-		/*public function createPollinatorFromBDD($idPollinator, $bdd){
-            echo "Pollinisateur";
-            $namePollinator = "";
-            $efficiency = 0;
-            $population = 0;
-            $phytochemicalAttraction = 0;
-            $fructoseAttraction = 0;
-            $glucoseAttraction = 0;
-            $sucroseAttraction = 0;
+		public static function createPollinatorFromBDD($idPollinator){
 
-            try
-            {
-                $requete = $bdd->query("SELECT nom_pollinator, population_pol, efficiency, phytochemicalAttraction, 
-					fructoseAttraction, glucoseAttraction, sucroseAttraction " .
-                    "FROM Pollinator " .
-                    "WHERE id_pollinator = :idPollinator");
+            $result = gameBddRequests::getInstance()->getPollinator($idPollinator);
 
-                $result = $requete->fetch();
+            $namePollinator = $result['namePollinator'];
+            $population = $result['populationPollinator'];
+            $efficiency = $result['efficiency'];
+            $fructoseAttraction = $result['fructoseAttraction'];
+            $glucoseAttraction = $result['glucoseAttraction'];
+            $sucroseAttraction = $result['sucroseAttraction'];
+            $temperatureTolerance = $result['temperatureTolerance'];
 
-                $namePollinator = $result[0];
-                $population = $result[1];
-                $efficiency = $result[2];
-                $phytochemicalAttraction = $result[3];
-                $fructoseAttraction = $result[4];
-                $glucoseAttraction = $result[5];
-                $sucroseAttraction = $result[6];
-            }
-            catch(Exception $e)
-            {
-                echo "Erreur : " . $e->getMessage();
-            }
-
-            return new Pollinator($namePollinator , $idPollinator , $efficiency , $population , $phytochemicalAttraction , $fructoseAttraction , $glucoseAttraction , $sucroseAttraction);
-        }*/
+            return new Pollinator($namePollinator , $idPollinator , $efficiency , $population , $temperatureTolerance,$fructoseAttraction , $glucoseAttraction , $sucroseAttraction);
+        }
 
 		/// Crée un pollinisateur avec des valeurs arbitraires (sans base de données)
         public static function createPollinatorDebug($idPollinator){

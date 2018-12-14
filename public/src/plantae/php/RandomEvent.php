@@ -61,43 +61,42 @@ class RandomEvent{
         $this->_pollinatorPopulationModifier = $pollinatorPopulationModifier;
     }
 
-    /*
-    public static function createBiomeFromBDD($idEvent){
 
-        $result = GameBddRequests::getEvent($idEvent);
+    public static function createEventFromBDD($idEvent){
 
-        $name = $result[0];
-        $id =;
+        $result = GameBddRequests::getInstance()->getEvent($idEvent);
 
-        $temperatureMinCond =;
-        $temperatureMaxCond =;
-        $humidityMinCond =;
-        $humidityMaxCond =;
-        $airPolutionMinCond =;
-        $airPolutionMaxCond =;
+        $name = $result['nameEvent'];
 
-        $activationProb =;
+        $temperatureMinCond =$result['temperatureMinCond'];
+        $temperatureMaxCond =$result['temperatureMaxCond'];
+        $humidityMinCond =$result['humidityMinCond'];
+        $humidityMaxCond =$result['humidityMaxCond'];
+        $airPolutionMinCond =$result['airPolutionMinCond'];
+        $airPolutionMaxCond =$result['airPolutionMaxCond'];
 
-        $airPolutionModifier =;
-        $animalDensityModifier =;
-        $humidityModifier =;
-        $insectDensityModifier =;
-        $precipitationAverageAmountModifier =;
-        $precipitationFrequencyModifier =;
-        $temperatureModifier =;
+        $activationProb =$result['activationProb'];
 
-        $flowerPopulationModifier =;
-        $flowerSeedsModifier =;
+        $airPolutionModifier =$result['airPolutionModifier'];
+        $animalDensityModifier =$result['animalDensityModifier'];
+        $humidityModifier =$result['humidityModifier'];
+        $insectDensityModifier =$result['insectDensityModifier'];
+        $precipitationAverageAmountModifier =$result['precipitationAverageAmountModifier'];
+        $precipitationFrequencyModifier =$result['precipitationFrequencyModifier'];
+        $temperatureModifier =$result['temperatureModifier'];
 
-        $pollinatorPopulationModifier =;
+        $flowerPopulationModifier =$result['flowerPopulationModifier'];
+        $flowerSeedsModifier =$result['flowerSeedsModifier'];
 
-        return new RandomEvent($id, $name, $temperatureMinCond, $temperatureMaxCond, $humidityMinCond,
+        $pollinatorPopulationModifier =$result['pollinatorPopulationModifier'];
+
+        return new RandomEvent($idEvent, $name, $temperatureMinCond, $temperatureMaxCond, $humidityMinCond,
             $humidityMaxCond, $airPolutionMinCond, $airPolutionMaxCond, $activationProb,
             $airPolutionModifier, $animalDensityModifier, $humidityModifier, $insectDensityModifier,
             $precipitationAverageAmountModifier, $precipitationFrequencyModifier, $temperatureModifier,
             $flowerPopulationModifier, $flowerSeedsModifier, $pollinatorPopulationModifier);
     }
-    */
+
 
     public static function createEventDebug($idEvent){
         $name = "";
