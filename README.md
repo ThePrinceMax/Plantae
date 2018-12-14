@@ -12,11 +12,23 @@ Rendez-vous sur [Plantae](https://plantae.princelle.org) pour jouer !
 
 <small>Notre site fonctionne avec la plupart des navigateurs actuels mais nécessite JavaScript. <br>L’utilisation d’un navigateur comme Internet Explorer ou trop ancien peut poser problème</small>
 
-## Membres du groupe :
+## Membres du groupe
 
 * [PRINCELLE Maxime](https://princelle.org) ([GitLab](https://git.unistra.fr/princelle))
 * [LEHMANN Loïc](https://git.unistra.fr/l.lehmann)
 * [DIYAN Guil](https://git.unistra.fr/gdiyan)
+
+## Screenshots
+
+### Mode Solo
+![solo_mode](./README_files/solo.png)
+
+### Mode OnLine
+![online_mode](./README_files/online.png)
+
+## Fichiers de gestion de projet
+[Lien vers Google Drive](https://share.princelle.org/gestion-projet-t3)
+
 
 -----------------
 ## Plusieurs modes de jeu
@@ -162,3 +174,7 @@ De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
 PS : Si jamais vous rencontrez un problème contactez moi au <a href="tel:+33629249352">06.29.24.93.52</a> ou par mail à l'adresse <a href="mailto:maxime@princelle.org">maxime@princelle.org</a>.
 
 PS : PS : Si jamais, le site, déjà configuré, est disponible à cette adresse : [plantae.princelle.org](https://plantae.princelle.org/)
+
+-----------------
+## Affiche
+![affiche_plantae](./README_files/affiche.png)
