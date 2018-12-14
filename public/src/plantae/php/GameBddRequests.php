@@ -29,13 +29,6 @@ class GameBddRequests
         return self::$instance;
     }
 
-    function getFlower($idFlower)
-    {
-        $flower = $this->db->query('SELECT * FROM FLOWER WHERE idFlower = :idFlower');
-        $res = $flower->fetch();
-        return $res;
-    }
-
     function getAllFlowers(){
         $flower = $this->db->query('SELECT idFlower, nameFr FROM FLOWER');
         $res = $flower->fetchAll();
@@ -48,66 +41,123 @@ class GameBddRequests
         return $res;
     }
 
-    function getNameFlower($arrayFlower){
-        echo $arrayFlower[7];
-    }
-
-    function getPopulationFlower($arrayFlower){
-        echo $arrayFlower[13];
-    }
-
-    function getFamilyFlower($arrayFlower){
-        echo $arrayFlower[6];
-    }
-
-    function getHasNectarFlower($arrayFlower){
-        echo $arrayFlower[14];
-    }
     function getBiome($idBiome)
     {
-        $biome = $bdd->query('SELECT * FROM BIOME WHERE idBiome = :idBiome');
-        return $biome->fetch();
+        $biome = $this->db->prepare('SELECT idBiome, nameBiome, airPolution, animalDensity, humidity, 
+                                            insectDensity, precipitationAverageAmount, precipitationFrequency, 
+                                            temperature FROM BIOME WHERE idBiome = :idBiome ');
+        $biome->bindValue(':idBiome', $idBiome, PDO::PARAM_INT);
+        $biome->execute();
+        $res = $biome->fetch();
+        return $res;
     }
 
-    function getMonth($idMonth){
-        $month = $bdd->query('SELECT * FROM MONTH WHERE idMonth = :idMonth');
-        return $month->fetch();
-    }
-
-    function getLabelMonth($arrayMonth){
-        echo $arrayMonth[1];
-    }
-
-    function getNectar($idNectar){
-        $nectar = $bdd->query('SELECT * FROM NECTAR WHERE idNectar = :idNectar');
-        return $nectar->fetch();
-    }
-
-    function getPollinator($idPollinator){
-        $pollinator = $bdd->query('SELECT * FROM Pollinator WHERE idPollinator = :idPollinator');
-        return $pollinator->fetch();
-    }
-
-    function getLeaf($idLeaf){
-        $leaf = $bdd->query('SELECT * FROM Leaf WHERE idLeaf = :idLeaf');
-        return $leaf->fetch();
-    }
-
-    function getPetal($idPetal){
-        $petal = $bdd->query('SELECT * FROM Petal WHERE idPetal = :idPetal');
-        return $leaf->fetch();
-    }
-    function getCouleur($idFleur)
+    function getBiomeEventsId($idBiome)
     {
-        $seeds = $bdd->query('SELECT label FROM Color WHERE idColor = (SELECT idColor FROM Flower WHERE idFlower = :idFleur');
-        return $seeds->fetch();
+        $biomeEventsId = $this->db->prepare('SELECT idEvent FROM BIOME_EVENTLIST WHERE idBiome = :idBiome ');
+        $biomeEventsId->bindValue(':idBiome', $idBiome, PDO::PARAM_INT);
+        $biomeEventsId->execute();
+        $res = $biomeEventsId->fetchAll();
+        return $res;
     }
 
-    function getDisposition($idFleur)
+    function getEvent($idEvent)
     {
-        $seeds = $bdd->query('SELECT labelDispo FROM Disposition WHERE idDispo = (SELECT idDispo FROM Flower WHERE idFlower = :idFleur');
-        return $seeds->fetch();
+        $event = $this->db->prepare('SELECT idEvent, nameEvent, temperatureMinCond, temperatureMaxCond,
+                                            humidityMinCond, humidityMaxCond, airPolutionMinCond, airPolutionMaxCond, 
+                                            activationProb, airPolutionModifier, animalDensityModifier, humidityModifier, 
+                                            insectDensityModifier, precipitationAverageAmountModifier, precipitationFrequencyModifier, 
+                                             temperatureModifier, flowerPopulationModifier, flowerSeedsModifier, pollinatorPopulationModifier FROM RANDOMEVENT WHERE idEvent = :idEvent ');
+        $event->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
+        $event->execute();
+        $res = $event->fetch();
+        return $res;
     }
+
+    function getBiomeSeasonsId($idBiome)
+    {
+        $biomeSeasonsId = $this->db->prepare('SELECT idSeason FROM BIOME_SEASONS WHERE idBiome = :idBiome ');
+        $biomeSeasonsId->bindValue(':idBiome', $idBiome, PDO::PARAM_INT);
+        $biomeSeasonsId->execute();
+        $res = $biomeSeasonsId->fetchAll();
+        return $res;
+    }
+
+    function getSeason($idSeason)
+    {
+        $season = $this->db->prepare('SELECT humidityModifier, insectDensityModifier, precipitationAmountModifier, 
+                                              precipitationFrequencyModifier, temperatureModifier, nameSeason, idSeason 
+                                              FROM SEASON WHERE idSeason = :idSeason ');
+        $season->bindValue(':idSeason', $idSeason, PDO::PARAM_INT);
+        $season->execute();
+        $res = $season->fetch();
+        return $res;
+    }
+
+    function getSeasonMonthsId($idSeason)
+    {
+        echo "\n ID SAISON : ".$idSeason;
+        $seasonMonthsId = $this->db->prepare('SELECT idMonth FROM SEASONS_MONTHS WHERE idSeason = :idSeason ');
+        $seasonMonthsId->bindValue(':idSeason', $idSeason, PDO::PARAM_INT);
+        echo "\nMONTHS IDs ====== ".$seasonMonthsId->execute();
+        $res = $seasonMonthsId->fetchAll();
+        foreach ($res as $row){
+            echo "\nROW :".$row["idMonth"];
+        }
+        return $res;
+    }
+
+    function getMonth($idMonth)
+    {
+        $season = $this->db->prepare('SELECT idMonth, labelMonth FROM MONTH WHERE idMonth = :idMonth ');
+        $season->bindValue(':idMonth', $idMonth, PDO::PARAM_INT);
+        $season->execute();
+        $res = $season->fetch();
+        return $res;
+    }
+
+    function getBiomePollinatorsId($idBiome)
+    {
+        $biomePollinatorsId = $this->db->prepare('SELECT idBiome, idPollinator FROM BIOME_POLLINATORS WHERE idBiome = :idBiome ');
+        $biomePollinatorsId->bindValue(':idBiome', $idBiome, PDO::PARAM_INT);
+        $biomePollinatorsId->execute();
+        $res = $biomePollinatorsId->fetchAll();
+        return $res;
+    }
+
+    function getPollinator($idPollinator)
+    {
+        $pollinator = $this->db->prepare('SELECT idPollinator, namePollinator, populationPollinator, efficiency, fructoseAttraction, 
+                                                  glucoseAttraction, sucroseAttraction, temperatureTolerance, flowerMaxTubeLength 
+                                                  FROM POLLINATOR WHERE idPollinator = :idPollinator ');
+        $pollinator->bindValue(':idPollinator', $idPollinator, PDO::PARAM_INT);
+        $pollinator->execute();
+        $res = $pollinator->fetch();
+        return $res;
+    }
+
+    function getNectar($idNectar)
+    {
+        $nectar = $this->db->prepare('SELECT idNectar, nameNectar, overallQuality, fructoseProp, 
+                                              glucoseProp, sucroseProp FROM NECTAR WHERE idNectar = :idNectar ');
+        $nectar->bindValue(':idNectar', $idNectar, PDO::PARAM_INT);
+        $nectar->execute();
+        $res = $nectar->fetch();
+        return $res;
+    }
+
+    function getFlower($idFlower)
+    {
+        $flower = $this->db->prepare('SELECT idFlower, nameFr, family, nameLatin, inflorescence, 
+                                               nbPetals, colorPetals, population, hasNectar, diseaseResistance, 
+                                               idealTemperature, temperatureAmplitude, insecticidePower, seeds, 
+                                               tubeLength FROM FLOWER WHERE idFlower = :idFlower ');
+        $flower->bindValue(':idFlower', $idFlower, PDO::PARAM_INT);
+        $flower->execute();
+        $res = $flower->fetch();
+        return $res;
+    }
+
 }
 
 ?>

@@ -15,7 +15,7 @@ class Ai
     {
         $this->_name = $name;
         $this->_id = $id;
-        $this->_flower = Flower::createFlowerDebug($flowerId);
+        $this->_flower = Flower::createFlowerFromBDD($flowerId);
         $this->_upgradePoints = 3;
 
     }

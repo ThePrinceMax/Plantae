@@ -54,17 +54,19 @@
 			echo "engine creation";
 			$this->_creator = Player::createPlayerDebug($creatorId, $flowerID);
 			$this->_engineID = $engineID;
-			$this->_biome = $this->biomeLoader($biomeID);
-			$this->_biome->setBaseSeason();
-			$this->_eventList = $this->eventLoader($biomeID);
-			$this->_currentEvent = null;
+			//$this->_biome = $this->biomeLoader($biomeID);
+            $this->_biome = Biome::createBiomeFromBDD($biomeID);
+            $this->_biome->setBaseSeason();
+			//$this->_eventList = $this->eventLoaderDebug($biomeID);
+			$this->_eventList = $this->eventLoaderBdd($biomeID);
+            $this->_currentEvent = null;
 			$this->_turnsCounter = 0;
 			$this->_maxTurns = $maxTurns;
 
 			echo "engine created";
 		}
 
-		public function eventLoader($biomeID){
+		public function eventLoaderDebug($biomeID){
 		    $eventIDList= array();
 		    switch($biomeID){
                 case 0:
@@ -78,6 +80,16 @@
             }
             return $eventList;
 
+        }
+
+        public function eventLoaderBdd($biomeID){
+            $eventIDList= GameBddRequests::getInstance()->getBiomeEventsId($biomeID);
+
+            $eventList = array();
+            foreach ($eventIDList as $eventID){
+                $eventList[] = RandomEvent::createEventFromBDD($eventID);
+            }
+            return $eventList;
         }
 
         public function triggerEvent(){
@@ -170,7 +182,8 @@
 
         public static function engineSolo($creatorId, $flowerId, $biomeId, $engineID, $maxTurns){
 		    $engine = new Engine($creatorId, $flowerId, $biomeId, $engineID, false, $maxTurns);
-		    $engine->_ai = Ai::createAiDebug(0,0);
+            $flower = mt_rand(0,10);
+		    $engine->_ai = Ai::createAiDebug(0,$flower);
 		    echo "Partie solo créé";
 		    return $engine;
         }
@@ -431,7 +444,7 @@
             ];
 
             if($this->_currentEvent != null){
-                $array['currentEvent'] = $this->_currentEvent->getName();
+                $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
             }
 
 		    return $array;
@@ -458,7 +471,7 @@
             ];
 
             if($this->_currentEvent != null){
-                $array['currentEvent'] = $this->_currentEvent->getName();
+                $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
             }
 
             return $array;
@@ -482,7 +495,7 @@
             ];
 
             if($this->_currentEvent != null){
-                $array['currentEvent'] = $this->_currentEvent->getName();
+                $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
             }
 
             return $array;
@@ -513,10 +526,6 @@
         public function getTurn(){
             return $this->_turnsCounter;
         }
-
-		private function aiLoader($aiID) {
-			return Ai::createAiDebug(0, 0);
-		}
 
 		public function closeEngine(){
             if($this->isPVP()){
