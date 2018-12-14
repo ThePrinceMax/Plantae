@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 14 déc. 2018 à 18:44
+-- Généré le :  ven. 14 déc. 2018 à 18:52
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.1.9
 
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `t3`
+-- Base de données :  `t3_plantae_princelle`
 --
-CREATE DATABASE IF NOT EXISTS `t3` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `t3`;
+CREATE DATABASE IF NOT EXISTS `t3_plantae_princelle` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `t3_plantae_princelle`;
 
 -- --------------------------------------------------------
 
