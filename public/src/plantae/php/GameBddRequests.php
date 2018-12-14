@@ -128,7 +128,7 @@ class GameBddRequests
     function getPollinator($idPollinator)
     {
         $pollinator = $this->db->prepare('SELECT idPollinator, namePollinator, populationPollinator, efficiency, fructoseAttraction, 
-                                                  glucoseAttraction, sucroseAttraction, temperatureTolerance, flowerMaxTubeLength 
+                                                  glucoseAttraction, sucroseAttraction, temperatureTolerance 
                                                   FROM POLLINATOR WHERE idPollinator = :idPollinator ');
         $pollinator->bindValue(':idPollinator', $idPollinator, PDO::PARAM_INT);
         $pollinator->execute();
@@ -148,10 +148,10 @@ class GameBddRequests
 
     function getFlower($idFlower)
     {
-        $flower = $this->db->prepare('SELECT idFlower, nameFr, family, nameLatin, inflorescence, 
-                                               nbPetals, colorPetals, population, hasNectar, diseaseResistance, 
-                                               idealTemperature, temperatureAmplitude, insecticidePower, seeds, 
-                                               tubeLength FROM FLOWER WHERE idFlower = :idFlower ');
+        $flower = $this->db->prepare('SELECT idFlower, nameFr, 
+                                                population, hasNectar,
+                                               idealTemperature, temperatureAmplitude, insecticidePower, seeds 
+                                               FROM FLOWER WHERE idFlower = :idFlower ');
         $flower->bindValue(':idFlower', $idFlower, PDO::PARAM_INT);
         $flower->execute();
         $res = $flower->fetch();
