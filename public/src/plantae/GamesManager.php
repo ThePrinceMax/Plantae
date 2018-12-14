@@ -302,6 +302,13 @@ class GamesManager implements MessageComponentInterface {
                     'data' => [] ]));
                 $connPlayer->send(json_encode(['event' => "Draw",
                     'data' => [] ]));
+
+                $arrayPlayer = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToPlayer());
+                $connPlayer->send(json_encode($arrayPlayer));
+
+                $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
+                $connCreator->send(json_encode($arrayCreator));
+
                 $gameEnded = true;
             }
             else{
@@ -311,12 +318,24 @@ class GamesManager implements MessageComponentInterface {
                     $connCreator->send(json_encode(['event' => "GameWon",
                         'data' => [] ]));
                     $connPlayer->send(json_encode(['event' => "GameLost",
-                        'data' => [] ]));                }
+                        'data' => [] ]));
+                    $arrayPlayer = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToPlayer());
+                    $connPlayer->send(json_encode($arrayPlayer));
+
+                    $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
+                    $connCreator->send(json_encode($arrayCreator));
+                }
                 elseif($winner == $this->_games[$gameId]->_player->getId()){
                     $connCreator->send(json_encode(['event' => "GameLost",
                         'data' => [] ]));
                     $connPlayer->send(json_encode(['event' => "GameWon",
                         'data' => [] ]));
+
+                    $arrayPlayer = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToPlayer());
+                    $connPlayer->send(json_encode($arrayPlayer));
+
+                    $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$gameId]->sendInfoToCreator());
+                    $connCreator->send(json_encode($arrayCreator));
                 }
             }
         }
