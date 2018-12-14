@@ -140,7 +140,12 @@ var eventRefreshInfo = function(data) {
     }
     oldPop = pop;
 
-    let popOp = parseInt(data.data.opponentPopulation, 10)
+    let popOp = 0;
+
+    if(data.data.opponentPopulation !== undefined){
+        popOp = parseInt(data.data.opponentPopulation, 10)
+    }
+
     if(oldPopOp !== popOp && data.data.opponentPopulation !== undefined && data.data.opponentPopulation !==  null){
         animateValue("opponentPopulation", oldPopOp, popOp, 2000); //Commande pour mettre à jour les points
 
