@@ -454,7 +454,7 @@
             if($this->_player != null){
                 $array['opponentPopulation'] = $this->_player->_flower->getPopulation();
             }
-            if($this->_ai != null){
+            else if($this->_ai != null){
                 $array['opponentPopulation'] = $this->_ai->_flower->getPopulation();
             }
 
