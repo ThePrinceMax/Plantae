@@ -114,7 +114,7 @@ class GamesManager implements MessageComponentInterface {
         $this->_games[$this->_nextGameId] = Engine::enginePVP($from->resourceId, $flowerId,$biomeId, $this->_nextGameId, $maxTurns);
         //$from->send(('id server: '.strval($this->_games[$this->_nextGameId]->getId())));
        $from->send(json_encode(['event' => "CreatedGameMP",
-           'data' => [] ]));
+           'data' => ['serverID' => $this->_nextGameId] ]));
         $arrayCreator = $this->formatMessage('playerInfo',$this->_games[$this->_nextGameId]->sendInfoToCreator());
         $from->send(json_encode($arrayCreator));
         $this->_clientsCreator[$from->resourceId] = $this->_nextGameId;
@@ -362,7 +362,9 @@ class GamesManager implements MessageComponentInterface {
 
     private function endGamePVP($creatorId, $playerId, $gameId){
         $this->unsetCreator($creatorId);
-        $this->unsetPlayer($playerId);
+        if($playerId != null){
+            $this->unsetPlayer($playerId);
+        }
         $this->closeEngine($gameId);
     }
 
@@ -467,17 +469,26 @@ class GamesManager implements MessageComponentInterface {
 
                 if($this->_games[$gameId]->isPVP()){
                     if($this->isCreator($conn->resourceId, $gameId)){
+                        if($game->_player != null){
+                            $player = $this->getConn($game->_player->getId());
+                            $player->send(json_encode(['event' => "EnnemyLeft",
+                                'data' => [] ]));
+                        }
 
-                        $player = $this->getConn($game->_player->getId());
-                        $player->send(json_encode(['event' => "EnnemyLeft",
-                            'data' => [] ]));
                     }
                     elseif($this->isPlayer($conn->resourceId, $gameId)){
                         $creator = $this->getConn($game->_creator->getId());
                         $creator->send(json_encode(['event' => "EnnemyLeft",
                             'data' => [] ]));
                     }
-                    $this->endGamePVP($game->_creator->getId(), $game->_player->getId(), $gameId);
+                    $playerId = null;
+                    if($game->_player == null){
+                        $this->endGamePVP($game->_creator->getId(), null, $gameId);
+
+                    }
+                    else{
+                        $this->endGamePVP($game->_creator->getId(), $game->_player->getId(), $gameId);
+                    }
                 }
                 else{
                     $this->endGameSolo($game->_creator->getId(), $gameId);

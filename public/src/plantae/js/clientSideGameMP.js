@@ -2,9 +2,17 @@
 ============================= GENERIC =============================
  */
 
-//var conn = new WebSocket('ws://localhost:13750');
-var conn = new WebSocket('wss://plantae.princelle.org/ws/');
+var connectedToOnline = false;
 
+var conn;
+
+if(location.origin.includes("localhost")){
+    conn = new WebSocket('ws://localhost:13750');
+}
+else{
+    conn = new WebSocket('wss://plantae.princelle.org/ws/');
+    connectedToOnline = true;
+}
 
 var gameList = [];
 var flowerList = [];
@@ -12,8 +20,17 @@ var biomeList = [];
 var oldPop = 0;
 var oldPercent = 0;
 
+var oldPopOp = 0;
+var oldPercentOp = 0;
+
 conn.onopen = function(e) {
-    document.getElementById("modalTitle").innerHTML = "Connecté au serveur";
+    if(connectedToOnline){
+        document.getElementById("modalTitle").innerHTML = "Connecté au serveur distant";
+    }
+    else{
+        document.getElementById("modalTitle").innerHTML = "Connecté au serveur local";
+
+    }
 };
 
 conn.onmessage = function(e) {
@@ -27,7 +44,7 @@ conn.onmessage = function(e) {
     } else if (data.event == 'CreateGameSolo') {
         eventCreateGameSolo();
     } else if (data.event == 'CreatedGameMP') {
-        eventCreatedGameMP();
+        eventCreatedGameMP(data);
     } else if (data.event == 'GetAllGames') {
         eventGetAllGames(data);
     } else if (data.event == 'PlayerJoined') {
@@ -57,8 +74,8 @@ conn.onmessage = function(e) {
 
 
 
-var eventCreatedGameMP = function () {
-    document.getElementById("modalTitle").innerHTML = "En attente d'un joueur";
+var eventCreatedGameMP = function (data) {
+    document.getElementById("modalTitle").innerHTML = "En attente d'un joueur, ID partie: "+data.data.serverID;
     document.getElementById("gameJoiningMP").style.display="none";
     document.getElementById("loginActionChoice").style.display="none";
     document.getElementById("gameCreationMP").style.display="none";
@@ -122,6 +139,13 @@ var eventRefreshInfo = function(data) {
         animateValue("points", oldPop, pop, 2000); //Commande pour mettre à jour les points
     }
     oldPop = pop;
+
+    let popOp = parseInt(data.data.opponentPopulation, 10)
+    if(oldPopOp !== popOp && data.data.opponentPopulation !== undefined && data.data.opponentPopulation !==  null){
+        animateValue("opponentPopulation", oldPopOp, popOp, 2000); //Commande pour mettre à jour les points
+
+    }
+    oldPopOp = popOp;
 
     document.getElementById("fseeds").innerHTML = "Graines : "+data.data.fseeds;
     document.getElementById("fidealTemperature").innerHTML = "Température idéale : "+data.data.fidealTemperature;

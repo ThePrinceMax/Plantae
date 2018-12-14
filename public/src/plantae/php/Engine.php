@@ -447,6 +447,13 @@
                 $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
             }
 
+            if($this->_player != null){
+                $array['opponentPopulation'] = $this->_player->_flower->getPopulation();
+            }
+            if($this->_ai != null){
+                $array['opponentPopulation'] = $this->_ai->_flower->getPopulation();
+            }
+
 		    return $array;
         }
 
@@ -474,6 +481,10 @@
                 $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
             }
 
+            if($this->_creator != null){
+                $array['opponentPopulation'] = $this->_creator->_flower->getPopulation();
+            }
+
             return $array;
         }
 
@@ -496,6 +507,10 @@
 
             if($this->_currentEvent != null){
                 $array['currentEvent'] = utf8_encode($this->_currentEvent->getName());
+            }
+
+            if($this->_ai != null){
+                $array['opponentPopulation'] = $this->_ai->_flower->getPopulation();
             }
 
             return $array;
@@ -531,7 +546,10 @@
             if($this->isPVP()){
                 $this->_biome->closeBiome();
                 $this->_creator->closePlayer();
-                $this->_player->closePlayer();
+                if($this->_player != null){
+                    $this->_player->closePlayer();
+
+                }
             }
             else{
                 $this->_biome->closeBiome();
