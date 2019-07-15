@@ -159,6 +159,8 @@ De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
 
 4. Une fois le dossier créé, rendez-vous à ce dernier à l'aide de la commande (CD), et lancez la commande : <br>```git clone https://git.unistra.fr/T432-DIP18-T3-A/plantae.git``` <br> Insérez vos identifiants Unistra s'ils sont demandés.
 
+<br>Si cela ne fonctionne pas, essayez cette commande<br>```git clone https://github.com/ThePrinceMax/Plantae.git```
+
 5. Entrez la commande suivante : <br>```cd plantae/public/src/plantae/```
 
 6. Ensuite entrez cette commande : <br>```php -S localhost:8000```
