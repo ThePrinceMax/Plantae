@@ -14,7 +14,7 @@ Rendez-vous sur [Plantae](https://plantae.princelle.org) pour jouer !
 
 ## Membres du groupe
 
-* [PRINCELLE Maxime](https://princelle.org) ([GitLab](https://git.unistra.fr/princelle))
+* [PRINCELLE Maxime](https://princelle.org)
 * [LEHMANN Loïc](https://git.unistra.fr/l.lehmann)
 * [DIYAN Guil](https://git.unistra.fr/gdiyan)
 
