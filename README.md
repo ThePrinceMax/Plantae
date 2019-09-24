@@ -173,7 +173,7 @@ De plus, il s’agit de l’outil le plus utilisé dans ce domaine.
 
 10. Si vous souhaitez fermer le jeu, fermez tout simplement les deux terminaux ou invite de commande.
 
-PS : Si jamais vous rencontrez un problème contactez moi au <a href="tel:+33629249352">06.29.24.93.52</a> ou par mail à l'adresse <a href="mailto:maxime@princelle.org">maxime@princelle.org</a>.
+PS : Si jamais vous rencontrez un problème contactez moi au [06.29.24.93.52](tel:+33629249352) ou par mail à l'adresse [maxime@princelle.org](mailto:maxime@princelle.org).
 
 PS : PS : Si jamais, le site, déjà configuré, est disponible à cette adresse : [plantae.princelle.org](https://plantae.princelle.org/)
 
