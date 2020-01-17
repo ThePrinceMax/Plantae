@@ -19,6 +19,22 @@
 
     <!-- Statistiques -->
     <script src="https://www.w3counter.com/tracker.js?id=122588"></script>
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setCookieDomain", "*.plantae.princelle.org"]);
+  _paq.push(["setDomains", ["*.plantae.princelle.org"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.princelle.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '6']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.princelle.org/matomo.php?idsite=6&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 
     <!-- CSS Styles -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
