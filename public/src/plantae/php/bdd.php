@@ -4,8 +4,11 @@
     const SQL_DSN      = "mysql:host=localhost;port=3306;dbname=t3_plantae_princelle";
     const SQL_USERNAME = 't3';
     const SQL_PASSWORD = 'K66R3o3Qrk1vokaO';
-    
-    
+    /* plantae.princelle.org
+    const SQL_DSN      = "mysql:host=localhost;port=3306;dbname=t3_plantae_princelle";
+    const SQL_USERNAME = 't3';
+    const SQL_PASSWORD = 'K66R3o3Qrk1vokaO';
+    */
     /* Autre (localhost) */
     //const SQL_DSN      = 'mysql:host=mysql.iutrs.unistra.fr;dbname=t3_plantae_princelle';
     //const SQL_USERNAME = 'princelle';
